@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>Kinect Bodyscanner</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        
+        <!-- Custom stylesheet -->
+        <link rel="stylesheet" href="css/main.css">
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    </head>
+    
+    <body>
+        <nav>
+            <div class="container">
+                <div class="row row-centered">
+                    <div class="col-md-2 col-centered">
+                        <div class="my-subtitle">
+                            <a>Menu</a>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-centered">
+                        <div class="my-title">
+                            Kinect Bodyscanner
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-centered">
+                        <div class="my-subtitle">
+                            <a>Info</a>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-line">
+            </div>
+        </nav>
+        <section class="my-section">
+            <div class="container">
+                <div class="row row-centered">
+                    <div class="col-md-12 col-centered">
+                        <img id="kinect" width="900px" height="232px" src="img/Kinect%202.png">
+                    </div>
+                </div>
+                <hr class="my-line">
+            </div>
+            <div class="container">
+                <div class="row row-centered">
+                    <div id="summary" class="col-md-4 col-centered">
+                        <div class="my-chunks">
+                            <p>Summary</p>
+                        </div>
+                    </div>
+                    <div id="video" class="col-md-4 col-centered">
+                        <div class="my-chunks">
+                            <p>Video</p>
+                        </div>
+                    </div>
+                    <div id="report" class="col-md-4 col-centered">
+                        <div class="my-chunks">
+                            <p><a href="kinect-tutorial.html">Documents</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-centered">
+                    <div class="col-md-4 col-centered">
+                        <div id="summary-text" class="my-text">
+                            Project Outline, Goals and Methods
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-centered">
+                        <div id="video-text" class="my-text">
+                            <p>Showing the Ins and Outs of the Project</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-centered">
+                        <div id="report-text" class="my-text">
+                            <p>Report, Support Documentation and Tutorial Showing how to Hack the Xbox One Kinects to work with PC</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        Hello
+        
+        <footer>
+            <nav class="navbar navbar-fixed-bottom my-footer" role="navigation">
+                <div class="container">
+                    <div class="row row-centered">
+                        <div class="col-md-3 col-centered">
+                            <div class="my-text">
+                                Copyright©2014
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-centered">
+                            <div class="my-text">
+                                <i>Scanning is Knowledge</i>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-centered">
+                            <div class="my-text">
+                                <i>Knowledge is Power</i>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-centered">
+                            <div class="my-text">
+                                UCL
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </footer>
+        <script>
+            $(document).ready(function(){
+                $("#summary-text").hide();
+                $("#video-text").hide();
+                $("#report-text").hide();
+                $("#summary").hover(function()  {
+                    $("#summary-text").toggle();
+                });
+                $("#video").hover(function()  {
+                    $("#video-text").toggle();
+                });
+                $("#report").hover(function()  {
+                    $("#report-text").toggle();
+                });
+            });
+        </script>
+    </body>
+</html>
