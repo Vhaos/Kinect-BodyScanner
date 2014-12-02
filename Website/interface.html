@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="main.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="js/main.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div id="my-menu" class="container-fluid my-menu">
+            <div class="menu-box">
+                <a href="index.html">Home</a>
+            </div>
+            <div class="menu-box">
+                <a href="background.html">Background</a>
+            </div>
+            <div class="menu-box">
+                <a href="interface.html">Interface</a>
+            </div>
+        </div>
+        <div class="container my-main-container">
+            <!-- Nav bar -->
+            <nav id="my-navbar" class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <!--<a class="navbar-brand" href="#">Kinect</a>-->
+                    </div>
+                    <div>
+                        <ul class="nav navbar-nav">
+                            <li id="menu-icon" class="pull-left"><a href="#">Menu</a></li>
+                            <li id="theTitle" class="my-title"><a href="index.html">Kinect Bodyscanner</a></li>
+                            <li id="about-icon" class="pull-right"><a href="#">About</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <hr class="my-line">
+            <h2 class="sub-heading">User Interface</h2>
+            <div id="quickLinks" class="row">
+                <div class="my-tab col-sm-4 col-xs-12">
+                    <a href="#" class="my-active" id="design1Tab">Design 1</a>
+                </div>
+                <div class="my-tab col-sm-4 col-xs-12">
+                    <a href="#" id="design2Tab">Design 2</a>
+                </div>
+                <div class="my-tab col-sm-4 col-xs-12">
+                    <a href="#" id="design3Tab">Design 3</a>
+                </div>
+            </div>
+            <div id="design1" class="container slim text-sheet">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img width="100%" src="img/UI/1/1.png">
+                    </div>
+                    <div class="col-xs-6">
+                        <ul>
+                            <li>This is the first Screen that users see</li>
+                            <li>This view shows the live camera feed with a body silhouette overlaid on top</li>
+                            <li>The silhouette provides motion feedback and encrouages proper alignment with the silhouette- thus incorporating affordance (one of Norman’s Design Principles)</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="my-line">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img width="100%" src="img/UI/1/2.png">
+                    </div>
+                    <div class="col-xs-6">
+                        <ul>
+                            <li>The Help button also incorporates affordance, as it has a thick border implying depth, hence ‘it can be pushed’</li>
+                            <li>The status of the system is always shown in large font, as the user might be further from screen, trying to align with silhouette</li>
+                            <li>The status of the system is colour coded with traffic light colours along with the silhouette. This helps with mapping the movements of the user’s body and its effect on the system</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="my-line">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img width="100%" src="img/UI/1/3.png">
+                    </div>
+                    <div class="col-xs-6">
+                        <ul>
+                            <li>The camera feed, instruction text, system status bar are always located in the same location. This provides consistency for the user</li>
+                            <li>The Help Button disappears as it doesn't make sense to go to help screen while the system is scanning user’s body. This puts an appropriate constraint on what the user can do at times</li>
+                            <li>A countdown timer provides feedback, indicating how long the user has to wait</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="my-line">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img width="100%" src="img/UI/1/4.png">
+                    </div>
+                    <div class="col-xs-6">
+                        <ul>
+                            <li>The various measurements are colour coded with the lines on the silhouette suggesting which measurement each jargon refers to</li>
+                            <li>The ‘Done’ button aids visibility, indicating what to do next. It is also coloured green to suggest that ‘this is a good button’</li>
+                            <li>The ‘Privacy Policy’ button is situated in the top right and is smaller than ‘Done’ button, this is to preserve the minimalist design while also offering easy access to privacy information</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="design2" class="container slim text-sheet">
+                /* DESIGN 2 */
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img width="100%" src="img/UI/1/1.png">
+                    </div>
+                    <div class="col-xs-6">
+                        <ul>
+                            <li>This is the first Screen that users see</li>
+                            <li>This view shows the live camera feed with a body silhouette overlaid on top</li>
+                            <li>The silhouette provides motion feedback and encrouages proper alignment with the silhouette- thus incorporating affordance (one of Norman’s Design Principles)</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="my-line">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img width="100%" src="img/UI/1/2.png">
+                    </div>
+                    <div class="col-xs-6">
+                        <ul>
+                            <li>The Help button also incorporates affordance, as it has a thick border implying depth, hence ‘it can be pushed’</li>
+                            <li>The status of the system is always shown in large font, as the user might be further from screen, trying to align with silhouette</li>
+                            <li>The status of the system is colour coded with traffic light colours along with the silhouette. This helps with mapping the movements of the user’s body and its effect on the system</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="my-line">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img width="100%" src="img/UI/1/3.png">
+                    </div>
+                    <div class="col-xs-6">
+                        <ul>
+                            <li>The camera feed, instruction text, system status bar are always located in the same location. This provides consistency for the user</li>
+                            <li>The Help Button disappears as it doesn't make sense to go to help screen while the system is scanning user’s body. This puts an appropriate constraint on what the user can do at times</li>
+                            <li>A countdown timer provides feedback, indicating how long the user has to wait</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="my-line">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img width="100%" src="img/UI/1/4.png">
+                    </div>
+                    <div class="col-xs-6">
+                        <ul>
+                            <li>The various measurements are colour coded with the lines on the silhouette suggesting which measurement each jargon refers to</li>
+                            <li>The ‘Done’ button aids visibility, indicating what to do next. It is also coloured green to suggest that ‘this is a good button’</li>
+                            <li>The ‘Privacy Policy’ button is situated in the top right and is smaller than ‘Done’ button, this is to preserve the minimalist design while also offering easy access to privacy information</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="design3" class="container slim text-sheet">
+                /* DESIGN 3 */
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img width="100%" src="img/UI/1/1.png">
+                    </div>
+                    <div class="col-xs-6">
+                        <ul>
+                            <li>This is the first Screen that users see</li>
+                            <li>This view shows the live camera feed with a body silhouette overlaid on top</li>
+                            <li>The silhouette provides motion feedback and encrouages proper alignment with the silhouette- thus incorporating affordance (one of Norman’s Design Principles)</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="my-line">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img width="100%" src="img/UI/1/2.png">
+                    </div>
+                    <div class="col-xs-6">
+                        <ul>
+                            <li>The Help button also incorporates affordance, as it has a thick border implying depth, hence ‘it can be pushed’</li>
+                            <li>The status of the system is always shown in large font, as the user might be further from screen, trying to align with silhouette</li>
+                            <li>The status of the system is colour coded with traffic light colours along with the silhouette. This helps with mapping the movements of the user’s body and its effect on the system</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="my-line">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img width="100%" src="img/UI/1/3.png">
+                    </div>
+                    <div class="col-xs-6">
+                        <ul>
+                            <li>The camera feed, instruction text, system status bar are always located in the same location. This provides consistency for the user</li>
+                            <li>The Help Button disappears as it doesn't make sense to go to help screen while the system is scanning user’s body. This puts an appropriate constraint on what the user can do at times</li>
+                            <li>A countdown timer provides feedback, indicating how long the user has to wait</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="my-line">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img width="100%" src="img/UI/1/4.png">
+                    </div>
+                    <div class="col-xs-6">
+                        <ul>
+                            <li>The various measurements are colour coded with the lines on the silhouette suggesting which measurement each jargon refers to</li>
+                            <li>The ‘Done’ button aids visibility, indicating what to do next. It is also coloured green to suggest that ‘this is a good button’</li>
+                            <li>The ‘Privacy Policy’ button is situated in the top right and is smaller than ‘Done’ button, this is to preserve the minimalist design while also offering easy access to privacy information</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -56,7 +56,6 @@ hr.my-line
     float: none;
     display: inline-block;
     margin: 0;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 .navbar-nav li a {
     color: grey !important;
@@ -68,7 +67,7 @@ hr.my-line
 
 .my-quick-link  {
     text-align: center;
-    border-radius: 10px;
+    border-radius: 1em;
     transition: All 0.4s;
     text-transform: uppercase;
 }
@@ -78,6 +77,17 @@ hr.my-line
 }
 .my-quick-link:hover  {
     background-color: #efefef;
+}
+
+.my-tab {
+    font-size: 115%;
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+
+.my-tab a {
+    text-decoration: none;
+    color: black;
 }
 
 .img-sized-centered {
@@ -114,19 +124,34 @@ hr.my-line
     text-align: center;
     font-size: 65%;
 }
+.text-row p {
+    font-family: sans-serif;
+}
+
 .text-sheet {
-    background-color: #efefef;
-    box-shadow: 0px 0px 10px lightGray;
+    background-color: rgb(248,248,248);
+    border-radius: 0.4em;
+    box-shadow: 0px 0px 10px grey;
     padding: 5% 5%;
     font-size: 90%;
     text-align: justify;
     word-spacing: 0.333em;
-    margin-bottom: 10%;
+    margin-bottom: 3.5%;
 }
 
-.text-sheet h3  {
-    margin-top: 0;
-    font-size: 180%;
+.sub-heading    {
+    text-align: center;
+    font-size: 150%;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+.text-sheet li  {
+    text-align: left;
+}
+
+.text-sheet img  {
+    background-color: white;
 }
 
 .my-menu    {
@@ -152,6 +177,16 @@ hr.my-line
     display: block;
     margin: 0 auto;
     transform: translateY(-50%);
+}
+
+.menu-box   {
+    width: auto;
+    display: inline-block;
+    padding: 0 0.75em;
+}
+
+.my-active  {
+    font-weight: bold;
 }
 /* ___________________________________________________________________ */
 
