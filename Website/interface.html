@@ -19,7 +19,19 @@
                 <a href="background.html">Background</a>
             </div>
             <div class="menu-box">
+                <a href="requirements.html">Requirements</a>
+            </div>
+            <div class="menu-box">
                 <a href="interface.html">Interface</a>
+            </div>
+            <div class="menu-box">
+                <a href="research.html">Research</a>
+            </div>
+            <div class="menu-box">
+                <a href="versioncontrol.html">Version Control</a>
+            </div>
+            <div class="menu-box">
+                <a href="testing.html">Testing</a>
             </div>
         </div>
         <div class="container my-main-container">
@@ -40,19 +52,52 @@
             </nav>
             <hr class="my-line">
             <h2 class="sub-heading">User Interface</h2>
+            <div class="container slim text-sheet">
+                <p>
+                    For the purpose of creating a lo-fi user interface, we chose to focus our ideas for deployment in clothing stores. Users would therefore undergo the scanning process from within a private room/pod, receiving their body measurements as output for them to view and use when shopping for clothes.
+                </p>
+                <p>
+                    As the UI will be used by people from all ages and backgrounds, we prioritised a minimalist design during our initial brainstorm. Additionally, since scanning a person’s body is a very sensitive task, privacy and transparency concerns also needed to be addressed. We came up with various designs, but we chose two for evaluation, leading to a third, final and improved UI.
+                </p>
+            </div>
             <div id="quickLinks" class="row">
                 <div class="my-tab col-sm-4 col-xs-12">
-                    <a href="#" class="my-active" id="design1Tab">Design 1</a>
+                    <p class="my-active" id="design1Tab">Design 1</p>
                 </div>
                 <div class="my-tab col-sm-4 col-xs-12">
-                    <a href="#" id="design2Tab">Design 2</a>
+                    <p id="design2Tab">Design 2</p>
                 </div>
                 <div class="my-tab col-sm-4 col-xs-12">
-                    <a href="#" id="design3Tab">Design 3</a>
+                    <p id="design3Tab">Design 3</p>
                 </div>
             </div>
             <div id="design1" class="container slim text-sheet">
                 <div class="row">
+                    <p>
+                        In this design, the required touchscreen interaction from users is kept to a minimum. This is because the user will spend most of the time aligning with the camera, making frequent interaction obstructive.
+                    </p><br>
+                    <div style="text-align: left; font-size: 120%;" class="col-xs-6">Pros</div>
+                    <div style="text-align: left; font-size: 120%;" class="col-xs-6">Cons</div>
+                    <div class="col-xs-6">
+                        <ul>
+                            <li>Intuitive and clean</li>
+                            <li>The colours aid the user in understanding the system status</li>
+                            <li>Results screen is intuitive and the measurements can be easily related to the body</li>
+                            <li>Buttons are large and clear in their actions</li>
+                            <li>Minimal required user interaction</li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-6">
+                        <ul>
+                            <li>Live feedback from camera can be a sensitive issue</li>
+                            <li>No way to review privacy policy before getting scanned</li>
+                            <li>Silhouette risks imposing an expectation of bodyshape on users</li>
+                            <li>Scanner always on may be disconcerting for some users</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="my-line">
+                <div class="row">
                     <div class="col-xs-6">
                         <img width="100%" src="img/UI/1/1.png">
                     </div>
@@ -104,110 +149,199 @@
                     </div>
                 </div>
             </div>
+            <!-- DESIGN 2 -->
             <div id="design2" class="container slim text-sheet">
-                /* DESIGN 2 */
                 <div class="row">
+                    <p>
+                        Our second design has some required touchscreen interaction from users and risks appearing more cluttered. However, it respects users' privacy and provides detailed feedback at each stage.
+                    </p><br>
+                    <div style="text-align: left; font-size: 120%;" class="col-xs-6">Pros</div>
+                    <div style="text-align: left; font-size: 120%;" class="col-xs-6">Cons</div>
                     <div class="col-xs-6">
-                        <img width="100%" src="img/UI/1/1.png">
+                        <ul>
+                            <li>Use of skeleton rather than silhouette, hence not suggesting any body shape</li>
+                            <li>No live camera feed</li>
+                            <li>All screens can be accessed from any screen including the privacy policy</li>
+                            <li>All instructions are provided on screen</li>
+                        </ul>
                     </div>
                     <div class="col-xs-6">
                         <ul>
-                            <li>This is the first Screen that users see</li>
-                            <li>This view shows the live camera feed with a body silhouette overlaid on top</li>
-                            <li>The silhouette provides motion feedback and encrouages proper alignment with the silhouette- thus incorporating affordance (one of Norman’s Design Principles)</li>
+                            <li>Redundancy issues with some buttons</li>
+                            <li>Too verbose</li>
+                            <li>Awkward use of colouring</li>
                         </ul>
                     </div>
                 </div>
                 <hr class="my-line">
                 <div class="row">
                     <div class="col-xs-6">
-                        <img width="100%" src="img/UI/1/2.png">
+                        <img width="100%" src="img/UI/2/1.jpg">
                     </div>
                     <div class="col-xs-6">
                         <ul>
-                            <li>The Help button also incorporates affordance, as it has a thick border implying depth, hence ‘it can be pushed’</li>
-                            <li>The status of the system is always shown in large font, as the user might be further from screen, trying to align with silhouette</li>
-                            <li>The status of the system is colour coded with traffic light colours along with the silhouette. This helps with mapping the movements of the user’s body and its effect on the system</li>
+                            <li>When taking detailed measurements of a person’s body, the primary concern must be privacy and transparency. Therefore, the UI design has to appear non-convoluted and minimalist, with privacy information readily available to the user.</li>
+                            <li>Using a touchscreen or mouse, the user will navigate the UI with ‘button’ presses. The interface is comprised of three parts, each with a function implied by its title</li>
                         </ul>
                     </div>
                 </div>
                 <hr class="my-line">
                 <div class="row">
                     <div class="col-xs-6">
-                        <img width="100%" src="img/UI/1/3.png">
+                        <img width="100%" src="img/UI/2/2.jpg">
                     </div>
                     <div class="col-xs-6">
                         <ul>
-                            <li>The camera feed, instruction text, system status bar are always located in the same location. This provides consistency for the user</li>
-                            <li>The Help Button disappears as it doesn't make sense to go to help screen while the system is scanning user’s body. This puts an appropriate constraint on what the user can do at times</li>
-                            <li>A countdown timer provides feedback, indicating how long the user has to wait</li>
+                            <li>For consistency, the UI layout should remain the same as much as possible. Therefore, the three interface parts never shuffle or resize, changing notably only once scanning has finished</li>
+                            <li>The console, supported by the prompt (which shows number of steps), provides readable and up-to-date feedback to the user</li>
                         </ul>
                     </div>
                 </div>
                 <hr class="my-line">
                 <div class="row">
                     <div class="col-xs-6">
-                        <img width="100%" src="img/UI/1/4.png">
+                        <img width="100%" src="img/UI/2/2.1.jpg">
                     </div>
                     <div class="col-xs-6">
                         <ul>
-                            <li>The various measurements are colour coded with the lines on the silhouette suggesting which measurement each jargon refers to</li>
-                            <li>The ‘Done’ button aids visibility, indicating what to do next. It is also coloured green to suggest that ‘this is a good button’</li>
-                            <li>The ‘Privacy Policy’ button is situated in the top right and is smaller than ‘Done’ button, this is to preserve the minimalist design while also offering easy access to privacy information</li>
+                            <li>Upon scanning, the user’s position is reflected by red skeletal lines. This remains inoffensive but useful to the user for mapping movement to the effect it has on the scanner’s input. Red is used to colour the STOP function for user recognition</li>
+                            <li>System displays % completion during scanning</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="my-line">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img width="100%" src="img/UI/2/3.jpg">
+                    </div>
+                    <div class="col-xs-6">
+                        <ul>
+                            <li>By matching the design of the normal buttons, the user may find it intuitive that they serve the same purpose</li>
+                            <li>The rounded rectangular shaped buttons incorporate affordance as their size indicates they are more than just informative, supported by established patterns in button design</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="my-line">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img width="100%" src="img/UI/2/4.jpg">
+                    </div>
+                    <div class="col-xs-6">
+                        <ul>
+                            <li>Having the privacy policy and data promises readily available is an intrinsic requirement of this system</li>
+                            <li>Other decisions made to accommodate the user are to avoid displaying a live feed of the scan, so as to avoid offending users or appearing invasive</li>
+                            <li>The console never displays more than three lines of text, in order to avoid cluttering</li>
                         </ul>
                     </div>
                 </div>
             </div>
+            <!-- DESIGN 3 -->
             <div id="design3" class="container slim text-sheet">
-                /* DESIGN 3 */
+                <div class="row">
+                    <p>
+                        Following evaluation and feedback, we found the following notable issues:
+                        <ul>
+                            <li>Showing a QR code (or using a similar mechanism) to be scanned by an accompanying app would provide increased utility for users. By incorporating users' own hardware, they may feel more in control of their own data</li>
+                            <li>Only showing the measurements might not be beneficial to the users, instead showing the size of clothes or even recommendation of clothes might be more helpful</li>
+                            <li>There is no screen giving feedback after the scan has been taken</li>
+                            <li>There is no error screen. If the scanning goes wrong, or if someone enters the pod when the scanner is unable to scan: the screen must show an error message. In cases where the Kinect is unable to scan a user, the displayed error should be sensitive to the user to avoid offense</li>
+                        </ul>
+                    </p>
+                </div>
+                <hr class="my-line">
                 <div class="row">
                     <div class="col-xs-6">
-                        <img width="100%" src="img/UI/1/1.png">
+                        <img width="100%" src="img/UI/3/1.png">
                     </div>
                     <div class="col-xs-6">
                         <ul>
-                            <li>This is the first Screen that users see</li>
-                            <li>This view shows the live camera feed with a body silhouette overlaid on top</li>
-                            <li>The silhouette provides motion feedback and encrouages proper alignment with the silhouette- thus incorporating affordance (one of Norman’s Design Principles)</li>
+                            <li>User input is reduced to simply selecting start or privacy policy at this stage</li>
+                            <li>Privacy conscious users are given the opportunity to review the privacy policy early on</li>
                         </ul>
                     </div>
                 </div>
                 <hr class="my-line">
                 <div class="row">
                     <div class="col-xs-6">
-                        <img width="100%" src="img/UI/1/2.png">
+                        <img width="100%" src="img/UI/3/2.png">
                     </div>
                     <div class="col-xs-6">
                         <ul>
-                            <li>The Help button also incorporates affordance, as it has a thick border implying depth, hence ‘it can be pushed’</li>
-                            <li>The status of the system is always shown in large font, as the user might be further from screen, trying to align with silhouette</li>
-                            <li>The status of the system is colour coded with traffic light colours along with the silhouette. This helps with mapping the movements of the user’s body and its effect on the system</li>
+                            <li>Help and Stop buttons are available for the user to select</li>
+                            <li>Skeletal guidelines do not impose a shape expectation but preserve the pose information</li>
+                            <li>In the interest of liveness, a live feed was chosen in spite of previous concerns</li>
                         </ul>
                     </div>
                 </div>
                 <hr class="my-line">
                 <div class="row">
                     <div class="col-xs-6">
-                        <img width="100%" src="img/UI/1/3.png">
+                        <img width="100%" src="img/UI/3/3.png">
                     </div>
                     <div class="col-xs-6">
                         <ul>
-                            <li>The camera feed, instruction text, system status bar are always located in the same location. This provides consistency for the user</li>
-                            <li>The Help Button disappears as it doesn't make sense to go to help screen while the system is scanning user’s body. This puts an appropriate constraint on what the user can do at times</li>
-                            <li>A countdown timer provides feedback, indicating how long the user has to wait</li>
+                            <li>Minimalist design preserved throughout the interface</li>
+                            <li>Button and text prompt positioning remain consistent</li>
+                            <li>System status always reported to the user</li>
                         </ul>
                     </div>
                 </div>
                 <hr class="my-line">
                 <div class="row">
                     <div class="col-xs-6">
-                        <img width="100%" src="img/UI/1/4.png">
+                        <img width="100%" src="img/UI/3/4.png">
                     </div>
                     <div class="col-xs-6">
                         <ul>
-                            <li>The various measurements are colour coded with the lines on the silhouette suggesting which measurement each jargon refers to</li>
-                            <li>The ‘Done’ button aids visibility, indicating what to do next. It is also coloured green to suggest that ‘this is a good button’</li>
-                            <li>The ‘Privacy Policy’ button is situated in the top right and is smaller than ‘Done’ button, this is to preserve the minimalist design while also offering easy access to privacy information</li>
+                            <li>Feedback during scanning helps assure users that the scanner is functioning properly</li>
+                            <li>In the interest of error prevention and reduced user confusion- buttons removed at this point as scan duration is less than a few seconds</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="my-line">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img width="100%" src="img/UI/3/5.png">
+                    </div>
+                    <div class="col-xs-6">
+                        <ul>
+                            <li>Feedback screen so as not to abandon users</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="my-line">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img width="100%" src="img/UI/3/6.png">
+                    </div>
+                    <div class="col-xs-6">
+                        <ul>
+                            <li>Button input capabilities restored</li>
+                            <li>QR Code also displayed for accompanying app to scan</li>
+                            <li>Done button available for users to finish the session</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="my-line">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img width="100%" src="img/UI/3/7.png">
+                    </div>
+                    <div class="col-xs-6">
+                        <ul>
+                            <li>An error screen accounting for any unforeseen problems</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="my-line">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img width="100%" src="img/UI/3/8.png">
+                    </div>
+                    <div class="col-xs-6">
+                        <ul>
+                            <li>A lo-fi example of the accompanying app's interface upon scanning</li>
+                            <li>Measurement information available on user's device controlled solely by them</li>
                         </ul>
                     </div>
                 </div>

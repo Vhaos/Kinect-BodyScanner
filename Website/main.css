@@ -83,6 +83,7 @@ hr.my-line
     font-size: 115%;
     text-align: center;
     margin-bottom: 0.5em;
+    cursor: pointer;
 }
 
 .my-tab a {
