@@ -155,6 +155,10 @@ hr.my-line
     background-color: white;
 }
 
+#menu-icon  {
+    cursor: pointer;
+}
+
 .my-menu    {
     position: absolute;
     background-color: lightGray;
