@@ -6,8 +6,10 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="main.css">
+        <link href="css/lightbox.css" rel="stylesheet">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/lightbox.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     </head>
     <body>
@@ -28,13 +30,19 @@
                 <a href="research.html">Research</a>
             </div>
             <div class="menu-box">
+                <a href="prototypes.html">Prototype</a>
+            </div>
+            <div class="menu-box">
                 <a href="versioncontrol.html">Version Control</a>
             </div>
             <div class="menu-box">
                 <a href="testing.html">Testing</a>
             </div>
             <div class="menu-box">
-                <a href="recordplanning.html">Records & Plans</a>
+                <a href="records.html">Records</a>
+            </div>
+            <div class="menu-box">
+                <a href="future.html">Future</a>
             </div>
         </div>
         <div class="container my-main-container">
@@ -55,6 +63,72 @@
             </nav>
             <hr class="my-line">
             <h2 class="sub-heading">Testing</h2>
+            <div class="container slim text-sheet">
+                <h3>Relevant Tests</h3><br>
+                
+                <ul>
+                    <li><b>Unit Tests</b>
+                        <ul>
+                            <li>Unit tests apply to code at the method level</li>
+                            <li>Quickly access and test a part of the business logic</li>
+                            <li>Useful for test-driven-development</li>
+                        </ul>
+                    </li>
+                    <li><b>Integration Tests</b>
+                        <ul>
+                            <li>Combined modules tested as a whole</li>
+                            <li>Performed after modules are unit tested</li>
+                        </ul>
+                    </li>
+                    <li><b>Validation Tests</b>
+                        <ul>
+                            <li>Checking if the system satisfies its requirements</li>
+                        </ul>
+                    </li>
+                    <li><b>Coded UI Tests</b>
+                        <ul>
+                            <li>Enables the automation of UI interaction</li>
+                            <li>Ensures code isn’t altering the UI state instead of the user</li>
+                            <li>Able to use CUIT Test Builder in Visual Studio</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="container slim text-sheet">
+                <h3>System Specific</h3>
+                <p>Our immediate concerns, regarding testing, can be broken into two parts:
+                    <ul>
+                        <li>Reliability (i.e. consistency between scans)</li>
+                        <li>Accuracy (i.e. noise measurement, outlier removal)</li>
+                    </ul>
+                </p><br>
+                    <b>Reliability</b>
+                    <p>With regards to consistency between scans: confidence in the scanner’s ability to deliver similar results from consecutive scans was critical. In order to provide evidence of the system’s reliability, we requisitioned a human body mannequin with the intention of using it as a completely static model for the scanning process.</p>
+                    <p>We took 200 consecutive scans of the mannequin, outputting point clouds for each scan. We found that the marginal differences between the corresponding points’ (x,y,z) values were often less than 5 millimetres, meaning the scans were very similar and, indeed, rendered almost identically in MeshLab.</p>
+
+<p>In the process of this experiment, we did discover details of how we would best prepare the environment surrounding the model during the scan. 
+                </p>
+            For best results:<ul>
+                <li>Reduce or remove all floor clutter</li>
+                <li>Avoid standing close to objects such as desks, chairs etc.</li>
+                <li>Stand at least a few feet in front of a, contrasting in colour, background surface</li>
+            </ul><br>
+            <b>Accuracy</b><br>
+            <p>
+                For accuracy, we want to remove as much noise from the scan as possible. To do so we can try to filter outliers by performing a Nearest Neighbour Search on each of the point cloud’s points, identifying the closest N points before averaging their distances.
+            </p><br>
+            <a href="img/Testing/nn_search.png" data-lightbox="test">
+                <img class="img-sized-centered" src="img/Testing/nn_search.png">
+            </a><br>
+            <p>
+            Outliers will tend to have larger average distances to their closest points when compared to connected points that are tightly grouped. By thresholding this average distance value, we can successfully remove dramatic outliers.</p>
+
+<p>For performance and ease, we will store the 3D points in a k-d tree, alternating splitting with hyperplanes across the x, y and z axis. This allows for efficient NN search by creating the invariant that all points in the left subtree of node A must have a lower axis value than A itself, while all those in the right subtree must have a higher value for that axis.
+            </p><br>
+            <a href="http://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/3dtree.png/250px-3dtree.png" data-lightbox="test">
+                <img class="img-sized-centered" src="http://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/3dtree.png/250px-3dtree.png">
+            </a><br>
+            </div>
         </div>
     </body>
 </html>

@@ -6,7 +6,9 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="main.css">
+        <link href="css/lightbox.css" rel="stylesheet">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="js/lightbox.min.js"></script>
         <script src="js/main.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     </head>
@@ -28,13 +30,19 @@
                 <a href="research.html">Research</a>
             </div>
             <div class="menu-box">
+                <a href="prototypes.html">Prototype</a>
+            </div>
+            <div class="menu-box">
                 <a href="versioncontrol.html">Version Control</a>
             </div>
             <div class="menu-box">
                 <a href="testing.html">Testing</a>
             </div>
             <div class="menu-box">
-                <a href="recordplanning.html">Records & Plans</a>
+                <a href="records.html">Records</a>
+            </div>
+            <div class="menu-box">
+                <a href="future.html">Future</a>
             </div>
         </div>
         <div class="container my-main-container">
@@ -58,36 +66,36 @@
             <div class="container slim text-sheet">
             <b>The Client</b>
                 <p>
-                    For the purposes of this project, our client was Prof. Phillip Treleaven, a professor of computer science at UCL. Professor Treleaven first led the effort of building and encouraging use of body scanners for the clothing industry. He, alongside with Dr.Tony Ruto, developed the initial sizing software, which scanned and extracted measurements from an already existing point cloud using the Kinect 1.0. Our Secondary point of contact was Dr. Tony Ruto, who we would refer to in the event of any particular technical difficulties as well as in seeking guidance on the quality of our extracted point cloud (Kinect model data).
+                    For the purposes of this project, our client was Prof. Philip Treleaven, a professor of Computer Science at UCL. Professor Treleaven first led the effort of building and encouraging the use of body scanners for the clothing industry. He, alongside Dr.Tony Ruto, developed the initial sizing software, which scanned and extracted measurements from an already existing point cloud using the Kinect 1.0. Our Secondary point of contact was Dr. Tony Ruto, whom we would refer to in the event of any particular technical difficulties as well as in seeking guidance on the quality of our extracted point cloud.
                 </p>
             <b>Project Scope</b>
                 <p>
-                    Our main goal for the project, as was discussed and agreed upon with our client,  was to look through the SDK and API of the new Kinect 2.0 to extract a suitable point cloud (Kinect model data). Once extraced, and approved for quality by Dr. Tony Ruto, we could later combine this model with the existing size and measurements extraction software which we receive from Dr. Ruto to create a full, low cost Body Scanner software service; compatible with the Kinect 2.0/
+                    Our main goal for the project, as was discussed and agreed upon with our client, was to first examine the Kinect for Windows 2 SDK, with the aim of extracting an accurate point cloud from a static model. Once extracted, and quality approved by Dr. Tony Ruto, we could later combine our data with the aforementioned measurement extraction software to create a full, low cost Body Scanning service that utilises the Kinect 2.0.
                 </p>
             </div>
 
             <div class="container slim text-sheet">
             <b>Project Requirements</b>
                 <p>
-                    After our intial meetings with Prof. Treleaven, as well as Dr. Ruto the quality of the point cloud, we concluded on final set of clear requirements that the system must have. 
+                    After our intial meetings with Prof. Treleaven, and communication with Dr. Ruto on the matter of the point cloud, we concluded on a final set of clear requirements that the system must have. 
                 </p>
                 <ul>
                     <li>
-                        <b>Kinect Capture</b><p> - The software firstly needed to be able to capture depth scan from the Kinect 2.0 in order to generate a 3D point cloud of the subject in a simple, quick and easy way - One click run</p>
+                        <b>Kinect Capture</b><p> - The software firstly needed to be able to capture depth information from the Kinect 2.0 in order to generate a 3D point cloud of the subject in a simple, quick and easy way - One click run</p>
                     </li>
                     <li>
-                        <b>Accuracy of the pointcloud</b><p> - the 3D pointcloud needs to be accurate enough to correctly detect body shape and depth. This meant trying to map out as many points as possible without too much quality of the cloud lost due to noise.</p>
+                        <b>Accuracy of the point cloud</b><p> - the 3D point cloud needs to be accurate enough to correctly detect body shape and depth. This meant trying to map out as many points as possible without too much quality of the cloud lost due to noise.</p>
                     </li>
                     <li>
-                        <b>Extractibilty</b><p> - Most importantly, the point cloud genereated by our Kinect 2.0 needed to be suitable enough to be extractable for measurements from the existing size and measurement scanner. This required the data to be sent to the size extraction software in a particular format.</p>
+                        <b>Extractabilty</b><p> - Most importantly, the point cloud, generated by the Kinect, needed to be compatible with Dr. Tony Ruto's measurement software. This required the data to be sent to the size extraction software in a particular format.</p>
                     </li>
                     <li>
-                        <b>Display of calculated measurements</b><p> - After data has been extracted the software must also be able to show the calculated measurements as well as the captured model of the subject. An optional feature would be additional model visualisation tools e.g. scaling different parts of the body in size to see the effect.</p>
+                        <b>Display of calculated measurements</b><p> - After data has been extracted, the software must also be able to show the calculated measurements, considering numerous of HCI factors when doing so (see the Interface page for more info). A potential companion app could interact with our output data by way of QR code or NFC, allowing users a convenient and controllable method of storing their information.</p>
                     </li>
                 </ul>
             <b>Use Cases</b>
                 <p>
-                    Before we started on designing the UI, we first thought upon the different use cases of the product and its possible applications. Shown below is a depiction of a use case in health care for better health monitoring of patients or giving more detailed assessments such as in the storyboard shown below.
+                    Before we started on designing the UI, we first thought upon the different use case scenarios of the product and its possible applications. Shown below is a depiction of a scenario in health care for better health monitoring of patients.
                 </p><br> 
                 <div class="col-centered">
                     <a href="img/health_UseCase.png" data-lightbox="requirements">
@@ -95,7 +103,7 @@
                     </a>
                 </div><br>
                 <p>
-                    Another example of a use case of the body scanner is also in the fashion industry, for very quickly extracting the measurements of customers for clothing as depicted below. 
+                    Another scenario relating to apparel includes quickly extracting the measurements of customers in order to make size recommendations. 
                 </p><br>
                 <div class="col-centered">
                     <a href="img/fashion_UseCase.png" data-lightbox="requirements">

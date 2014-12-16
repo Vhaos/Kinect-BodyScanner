@@ -6,8 +6,10 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="css/lightbox.css">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/lightbox.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     </head>
     <body>
@@ -28,13 +30,19 @@
                 <a href="research.html">Research</a>
             </div>
             <div class="menu-box">
+                <a href="prototypes.html">Prototype</a>
+            </div>
+            <div class="menu-box">
                 <a href="versioncontrol.html">Version Control</a>
             </div>
             <div class="menu-box">
                 <a href="testing.html">Testing</a>
             </div>
             <div class="menu-box">
-                <a href="recordplanning.html">Records & Plans</a>
+                <a href="records.html">Records</a>
+            </div>
+            <div class="menu-box">
+                <a href="future.html">Future</a>
             </div>
         </div>
         <div class="container my-main-container">
@@ -54,7 +62,43 @@
                 </div>
             </nav>
             <hr class="my-line">
-            <h2 class="sub-heading">Prototypes</h2>
+            <h2 class="sub-heading">Future</h2>
+            <div class="container slim text-sheet">    
+                <h3>Results and Achievements</h3>
+                <p>
+                    We stored the 3d point cloud data into csv format as well as ply format. This is 
+
+because we used an open-source 3D mesh processing software called MeshLab 
+
+to view the results.
+                </p><br>
+                <p>
+                    Some of the resulting point clouds of bodies in MeshLab:
+                </p><br>
+                <div class="row row-centered">
+                    <div class="col-xs-4">
+                        <a href="img/Prototyping/Mr.Red.jpg" data-lightbox="future">
+                            <img class="img-sized-centered" src="img/Prototyping/Mr.Red.jpg">  
+                        </a>
+                    </div>
+                    <div class="col-xs-4">
+                        <a href="img/Prototyping/Manequin.png" data-lightbox="future">
+                            <img class="img-sized-centered" src="img/Prototyping/Manequin.png">  
+                        </a>
+                    </div>
+                    <div class="col-xs-4">
+                        <a href="img/Prototyping/Davit.png" data-lightbox="future">
+                            <img class="img-sized-centered" src="img/Prototyping/Davit.png">  
+                        </a>
+                    </div>
+                </div>
+                <h3>Future</h3>
+                <p>
+                    For next term we are hoping to get the classifier algorithm and extract 
+
+measurements from the body. We are also hoping to test the body scanner, applying filtering algorithms according to our test strategy. Furthermore, we are also looking at creating the UI and a complementary mobile app to give the information back to the users.
+                </p>
+            </div>
         </div>
     </body>
 </html>
