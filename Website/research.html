@@ -42,6 +42,9 @@
             <div class="menu-box">
                 <a href="future.html">Future</a>
             </div>
+            <div class="menu-box">
+                <a href="kinecttutorial.html">Tutorial</a>
+            </div>
         </div>
         <div class="container my-main-container">
             <!-- Nav bar -->
@@ -62,6 +65,7 @@
             <hr class="my-line">
             <h2 class="sub-heading">Research</h2>
             <div class="container slim text-sheet">
+                <b>3D Scanning</b>
                 <p>Preliminary research took place on the topic of our assignment, as well as the general components of 3D data capture. We discovered areas of interest such as point-cloud representation, as well as past applications of Kinect technology, which outlined some of the various other fields of application.</p>
                 <div class="row">
                     <div class="col-xs-6">
@@ -80,16 +84,17 @@
 Via this link, we found information relating to a product implemented by a large high-street clothing store involving 3D Body Scanning technology. From initial meetings with our client, we understood this field to be one of great opportunity; our user interface designs were certainly influenced by the context set by this early research, and it continues to influence our long term goals for the project. When designing the interface, we were inspired by the in-store, mid-shop experience we had already seen, influencing our decisions about the target scanning duration, as well as output and platform, appropriately.</p>
             </div>
             <div class="container slim text-sheet">
+                <b>Kinect SDK</b>
                 <p>Furthermore, it naturally became a priority to research the Kinect hardware as well as the accompanying SDK that we planned to utilise as much as possible. To this end, we explored Microsoft’s own online developer resources and videos, as well as some external sources for wider knowledge.</p>
                 <ul>
                     <li><a href="http://www.microsoft.com/en-us/kinectforwindows/develop/learn.aspx">MS Developer Resources</a></li>
                     <li><a href="http://www.codeproject.com/Articles/824882/Kinect-v-Point-Cloud">1st Article on Kinect Point Cloud Extraction</a></li>
                     <li><a href="http://www.cs.princeton.edu/~edwardz/tutorials/kinect/kinect3.html#coordinates">2nd Article on Point Cloud Extraction</a></li>
                 </ul>
+<p>
+    The third link above gave rise to the interesting topic of ‘registration’ - that is the problem of directly mapping depth and colour pixel information, as the two camera sources are mis-aligned. Upon investigation, we learned that the Kinect SDK’s CoordinateMapper class addresses this issue, though it remains a factor for consideration when discussing the Kinect’s accuracy at mapping this information.</p>
 
-The third link above gave rise to the interesting topic of ‘registration’ - that is the problem of directly mapping depth and colour pixel information, as the two camera sources are mis-aligned. Upon investigation, we learned that the Kinect SDK’s CoordinateMapper class addresses this issue, though it remains a factor for consideration when discussing the Kinect’s accuracy at mapping this information.
-            </div>
-            <div class="container slim text-sheet">
+
                 <p>When using the Kinect SDK during prototyping, we had to familiarise ourselves with some of the core functions we would need to call upon. Just some of these involve the following:</p>
                 <ul>
                     <li><a href="http://pterneas.com/2014/05/06/understanding-kinect-coordinate-mapping/">Coordinate Mapping Explanation</a></li>
@@ -103,6 +108,7 @@ The third link above gave rise to the interesting topic of ‘registration’ - 
                 </ul>
             </div>
             <div class="container slim text-sheet">
+                <b>Platform</b>
                 <p>When deciding on what platform to run the prototype on, the natural answer was the Windows OS, as it fittingly ties with the Kinect product and SDK, making use of Visual Studio as a part of our toolchain. Another possibility that arose was to try and integrate our service with mobile platforms such as iOS and Android in order to provide increased convenience and accessibility to users. This then led us to consider our intended user experience, concluding that:</p>
                 <ul>
                     <li>With Windows being such a well-established platform within business and industry, the decision to base our application on this would prove useful for future deployment</li>

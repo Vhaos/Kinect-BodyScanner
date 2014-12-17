@@ -50,7 +50,7 @@ hr.my-line
 .navbar-nav {
     width: 100%;
     text-align: center;
-    margin: 0 0;
+    margin-top: 1em;
 }
 .navbar-nav li {
     float: none;
@@ -84,6 +84,10 @@ hr.my-line
     text-align: center;
     margin-bottom: 0.5em;
     cursor: pointer;
+    text-decoration: underline;
+    background-clip: #efefef;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 .my-tab a {
@@ -168,7 +172,8 @@ hr.my-line
     top: 0px;
     min-height: 30px;
     height: 5%;
-    font-size: 200%;
+    font-size: 180%;
+    box-shadow: 0 0 10px grey;
 }
 
 .my-menu a   {
@@ -188,6 +193,7 @@ hr.my-line
     width: auto;
     display: inline-block;
     padding: 0 0.75em;
+    position: relative;
 }
 
 .my-active  {
