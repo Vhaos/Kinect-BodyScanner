@@ -6,3 +6,11 @@ c:\users\shubham\documents\visual studio 2013\Projects\ConsoleKinect\ConsoleKine
 c:\users\shubham\documents\visual studio 2013\Projects\ConsoleKinect\ConsoleKinect\obj\Debug\ConsoleKinect.exe
 c:\users\shubham\documents\visual studio 2013\Projects\ConsoleKinect\ConsoleKinect\obj\Debug\ConsoleKinect.pdb
 C:\Users\Shubham\documents\visual studio 2013\Projects\ConsoleKinect\ConsoleKinect\obj\Debug\ConsoleKinect.csprojResolveAssemblyReference.cache
+C:\Users\Jack\Kinect-BodyScanner\BodyScanner\ConsoleKinect\ConsoleKinect\bin\Debug\ConsoleKinect.exe.config
+C:\Users\Jack\Kinect-BodyScanner\BodyScanner\ConsoleKinect\ConsoleKinect\obj\Debug\ConsoleKinect.exe
+C:\Users\Jack\Kinect-BodyScanner\BodyScanner\ConsoleKinect\ConsoleKinect\obj\Debug\ConsoleKinect.pdb
+C:\Users\Jack\Kinect-BodyScanner\BodyScanner\ConsoleKinect\ConsoleKinect\obj\Debug\ConsoleKinect.csprojResolveAssemblyReference.cache
+C:\Users\Jack\Kinect-BodyScanner\BodyScanner\ConsoleKinect\ConsoleKinect\bin\Debug\ConsoleKinect.exe
+C:\Users\Jack\Kinect-BodyScanner\BodyScanner\ConsoleKinect\ConsoleKinect\bin\Debug\ConsoleKinect.pdb
+C:\Users\Jack\Kinect-BodyScanner\BodyScanner\ConsoleKinect\ConsoleKinect\bin\Debug\Microsoft.Kinect.dll
+C:\Users\Jack\Kinect-BodyScanner\BodyScanner\ConsoleKinect\ConsoleKinect\bin\Debug\Microsoft.Kinect.xml
