@@ -1,0 +1,10 @@
+c:\users\kareem daggash\documents\visual studio 2012\Projects\QR encoder\QR encoder\bin\Debug\QR encoder.exe.config
+c:\users\kareem daggash\documents\visual studio 2012\Projects\QR encoder\QR encoder\bin\Debug\QR encoder.exe
+c:\users\kareem daggash\documents\visual studio 2012\Projects\QR encoder\QR encoder\bin\Debug\QR encoder.pdb
+c:\users\kareem daggash\documents\visual studio 2012\Projects\QR encoder\QR encoder\bin\Debug\MessagingToolkit.QRCode.dll
+c:\users\kareem daggash\documents\visual studio 2012\Projects\QR encoder\QR encoder\obj\Debug\QR encoder.csprojResolveAssemblyReference.cache
+c:\users\kareem daggash\documents\visual studio 2012\Projects\QR encoder\QR encoder\obj\Debug\QR_encoder.Form1.resources
+c:\users\kareem daggash\documents\visual studio 2012\Projects\QR encoder\QR encoder\obj\Debug\QR_encoder.Properties.Resources.resources
+c:\users\kareem daggash\documents\visual studio 2012\Projects\QR encoder\QR encoder\obj\Debug\QR encoder.csproj.GenerateResource.Cache
+c:\users\kareem daggash\documents\visual studio 2012\Projects\QR encoder\QR encoder\obj\Debug\QR encoder.exe
+c:\users\kareem daggash\documents\visual studio 2012\Projects\QR encoder\QR encoder\obj\Debug\QR encoder.pdb
