@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -219,7 +219,7 @@ namespace ConsoleKinect
             Point3D centroid = new Point3D(xMean, yMean, zMean);
 
             pointCloud.subtractFromPointAxis(xMinimum, 0);
-            pointCloud.rotateOnSpot(180, PointCloud.Axis.Y);
+            pointCloud.rotateOnSpot(180, PointCloud.Axis.Y, centroid);
             
             String transformed_pc_ply = pointCloud.ToString();
 
