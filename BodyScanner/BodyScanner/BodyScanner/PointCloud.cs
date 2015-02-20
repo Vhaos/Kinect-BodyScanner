@@ -9,7 +9,10 @@ using System.Globalization;
 namespace BodyScanner
 {
     
-
+     /// <summary>
+     /// This class holds the structure for a point cloud
+     /// Created By: Jack Roper
+     /// </summary>
      class PointCloud
     {
         public enum Axis { X, Y, Z };

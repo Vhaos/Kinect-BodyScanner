@@ -10,29 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BodyScanner
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ErrorWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ErrorWindow : Window
     {
-        public MainWindow()
+        public ErrorWindow()
         {
             InitializeComponent();
         }
 
-        private void start_btn_Click(object sender, RoutedEventArgs e)
+        private void ok_btn_Click(object sender, RoutedEventArgs e)
         {
-            KinectWindow kw = new KinectWindow();
-            kw.Show();
+            MainWindow mw = new MainWindow();
+            mw.Show();
             this.Hide();
         }
-
-       
-
     }
 }

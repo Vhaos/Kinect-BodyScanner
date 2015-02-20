@@ -78,9 +78,9 @@ namespace BodyScanner
             return this.kinectSensor.DepthFrameSource.FrameDescription;
         }
 
-        public FrameDescription getColorFrameDescription()
+        public FrameDescription getBodyIndexFrameDescription()
         {
-            return this.kinectSensor.ColorFrameSource.FrameDescription;
+            return this.kinectSensor.BodyIndexFrameSource.FrameDescription;
         }
 
     }

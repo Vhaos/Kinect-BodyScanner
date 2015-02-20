@@ -18,7 +18,7 @@
         </Grid.ColumnDefinitions>
 
         <Viewbox Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" HorizontalAlignment="Center" Margin="0,40,0,40">
-            <Image Source="{Binding ImageSource}" Stretch="UniformToFill"/>
+            <Image Name="bitmap_feed" Stretch="UniformToFill"/>
         </Viewbox>
 
         <Button Name="help_btn"  Grid.Row="0" Grid.Column="1" Background="SkyBlue" Foreground="White" FontSize="28" FontWeight="SemiBold" Margin="10" FontFamily="Arial"

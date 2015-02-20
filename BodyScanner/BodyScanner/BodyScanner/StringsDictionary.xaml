@@ -14,6 +14,7 @@
     <system:String x:Key="DONE">DONE</system:String>
     <system:String x:Key="STOP">STOP</system:String>
     <system:String x:Key="HELP">HELP</system:String>
+    <system:String x:Key="OK">OK</system:String>
     
     
     <!--Text used in screens -->
@@ -28,6 +29,9 @@
     <system:String x:Key="NO_BODY_DETECTED">No Body Detected</system:String>
     <system:String x:Key="BODY_NOT_ALIGNED">Body Not Aligned</system:String>
     <system:String x:Key="SCANNING">Scanning...</system:String>
+
+    <system:String x:Key="APOLOGY_MESSAGE">Sorry, something seems to have gone wrong.</system:String>
+    <system:String x:Key="ERROR">Error</system:String>
 
 
 
