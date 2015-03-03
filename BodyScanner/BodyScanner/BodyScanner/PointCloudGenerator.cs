@@ -24,7 +24,6 @@ namespace BodyScanner
         private byte[] bodyIndexFrameData = null;
         private ushort[] depthFrameData = null;
 
-        int numberOfPoints = 0;
 
 
 
@@ -62,6 +61,7 @@ namespace BodyScanner
 
             // Create new point cloud for storing points and operating on later
             PointCloud pointCloud = new PointCloud();
+            int numberOfPoints = 0;
 
             // loop over each row and column of the depth
             for (int y = 0; y < depthFrameHeight; y++)
@@ -120,14 +120,6 @@ namespace BodyScanner
             
             return pointCloud;
 
-        }
-
-        /// <summary>
-        /// Gets the nmber of points.
-        /// </summary>
-        /// <returns> number of points. 0 if point cloud not generated yet</returns>
-        public int getNumberOfPoints(){
-            return numberOfPoints;
         }
 
        

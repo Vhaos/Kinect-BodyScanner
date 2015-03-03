@@ -22,13 +22,17 @@ namespace BodyScanner
     /// </summary>
     public partial class KinectWindow : Window
     {
+
+        public static String POINT_CLOUD_PATH = Environment.GetFolderPath(Environment.SpecialFolder.Desktop); // Desktop
+
+
         enum State {NO_BODY,NOT_ALIGNED,SCANNING}; //All the states
         private State currentState = State.NO_BODY; // Default State
 
         private const int COUNT_DOWN_SECONDS = 3; // 3 seconds count down
         DispatcherTimer countDownTimer; // The timer that notifies every second
         bool countDownTimerRunning = false;  // Flag to check if the countDownTimer is running so we dont restart it again
-        public int secondsCounter; // The variable that keeps the seconds passed
+        private int secondsCounter; // The variable that keeps the seconds passed
 
         private const int BytesPerPixel = 4; // needed for bitmap calculation
 
@@ -167,8 +171,11 @@ namespace BodyScanner
             {
                 PointCloudGenerator pcg = new PointCloudGenerator(cm);
                 PointCloud pointCloud = pcg.generate(df, bif);
-                Log.Write(Log.Tag.INFO, pcg.getNumberOfPoints());
-                saveFile(pointCloud.ToString(PointCloudFormats.getFormatHeader(PointCloudFormats.Format.PLY, pcg.getNumberOfPoints())), "ply", "pointCloud");
+                Log.Write(Log.Tag.INFO,pointCloud.getSize());
+                saveFile(new PointCloudFormatter(pointCloud).formatPointCloudWith(PointCloudFormatter.Format.XYZ),
+                        "xyz",
+                        "pointcloud");
+                startNextWindow();
             }
             else
             {
@@ -178,12 +185,20 @@ namespace BodyScanner
 
         }
 
+        private void startNextWindow()
+        {
+            sensor.startScanning();
+            CalculatingWindow cw = new CalculatingWindow();
+            cw.Show();
+            this.Hide();
+        }
+
         private void saveFile(String text, String extension, String fileName)
         {
             if (!extension.StartsWith("."))
                 extension = "." + extension;
 
-            String path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\" + fileName + extension;
+            String path = POINT_CLOUD_PATH + "\\" + fileName + extension;
             System.IO.StreamWriter file = new System.IO.StreamWriter(path);
             file.WriteLine(text);
             file.Close();

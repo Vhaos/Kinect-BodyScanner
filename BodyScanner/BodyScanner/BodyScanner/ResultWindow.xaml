@@ -1,0 +1,38 @@
+﻿<Window x:Class="BodyScanner.ResultWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ResultWindow" Width="900" Height="700"  WindowStyle="None">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="83*"/>
+            <RowDefinition Height="327*"/>
+            <RowDefinition Height="64*"/>
+            <RowDefinition Height="92*"/>
+            <RowDefinition Height="126*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Name="help_text" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" TextWrapping="Wrap" FontSize="30" Margin="27,0,26.667,10" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontFamily="Arial" 
+                   Text="{StaticResource SCAN_FOR_RESULTS}" Height="69" Width="394"/>
+
+        <Button Name="help_btn"  Grid.Row="0" Grid.Column="2" Background="SkyBlue" Foreground="White" FontSize="28" FontWeight="SemiBold" Margin="10.333,10,9.667,10" FontFamily="Arial"
+                  Click="help_btn_Click" Content="{StaticResource HELP}"/>
+
+        <Button Name="privacy_btn" Grid.Row="0" Grid.Column="3" Background="Purple" Foreground="White" FontSize="22" FontWeight="SemiBold"  Margin="10.333,10,9.667,10" FontFamily="Arial" 
+                Click="privacy_btn_Click" Content="{StaticResource PRIVACY}"/>
+
+        <Button Name="done_btn" Grid.Row="3" Grid.Column="2" Background="Green" Foreground="White" FontSize="22" FontWeight="SemiBold"  Margin="10.333,10,9.667,10" FontFamily="Arial" 
+                Click="done_btn_Click" Content="{StaticResource DONE}"/>
+
+        <Viewbox Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Center" Margin="222,0,223,0">
+            <Image Name="bitmap_feed" Stretch="UniformToFill"/>
+        </Viewbox>
+
+    </Grid>
+</Window>

@@ -7,13 +7,20 @@ using System.Threading.Tasks;
 namespace BodyScanner
 {
     /// <summary>
-    /// Static class for all Point cloud Formats
+    /// Class to format a pointCloud to a string representative using a format
     /// </summary>
-    static class PointCloudFormats
+    class PointCloudFormatter
     {
-        public enum Format {RGB_PLY,PLY};
+        public enum Format {RGB_PLY,PLY,XYZ};
 
-        public static String getFormatHeader(Format format, int numberOfPoints){
+        PointCloud pointCloud;
+
+        public PointCloudFormatter(PointCloud pointCloud)
+        {
+            this.pointCloud = pointCloud;
+        }
+
+        private String getHeader(Format format, int numberOfPoints){
 
             String header = "";
             switch (format)
@@ -40,9 +47,47 @@ namespace BodyScanner
                                 "property uchar blue \n" +
                                 "end_header \n";
                     break;
+
             }
 
             return header;
+
+        }
+
+        private String getPointFormat(Format format)
+        {
+
+            String pointFormat = "";
+
+            switch (format)
+            {
+                case Format.PLY:
+                    pointFormat = "{0} {1} {2}\n";
+                    break;
+                case Format.RGB_PLY:
+                    pointFormat = "{0} {1} {2}\n";
+                    break;
+
+                case Format.XYZ:
+                    pointFormat = "{0} {1} {2} 0.00 0.00 0.00\n";
+                    break;
+
+            }
+
+            return pointFormat;
+
+        }
+
+        public String formatPointCloudWith(Format format)
+        {
+
+            String header = getHeader(format, pointCloud.getSize());
+
+            String points = pointCloud.generateString(getPointFormat(format));
+
+            String result = header + points;
+
+            return result;
 
         }
 
