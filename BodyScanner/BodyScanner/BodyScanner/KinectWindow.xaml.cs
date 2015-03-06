@@ -23,8 +23,6 @@ namespace BodyScanner
     public partial class KinectWindow : Window
     {
 
-        public static String POINT_CLOUD_PATH = Environment.GetFolderPath(Environment.SpecialFolder.Desktop); // Desktop
-
 
         enum State {NO_BODY,NOT_ALIGNED,SCANNING}; //All the states
         private State currentState = State.NO_BODY; // Default State
@@ -166,20 +164,20 @@ namespace BodyScanner
         private void capturePointCloud(DepthFrame df , BodyIndexFrame bif)
         {
 
-            CoordinateMapper cm = sensor.getCoordinateMapper();
-            if (df != null && bif != null && cm != null)
+            CoordinateMapper coordinateMapper = sensor.getCoordinateMapper();
+            if (df != null && bif != null && coordinateMapper != null)
             {
-                PointCloudGenerator pcg = new PointCloudGenerator(cm);
+                //Generate pointCloud using the frames.
+                PointCloudGenerator pcg = new PointCloudGenerator(coordinateMapper);
                 PointCloud pointCloud = pcg.generate(df, bif);
                 Log.Write(Log.Tag.INFO,pointCloud.getSize());
-                saveFile(new PointCloudFormatter(pointCloud).formatPointCloudWith(PointCloudFormatter.Format.XYZ),
-                        "xyz",
-                        "pointcloud");
+   
+                saveFile(pointCloud);
                 startNextWindow();
             }
             else
             {
-                Log.Write(Log.Tag.ERROR, "There was problem capturing the frames. Arrays containg FrameData or/and the CoordinateMapper are null");
+                Log.Write(Log.Tag.ERROR, "There was problem capturing the frames. Arrays containg FrameData or/and the CoordinateMapper are NULL");
                 
             }
 
@@ -187,22 +185,19 @@ namespace BodyScanner
 
         private void startNextWindow()
         {
-            sensor.startScanning();
+            sensor.stopScanning();
+            sensor = null;
             CalculatingWindow cw = new CalculatingWindow();
             cw.Show();
             this.Hide();
         }
 
-        private void saveFile(String text, String extension, String fileName)
+        private void saveFile(PointCloud pcl)
         {
-            if (!extension.StartsWith("."))
-                extension = "." + extension;
-
-            String path = POINT_CLOUD_PATH + "\\" + fileName + extension;
-            System.IO.StreamWriter file = new System.IO.StreamWriter(path);
-            file.WriteLine(text);
-            file.Close();
-            Log.Write(Log.Tag.INFO, "File Saved to " + path);
+            PointCloudFormatter pcf = new PointCloudFormatter(PointCloudFormatter.Format.XYZ); // Choosing the XYZ format to save the pointCloud
+            FileManager fm = new FileManager(pcf);
+            fm.savePointCloudFile(pcl);
+            
         }
 
         private void updateDisplayedBitmap(BodyIndexFrame bif)

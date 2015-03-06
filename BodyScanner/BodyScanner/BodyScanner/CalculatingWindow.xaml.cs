@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml;
 
 namespace BodyScanner
 {
@@ -21,6 +22,8 @@ namespace BodyScanner
     /// </summary>
     public partial class CalculatingWindow : Window
     {
+
+
         public CalculatingWindow()
         {
             InitializeComponent();
@@ -31,8 +34,9 @@ namespace BodyScanner
 
         void bw_DoWork(object sender, DoWorkEventArgs e)
         {
-            String pointCloudPath = KinectWindow.POINT_CLOUD_PATH + "\\pointcloud.xyz";
-            String scanMeasureSoftwarePath = "C:\\Program Files (x86)\\Tony Ruto\\Home Scanner Tools\\ScanMeasureCmd.exe";
+
+            String pointCloudPath = FileManager.getPointCloudPath(PointCloudFormatter.Format.XYZ) ;
+            String scanMeasureSoftwarePath = App.SCANMEASURE_PATH;
 
             /*
              * Arguments:
@@ -46,9 +50,47 @@ namespace BodyScanner
             startInfo.Arguments = arguments;
             startInfo.UseShellExecute = false;
             startInfo.CreateNoWindow = true;
-            startInfo.RedirectStandardOutput = true;
 
-            using (Process proc = Process.Start(startInfo))
+            Process process = Process.Start(startInfo);
+
+            Log.Write("Calculating");
+            process.Start();
+            process.WaitForExit();
+            Log.Write("Finshed");
+            process.Dispose();
+
+            String xmlMeasurementsFile = new FileManager(null).getMeasurementsFile();
+
+            XmlDocument xmlDoc = new XmlDocument(); // Create an XML document object
+            xmlDoc.LoadXml(xmlMeasurementsFile); // Load the XML document from the specified file
+
+            // Get elements
+            XmlNode height = xmlDoc.SelectSingleNode("/MSV_Measures/measure[@name='Height']");
+            XmlNode hip = xmlDoc.SelectSingleNode("/MSV_Measures/measure[@name='Hip']");
+            XmlNode chest = xmlDoc.SelectSingleNode("/MSV_Measures/measure[@name='Chest | Bust']");
+            XmlNode waist = xmlDoc.SelectSingleNode("/MSV_Measures/measure[@name='Waist']");
+            XmlNode insideLeg = xmlDoc.SelectSingleNode("/MSV_Measures/measure[@name='Inside Leg']");
+
+            String measurements = "\nheight: " + height.InnerText + "\n " +
+                                  "hip: " + hip.InnerText + "\n " +
+                                  "chest: " + chest.InnerText + "\n " +
+                                  "waist: " + waist.InnerText + "\n " +
+                                  "insideLeg: " + insideLeg.InnerText;
+
+            Log.Write(Log.Tag.IMP, measurements);
+
+            Log.Write("Finished");
+            Application.Current.Shutdown();
+ 
+        }
+
+      
+
+    }
+}
+
+/*
+ using ()
             {
                 Log.Write("Calculating...");
 
@@ -63,12 +105,4 @@ namespace BodyScanner
                 Log.Write("Finished");
 
             }
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-        }   
-
-    }
-}
+*/

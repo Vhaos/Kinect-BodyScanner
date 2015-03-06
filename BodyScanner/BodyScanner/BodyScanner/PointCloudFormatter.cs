@@ -13,14 +13,16 @@ namespace BodyScanner
     {
         public enum Format {RGB_PLY,PLY,XYZ};
 
-        PointCloud pointCloud;
+        Format format;
 
-        public PointCloudFormatter(PointCloud pointCloud)
+        public PointCloudFormatter(Format format)
         {
-            this.pointCloud = pointCloud;
+            this.format = format;
         }
 
-        private String getHeader(Format format, int numberOfPoints){
+        public Format getFormat() { return format;}
+
+        private String getHeader(int numberOfPoints){
 
             String header = "";
             switch (format)
@@ -54,7 +56,7 @@ namespace BodyScanner
 
         }
 
-        private String getPointFormat(Format format)
+        private String getPointFormat()
         {
 
             String pointFormat = "";
@@ -78,18 +80,45 @@ namespace BodyScanner
 
         }
 
-        public String formatPointCloudWith(Format format)
+
+        public String formatPointCloud(PointCloud pointCloud)
         {
 
-            String header = getHeader(format, pointCloud.getSize());
+            String header = getHeader(pointCloud.getSize());
 
-            String points = pointCloud.generateString(getPointFormat(format));
+            String points = pointCloud.generateString(getPointFormat());
 
             String result = header + points;
 
             return result;
 
         }
+
+        /// <summary>
+        /// Static Method to get the Format extension
+        /// </summary>
+        /// <param name="format">The format of the extenion</param>
+        /// <returns>String with the extension (without the dot)</returns>
+        public static String getFormatExtension(Format format)
+        {
+            String extension = "";
+            switch (format)
+            {
+                case Format.PLY:
+                    extension = "ply";
+                    break;
+                case Format.RGB_PLY:
+                    extension = "ply";
+                    break;
+                case Format.XYZ:
+                    extension = "xyz";
+                    break;
+
+            }
+
+            return extension;
+        }
+
 
     }
 
