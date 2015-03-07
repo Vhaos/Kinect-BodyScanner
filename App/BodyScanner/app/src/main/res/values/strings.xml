@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">BodyScanner</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="height">Height</string>
+    <string name="chest">Chest</string>
+    <string name="waist">Waist</string>
+    <string name="hip">Hip</string>
+    <string name="inside_leg">Inside Leg</string>
+    <string name="your_measurements">Your Measurements</string>
+</resources>

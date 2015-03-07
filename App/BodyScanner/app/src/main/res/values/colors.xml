@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brand_color">#FF5454</color>
+    <color name="brand_color_dark">#cc4343</color>
+
+    <color name="height_color">#3771c8</color>
+    <color name="chest_bust_color">#d40000</color>
+    <color name="waist_color">#459d13</color>
+    <color name="hip_color">#ffd800</color>
+    <color name="inside_leg_color">#c871c8</color>
+
+</resources>
