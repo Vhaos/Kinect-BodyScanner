@@ -11,7 +11,7 @@ namespace BodyScanner
      * Delegates for Callbacks. They act like a one method interface (in Java), enforcing the parmateres and the method names for callback.
      */
     public delegate void BIFRecievedCallback(BodyIndexFrame bif);
-    public delegate void AllFrameRecievedCallback(BodyIndexFrame bif, DepthFrame df);
+    public delegate void AllFrameRecievedCallback(BodyFrame bf, BodyIndexFrame bif, DepthFrame df);
 
     /// <summary>
     /// This class essentially wraps the KinectSensor class and simplifies it.
@@ -32,7 +32,7 @@ namespace BodyScanner
         public KinectSensorWrapper(){
 
             this.kinectSensor = KinectSensor.GetDefault();
-            this.multiFrameSourceReader = this.kinectSensor.OpenMultiSourceFrameReader(FrameSourceTypes.Depth | FrameSourceTypes.BodyIndex);
+            this.multiFrameSourceReader = this.kinectSensor.OpenMultiSourceFrameReader(FrameSourceTypes.Depth | FrameSourceTypes.BodyIndex | FrameSourceTypes.Body);
             this.multiFrameSourceReader.MultiSourceFrameArrived += this.multiSourceFrameArrived;
 
         }
@@ -43,19 +43,19 @@ namespace BodyScanner
 
             if (msf != null)
             {
-
-                using (BodyIndexFrame bif = msf.BodyIndexFrameReference.AcquireFrame())
+                using (BodyFrame bf = msf.BodyFrameReference.AcquireFrame())
                 {
-                    using (DepthFrame df = msf.DepthFrameReference.AcquireFrame())
+                    using (BodyIndexFrame bif = msf.BodyIndexFrameReference.AcquireFrame())
                     {
-                        if (df != null && bif != null)
+                        using (DepthFrame df = msf.DepthFrameReference.AcquireFrame())
                         {
-                            AllFrameCallback(bif, df); // Pass these on to anyone who is subscribed to this event
-                        }     
+                            if (df != null && bif != null && bf != null)
+                            {
+                                AllFrameCallback(bf, bif, df); // Pass these on to anyone who is subscribed to this event
+                            }
+                        }
                     }
                 }
-
-                    
             }
         }
 
@@ -82,6 +82,5 @@ namespace BodyScanner
         {
             return this.kinectSensor.BodyIndexFrameSource.FrameDescription;
         }
-
     }
 }

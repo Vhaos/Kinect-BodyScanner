@@ -17,6 +17,7 @@ using System.Windows.Threading;
 
 namespace BodyScanner
 {    
+    
     /// <summary>
     /// Interaction logic for KinectWindow.xaml
     /// </summary>
@@ -149,8 +150,10 @@ namespace BodyScanner
 
 
         // Called when all farmes are available from the sensor
-        void sensor_AllFrameCallback(BodyIndexFrame bif, DepthFrame df)
+        void sensor_AllFrameCallback(BodyFrame bf, BodyIndexFrame bif, DepthFrame df)
         {
+            if (BodyTracker.CorrectPose(bf))
+                currentState = State.SCANNING;
             updateDisplayedBitmap(bif);
             updateControls(currentState);
             if (captureFrame == true) // if countdown finished and capture of frame is requested
@@ -259,7 +262,7 @@ namespace BodyScanner
                 }
                 
             }
-
+            
             if (!bodyPresent)
             {
                 currentState = State.NO_BODY;

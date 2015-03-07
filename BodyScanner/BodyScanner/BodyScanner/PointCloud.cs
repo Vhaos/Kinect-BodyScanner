@@ -13,8 +13,10 @@ namespace BodyScanner
      /// This class holds the structure for a point cloud
      /// Created By: Jack Roper
      /// </summary>
-     class PointCloud
-    {
+
+   
+    class PointCloud
+     {
         public enum Axis { X, Y, Z };
         private List<Point3D> points = null;
         

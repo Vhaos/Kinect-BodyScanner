@@ -94,6 +94,7 @@
     <Compile Include="PointCloud.cs" />
     <Compile Include="PointCloudFormatter.cs" />
     <Compile Include="PointCloudGenerator.cs" />
+    <Compile Include="BodyTracker.cs" />
     <Compile Include="ResultWindow.xaml.cs">
       <DependentUpon>ResultWindow.xaml</DependentUpon>
     </Compile>
