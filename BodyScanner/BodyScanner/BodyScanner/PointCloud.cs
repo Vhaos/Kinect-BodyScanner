@@ -54,7 +54,7 @@ namespace BodyScanner
         /*
          * Commented the TOString Method and instead replaced it with generateString.  WHY YOU ASK? 
          * Because The rational and the irrational complement each other. Individually they're far less powerful.
-         * - Raymod Tusk
+         * - Raymond Tusk
          * 
        // ToString() method, outputting each point on a new line
        public override String ToString()
