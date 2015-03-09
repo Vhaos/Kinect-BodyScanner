@@ -21,7 +21,7 @@ namespace BodyScanner
 
             if (subject == null) { return false; }
 
-            double actualDistanceFromCam = subject.Joints[JointType.SpineBase].Position.Z;
+            double actualDistanceFromCam = GetDistanceFromCam(subject);
        
             if (Math.Abs(targetDistanceFromCam - actualDistanceFromCam) > 0.2) { Log.Write(actualDistanceFromCam + "<----- Not " + targetDistanceFromCam + " meter away"); return false; }
 
@@ -90,6 +90,11 @@ namespace BodyScanner
             return Math.Sqrt(   Math.Pow((jointA.Position.X - jointB.Position.X), 2) +
                                 Math.Pow((jointA.Position.Y - jointB.Position.Y), 2) +
                                 Math.Pow((jointA.Position.Z - jointB.Position.Z), 2)        );
+        }
+        
+        public static GetDistanceFromCam(Body body)
+        {
+            return body.Joints[JointType.SpineBase].Position.Z;
         }
     }
 }
