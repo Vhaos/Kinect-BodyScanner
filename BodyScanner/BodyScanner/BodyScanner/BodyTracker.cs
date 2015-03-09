@@ -56,7 +56,7 @@ namespace BodyScanner
             Joint rightHand = subject.Joints[JointType.HandRight], leftHand = subject.Joints[JointType.HandLeft];
             Joint rightHip = subject.Joints[JointType.HipRight], leftHip = subject.Joints[JointType.HipLeft];
 
-            if (rightHip.Position.Y > rightHand.Position.Y || leftHip.Position.Y > leftHand.Position.Y) { return false; }
+            if (rightHip.Position.Y < rightHand.Position.Y || leftHip.Position.Y < leftHand.Position.Y) { return false; }
 
             double forearmLength = jointDistance(rightElbow, rightHand);
 
