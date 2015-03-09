@@ -12,7 +12,7 @@ namespace BodyScanner
     static class BodyTracker
     {
         const double tolerance = 0.2, targetDistanceFromCam = 2;
-
+        
         public static bool CorrectPose(BodyFrame bf)
         {
             Body[] bodyArray = new Body[bf.BodyFrameSource.BodyCount];
@@ -20,20 +20,15 @@ namespace BodyScanner
             Body subject = FindClosestBody(bodyArray);
 
             if (subject == null) { return false; }
-
-            double actualDistanceFromCam = GetDistanceFromCam(subject);
-       
-            if (Math.Abs(targetDistanceFromCam - actualDistanceFromCam) > 0.2) { Log.Write(actualDistanceFromCam + "<----- Not " + targetDistanceFromCam + " meter away"); return false; }
-
-            Joint rightKnee = subject.Joints[JointType.KneeRight];
-            Joint rightElbow = subject.Joints[JointType.ElbowRight];
-            Joint rightHand = subject.Joints[JointType.HandRight], leftHand = subject.Joints[JointType.HandLeft];
-            Joint rightFoot = subject.Joints[JointType.FootRight], leftFoot = subject.Joints[JointType.FootLeft];
-            double forearmLength = DistanceBetween(rightElbow, rightHand);
-            double lowerLegLength = DistanceBetween(rightKnee, rightFoot);
+            
+            if(!CorrectDistance(subject)) 
+            { 
+                Log.Write(actualDistanceFromCam + "<----- Should be " + targetDistanceFromCam + " meter(s) away");  
+                return false; 
+            }
 
             // Check difference between hand heights relative to arm length && diff between feet height relative to leg length
-            if (CompareJointsAxis(PointCloud.Axis.Y, leftHand, rightHand) < tolerance * forearmLength &&
+            if ( CompareJointsAxis(PointCloud.Axis.Y, leftHand, rightHand) < tolerance * forearmLength &&
                CompareJointsAxis(PointCloud.Axis.Y, leftFoot, rightFoot) < tolerance * lowerLegLength)
             {
                 return true;
@@ -41,7 +36,34 @@ namespace BodyScanner
           
             return false;
         }
-
+        
+        public static bool DefaultPose(Body subject)
+        {
+            Joint rightKnee = subject.Joints[JointType.KneeRight]; // currently used to measure arm length
+            Joint rightElbow = subject.Joints[JointType.ElbowRight]; // currently used to measure arm length
+            Joint rightHand = subject.Joints[JointType.HandRight], leftHand = subject.Joints[JointType.HandLeft];
+            Joint rightFoot = subject.Joints[JointType.FootRight], leftFoot = subject.Joints[JointType.FootLeft];
+            Joint rightHip = subject.Joints[JointType.HipRight], leftHip = subject.Joints[JointType.HipLeft];
+            
+            double forearmLength = DistanceBetween(rightElbow, rightHand);
+            double lowerLegLength = DistanceBetween(rightKnee, rightFoot);
+            
+            // Check that hands are below hips &&
+            // small diff between hand heights relative to arm length && 
+            // small diff between feet height relative to leg length
+            
+            return( rightHip.Position.Y < rightHand.Position.Y                                                  &&
+                    leftHip.Position.Y < leftHand.Position.Y                                                    &&
+                    (CompareJointsAxis(PointCloud.Axis.Y, leftHand, rightHand) < tolerance * forearmLength)     &&
+                    (CompareJointsAxis(PointCloud.Axis.Y, leftFoot, rightFoot) < tolerance * lowerLegLength)    &&
+              );
+        }
+        
+        public static bool CorrectDistance(Body subject)
+        {
+            return Math.Abs(targetDistanceFromCam - GetDistanceFromCam(subject) > 0.2);
+        }
+        
         public static double CompareJointsAxis(PointCloud.Axis axis, Joint jointA,  Joint jointB)
         {
             double result = 0;
