@@ -1,0 +1,36 @@
+﻿<Window x:Class="BodyScanner.ErrorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ErrorWindow" Width="900" Height="700"  WindowStyle="None">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Name="error_title" Grid.Row="0"  FontSize="70" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#c43232" Background="Transparent" FontFamily="Arial" 
+               Content="{StaticResource ERROR}" Margin="50,0,0,0"/>
+
+        <TextBlock Name="sad_face" Grid.Row="1" Grid.RowSpan="2" FontFamily="Microsoft Himalaya"   Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="200" Text=":("  RenderTransformOrigin="0.5,0.5"  >
+            <TextBlock.RenderTransform>
+                <RotateTransform Angle="90"/>
+            </TextBlock.RenderTransform>
+
+        </TextBlock>
+
+        <Label Name="error_message" Grid.Row="2" Grid.ColumnSpan="3" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" Background="Transparent" FontFamily="Arial" 
+               Content="{StaticResource APOLOGY_MESSAGE}"/>
+
+        <Button Name="ok_btn"  Grid.Row="3" Grid.Column="1" Background="Green" Foreground="White" FontSize="28" FontWeight="SemiBold" Margin="10,50" FontFamily="Arial"
+                 Content="{StaticResource OK}" Click="ok_btn_Click"/>
+    </Grid>
+
+</Window>

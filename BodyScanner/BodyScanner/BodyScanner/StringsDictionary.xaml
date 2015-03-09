@@ -1,0 +1,43 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- All Strings are centrally stored here with a Key. -->
+
+    <system:String x:Key="APP_NAME">BODY SCANNER</system:String>
+    
+    
+    <!-- These are generally used in Buttons-->
+    <system:String x:Key="START">START</system:String>
+    <system:String x:Key="PRIVACY POLICY">PRIVACY POLICY</system:String>
+    <system:String x:Key="PRIVACY">PRIVACY</system:String>
+    <system:String x:Key="DONE">DONE</system:String>
+    <system:String x:Key="STOP">STOP</system:String>
+    <system:String x:Key="HELP">HELP</system:String>
+    <system:String x:Key="OK">OK</system:String>
+    
+    
+    <!--Text used in screens -->
+    
+    <system:String x:Key="INTRO">Press Start to begin</system:String>
+    <system:String x:Key="ACCEPT_EULA">By clicking 'Start' you accept our privacy policy</system:String>
+
+    <system:String x:Key="BODY_NOT_ALIGNED_HELP">Please align with the skeleton on the left</system:String>
+    <system:String x:Key="BODY_SCANNING_HELP">Please hold still while we scan your body</system:String>
+    <system:String x:Key="WAITING_HELP">Seconds to Wait:</system:String>
+
+    <system:String x:Key="NO_BODY_DETECTED">No Body Detected</system:String>
+    <system:String x:Key="BODY_NOT_ALIGNED">Body Not Aligned</system:String>
+    <system:String x:Key="SCANNING">Scanning...</system:String>
+
+    <system:String x:Key="APOLOGY_MESSAGE">Sorry, something seems to have gone wrong.</system:String>
+    <system:String x:Key="ERROR">Error</system:String>
+
+    <system:String x:Key="CALCULATING">Calculating...</system:String>
+
+    <system:String x:Key="RESULT_TITLE">Your Body Results</system:String>
+    <system:String x:Key="SCAN_FOR_RESULTS">Please use our app to scan this barcode to get your results</system:String>
+
+
+
+</ResourceDictionary>
