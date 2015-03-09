@@ -152,8 +152,9 @@ namespace BodyScanner
         // Called when all farmes are available from the sensor
         void sensor_AllFrameCallback(BodyFrame bf, BodyIndexFrame bif, DepthFrame df)
         {
-            if (BodyTracker.CorrectPose(bf))
-                currentState = State.SCANNING;
+            BodyTracker Tracker = BodyTracker.UpdateInstance(bf); // Gets/creates, as well as updates, the singleton instance of BodyTracker
+            if (Tracker.CorrectPose()) { currentState = State.SCANNING; }
+
             updateDisplayedBitmap(bif);
             updateControls(currentState);
             if (captureFrame == true) // if countdown finished and capture of frame is requested
