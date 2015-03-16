@@ -8,3 +8,9 @@ c:\users\kareem daggash\documents\visual studio 2012\Projects\QR encoder\QR enco
 c:\users\kareem daggash\documents\visual studio 2012\Projects\QR encoder\QR encoder\obj\Debug\QR encoder.csproj.GenerateResource.Cache
 c:\users\kareem daggash\documents\visual studio 2012\Projects\QR encoder\QR encoder\obj\Debug\QR encoder.exe
 c:\users\kareem daggash\documents\visual studio 2012\Projects\QR encoder\QR encoder\obj\Debug\QR encoder.pdb
+C:\Users\Jack\Kinect-BodyScanner\BodyScanner\QR encoder\QR encoder\bin\Debug\QR encoder.exe.config
+C:\Users\Jack\Kinect-BodyScanner\BodyScanner\QR encoder\QR encoder\obj\Debug\QR encoder.pdb
+C:\Users\Jack\Kinect-BodyScanner\BodyScanner\QR encoder\QR encoder\obj\Debug\QR encoder.csprojResolveAssemblyReference.cache
+C:\Users\Jack\Kinect-BodyScanner\BodyScanner\QR encoder\QR encoder\obj\Debug\QR_encoder.Form1.resources
+C:\Users\Jack\Kinect-BodyScanner\BodyScanner\QR encoder\QR encoder\obj\Debug\QR_encoder.Properties.Resources.resources
+C:\Users\Jack\Kinect-BodyScanner\BodyScanner\QR encoder\QR encoder\obj\Debug\QR encoder.csproj.GenerateResource.Cache

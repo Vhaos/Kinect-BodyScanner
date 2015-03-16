@@ -23,8 +23,6 @@ namespace BodyScanner
     /// </summary>
     public partial class KinectWindow : Window
     {
-
-
         enum State {NO_BODY,NOT_ALIGNED,SCANNING}; //All the states
         private State currentState = State.NO_BODY; // Default State
 
@@ -191,8 +189,13 @@ namespace BodyScanner
         {
             sensor.stopScanning();
             sensor = null;
-            CalculatingWindow cw = new CalculatingWindow();
-            cw.Show();
+
+            //CalculatingWindow cw = new CalculatingWindow();   <------------- Commented for testing ResultWindow()
+            //cw.Show();
+
+            ResultWindow rw = new ResultWindow();
+            rw.Show();
+
             this.Hide();
         }
 

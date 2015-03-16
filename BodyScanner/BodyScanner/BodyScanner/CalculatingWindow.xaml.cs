@@ -80,7 +80,7 @@ namespace BodyScanner
             Log.Write(Log.Tag.IMP, measurements);
 
             Log.Write("Finished");
- 
+            
         }
 
       
