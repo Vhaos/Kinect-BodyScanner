@@ -31,9 +31,7 @@
         <Button x:Name="done_btn" Grid.Row="3" Grid.Column="2" Background="Green" Foreground="White" FontSize="22" FontWeight="SemiBold"  Margin="10.333,10,9.667,10" FontFamily="Arial" 
 			Click="done_btn_Click" Content="{StaticResource DONE}"/>
 
-        <Viewbox Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Center" Margin="222,0,223,0">
-            <Image x:Name="bitmap_qr_code" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </Viewbox>
+        <Image Margin="50"  x:Name="bitmap_qr_code" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"  Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Source="pack://application:,,,/BodyScanner;component/images/test_image.jpg"/>
 
     </Grid>
 </Window>
