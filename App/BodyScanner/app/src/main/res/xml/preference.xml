@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:key="incognito_mode"
+        android:title = "@string/incognito_mode"
+        android:summary="@string/incognito_mode_summary"
+        android:defaultValue="false"
+        />
+
+    <ListPreference
+        android:key="measurement_units"
+        android:title = "@string/measurement_units"
+        android:summary="@string/measurement_units_summary"
+        android:entries="@array/measurement_units_choices"
+        android:entryValues="@array/measurement_units_choice_values"
+        android:defaultValue="@string/measurement_units_default"
+        />
+
+    <Preference
+        android:title = "@string/measurement_history"
+        android:summary="@string/measurement_history_summary"
+        />
+
+</PreferenceScreen>

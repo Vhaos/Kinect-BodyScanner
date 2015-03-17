@@ -9,4 +9,30 @@
     <string name="hip">Hip</string>
     <string name="inside_leg">Inside Leg</string>
     <string name="your_measurements">Your Measurements</string>
+
+    <string name="incognito_mode">Incognito Mode</string>
+    <string name="incognito_mode_summary">No measurements will be saved on this device!</string>
+    <string name="measurement_units">Measurement Units</string>
+    <string name="measurement_units_default">default</string>
+    <string name="measurement_units_summary">Change the units of measurement</string>
+    <string name="measurement_history">Measurement History</string>
+    <string name="measurement_history_summary">Manage your measurement History</string>
+    <string-array
+        name="measurement_units_choices">
+        <item>Default</item>
+        <item>Centimeters</item>
+        <item>Inches</item>
+        <item>SI</item>
+        <item>Imperial</item>
+    </string-array>
+
+    <string-array
+        name="measurement_units_choice_values">
+        <item>default</item>
+        <item>cm</item>
+        <item>inch</item>
+        <item>si</item>
+        <item>imperial</item>
+    </string-array>
+
 </resources>
