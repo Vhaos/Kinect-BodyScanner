@@ -190,11 +190,8 @@ namespace BodyScanner
             sensor.stopScanning();
             sensor = null;
 
-            //CalculatingWindow cw = new CalculatingWindow();   <------------- Commented for testing ResultWindow()
-            //cw.Show();
-
-            ResultWindow rw = new ResultWindow();
-            rw.Show();
+            CalculatingWindow cw = new CalculatingWindow();
+            cw.Show();
 
             this.Hide();
         }

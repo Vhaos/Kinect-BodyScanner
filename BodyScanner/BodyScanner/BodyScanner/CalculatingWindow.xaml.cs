@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,19 +23,18 @@ namespace BodyScanner
     /// </summary>
     public partial class CalculatingWindow : Window
     {
-
+        private BackgroundWorker bw = new BackgroundWorker();
 
         public CalculatingWindow()
         {
             InitializeComponent();
-            BackgroundWorker bw = new BackgroundWorker();
             bw.DoWork += bw_DoWork;
+            bw.RunWorkerCompleted += bw_RunWorkerCompleted;
             bw.RunWorkerAsync();
         }
 
         void bw_DoWork(object sender, DoWorkEventArgs e)
         {
-
             String pointCloudPath = FileManager.getPointCloudPath(PointCloudFormatter.Format.XYZ) ;
             String scanMeasureSoftwarePath = App.SCANMEASURE_PATH;
 
@@ -71,16 +71,36 @@ namespace BodyScanner
             XmlNode waist = xmlDoc.SelectSingleNode("/MSV_Measures/measure[@name='Waist']");
             XmlNode insideLeg = xmlDoc.SelectSingleNode("/MSV_Measures/measure[@name='Inside Leg']");
 
-            String measurements = "\nheight: " + height.InnerText + "\n " +
-                                  "hip: " + hip.InnerText + "\n " +
-                                  "chest: " + chest.InnerText + "\n " +
-                                  "waist: " + waist.InnerText + "\n " +
-                                  "insideLeg: " + insideLeg.InnerText;
+            String measurements = "Height: " + height.InnerText + "\n" +
+                                  "Hip: " + hip.InnerText + "\n" +
+                                  "Chest: " + chest.InnerText + "\n" +
+                                  "Waist: " + waist.InnerText + "\n" +
+                                  "InsideLeg: " + insideLeg.InnerText;
 
             Log.Write(Log.Tag.IMP, measurements);
 
             Log.Write("Finished");
-            
+
+
+            //e.Result = true;
+
+            return;
+        }
+
+        private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Log.Write("HERE Changing to results window");
+            // First, handle the case where an exception was thrown. 
+            if (e.Error != null)
+            {
+                MessageBox.Show(e.Error.Message);
+            }
+
+            ResultWindow rw = new ResultWindow();
+            rw.Show();
+            this.Hide();
+
+            //Log.Write(e.Result);
         }
 
       
