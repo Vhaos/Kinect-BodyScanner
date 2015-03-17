@@ -1,10 +1,13 @@
 package ucl.group18.bodyscanner;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -38,5 +41,41 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public void fabPressed(View view){
+
+       launchBarCodeScanner();
+
+    }
+
+    private void launchBarCodeScanner() {
+
+        try{
+            Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+            intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
+            intent.putExtra("SAVE_HISTORY", false);
+            startActivityForResult(intent, 0);
+        }catch (Exception e){
+            e.printStackTrace();
+            Uri marketUri = Uri.parse("market://details?id=com.google.zxing.client.android");
+            Intent marketIntent = new Intent(Intent.ACTION_VIEW,marketUri);
+            Toast.makeText(this, getString(R.string.download_app_message),Toast.LENGTH_LONG).show();
+            startActivity(marketIntent);
+        }
+
+    }
+
+    /*
+    Intent Callback method (for when QR scanner returns)
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                String qr_text = data.getStringExtra("SCAN_RESULT"); //this is the result
+                Toast.makeText(this, qr_text,Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }

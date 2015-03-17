@@ -17,6 +17,7 @@
     <string name="measurement_units_summary">Change the units of measurement</string>
     <string name="measurement_history">Measurement History</string>
     <string name="measurement_history_summary">Manage your measurement History</string>
+    <string name="download_app_message">Please download the QR Scanner app.</string>
     <string-array
         name="measurement_units_choices">
         <item>Default</item>
