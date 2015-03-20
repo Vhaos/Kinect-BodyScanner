@@ -1,4 +1,4 @@
-﻿<Window x:Class="BodyScanner.MainWindow"
+﻿<Window x:Class="BodyScanner.StartWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="BodyScanner" Width="900" Height="700"  WindowStyle="None"  >

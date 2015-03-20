@@ -26,7 +26,7 @@ namespace BodyScanner
 
         private void ok_btn_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mw = new MainWindow();
+            StartWindow mw = new StartWindow();
             mw.Show();
             this.Hide();
         }

@@ -24,10 +24,12 @@ namespace BodyScanner
     public partial class CalculatingWindow : Window
     {
         private BackgroundWorker bw = new BackgroundWorker();
+        private GenderWindow.GenderType gender_type;
 
-        public CalculatingWindow()
+        public CalculatingWindow(GenderWindow.GenderType gender_type)
         {
             InitializeComponent();
+            this.gender_type = gender_type;
             bw.DoWork += bw_DoWork;
             bw.RunWorkerCompleted += bw_RunWorkerCompleted;
             bw.RunWorkerAsync();
@@ -41,9 +43,22 @@ namespace BodyScanner
             /*
              * Arguments:
              * Path for output file
-             * MKF{1/2} = female/male, TODO: ask user for gender
+             * MKF{1/2} = female/male
              */
-            String arguments = pointCloudPath + " MKF2";
+
+            String arguments = pointCloudPath;
+            if (gender_type == GenderWindow.GenderType.Male)
+                arguments += " MKF2";
+
+            else if (gender_type == GenderWindow.GenderType.Female)
+                arguments += " MKF1";
+
+            else // Amend this when we introduce proper error handling
+            { 
+                ErrorWindow ew = new ErrorWindow(); 
+                ew.Show(); 
+                this.Hide(); 
+            }
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = scanMeasureSoftwarePath;

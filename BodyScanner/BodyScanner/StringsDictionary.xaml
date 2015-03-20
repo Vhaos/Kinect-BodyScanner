@@ -15,6 +15,8 @@
     <system:String x:Key="STOP">STOP</system:String>
     <system:String x:Key="HELP">HELP</system:String>
     <system:String x:Key="OK">OK</system:String>
+    <system:String x:Key="MALE">MALE</system:String>
+    <system:String x:Key="FEMALE">FEMALE</system:String>
     
     
     <!--Text used in screens -->
@@ -37,6 +39,8 @@
 
     <system:String x:Key="RESULT_TITLE">Your Body Results</system:String>
     <system:String x:Key="SCAN_FOR_RESULTS">Please use our app to scan this barcode to get your results</system:String>
+    
+    <system:String x:Key="ASK_GENDER">Please indicate your gender below.</system:String>
 
 
 

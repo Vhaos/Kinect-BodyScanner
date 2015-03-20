@@ -37,14 +37,19 @@ namespace BodyScanner
 
         private WriteableBitmap displayedBitmap = null; // Bitmap that gets displayed (from Kinect)
 
+        private GenderWindow.GenderType gender_type;
+
         KinectSensorWrapper sensor;
 
        
 
-        public KinectWindow()
+        public KinectWindow(GenderWindow.GenderType gender_type)
         {
             InitializeComponent();
             
+            // Initialise gender_type for when constructing CalculatingWindow
+            this.gender_type = gender_type;
+
             //Initialize the Sensor
             sensor = new KinectSensorWrapper();
             sensor.startScanning();
@@ -190,7 +195,7 @@ namespace BodyScanner
             sensor.stopScanning();
             sensor = null;
 
-            CalculatingWindow cw = new CalculatingWindow();
+            CalculatingWindow cw = new CalculatingWindow(gender_type);
             cw.Show();
 
             this.Hide();
