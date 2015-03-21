@@ -48,16 +48,16 @@ namespace BodyScanner
 
             String arguments = pointCloudPath;
             if (gender_type == GenderWindow.GenderType.Male)
-                arguments += " MKF2";
+                arguments += App.GENDER_ARG_MALE;
 
             else if (gender_type == GenderWindow.GenderType.Female)
-                arguments += " MKF1";
+                arguments += App.GENDER_ARG_FEMALE;
 
             else // Amend this when we introduce proper error handling
-            { 
-                ErrorWindow ew = new ErrorWindow(); 
-                ew.Show(); 
-                this.Hide(); 
+            {
+                ErrorWindow ew = new ErrorWindow();
+                ew.Show();
+                this.Hide();
             }
 
             ProcessStartInfo startInfo = new ProcessStartInfo();

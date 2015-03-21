@@ -15,5 +15,7 @@ namespace BodyScanner
     {
         public static readonly String POINT_CLOUD_PATH = Environment.GetFolderPath(Environment.SpecialFolder.Desktop); // Desktop
         public static readonly String SCANMEASURE_PATH = "C:\\Program Files (x86)\\Tony Ruto\\Home Scanner Tools\\ScanMeasureCmd.exe";
+        public static readonly String GENDER_ARG_MALE = " MKF2";
+        public static readonly String GENDER_ARG_FEMALE = " MKF1";
     }
 }
