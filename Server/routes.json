@@ -1,0 +1,5 @@
+{
+	"endpoint":{
+		"url":"245.65.0.67" //fixed url of phone data is sent to (for development/testing purposes only!!)
+	}
+}  
