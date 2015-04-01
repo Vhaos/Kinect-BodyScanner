@@ -1,8 +1,6 @@
-Options +FollowSymLinks
-IndexIgnore */*
-# Turn on the RewriteEngine
+<IfModule mod_rewrite.c>
 RewriteEngine On
-#  Rules
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . index.php
+RewriteRule api/v1/(.*)$ api/v1/api.php?request=$1 [QSA,NC,L]
+</IfModule>

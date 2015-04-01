@@ -1,109 +1,113 @@
 <?php
 
-class Server {
-	private $curl = null;
-	private $config = null;
-	private $routes = null;
-	public function init(){
+abstract class API
+{
+    /**
+     * Property: method
+     * The HTTP method this request was made in, either GET, POST, PUT or DELETE
+     */
+    protected $method = '';
+    /**
+     * Property: endpoint
+     * The Model requested in the URI. eg: /files
+     */
+    protected $endpoint = '';
+    /**
+     * Property: verb
+     * An optional additional descriptor about the endpoint, used for things that can
+     * not be handled by the basic methods. eg: /files/process
+     */
+    protected $verb = '';
+    /**
+     * Property: args
+     * Any additional URI components after the endpoint and verb have been removed, in our
+     * case, an integer ID for the resource. eg: /<endpoint>/<verb>/<arg0>/<arg1>
+     * or /<endpoint>/<arg0>
+     */
+    protected $args = Array();
+    /**
+     * Property: file
+     * Stores the input of the PUT request
+     */
+     protected $file = Null;
 
-		$this->getConfig();
-		$this->getRoutes();
-		$this->setProxy();
-		$routes = $this->getURLRoutes();
-		$this->checkRoute($routes);
-	}
-	private function getConfig(){
-		$configString = file_get_contents('config.json');
-		$this->config = json_decode(stripslashes($configString),true);
+    /**
+     * Constructor: __construct
+     * Allow for CORS, assemble and pre-process the data
+     */
+    public function __construct($request) {
+        header("Access-Control-Allow-Orgin: *");
+        header("Access-Control-Allow-Methods: *");
+        header("Content-Type: application/json");
 
-	}
-	private function getRoutes(){
-		$routesString = file_get_contents('routes.json');
-		$this->routes = json_decode(stripslashes($routesString),true);
-	}
-	private function setProxy(){
-		$this->curl = curl_init();
-		// $userAgent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)';
-		// curl_setopt($this->curl, CURLOPT_USERAGENT, $userAgent);
-		// curl_setopt($this->curl, CURLOPT_PROXY,  $this->config['proxy']['url']);
-		// curl_setopt($this->curl, CURLOPT_PROXYPORT,   $this->config['proxy']['port']);
-	}
-	private function getURLRoutes(){
-		$requestURI = explode('phprouter/', $_SERVER['REQUEST_URI']);
-		//$requestURI = explode('/',$requestURI[1] );
-		//echo implode("/",$requestURI);
-		return $requestURI[1];
-	}
-	private function checkRoute($routes){
-		switch($routes){
-			case strpos($routes,'service/post/'):
-			$this->post(explode("service/post/",$routes)[1]);
-			break;
-			case strpos($routes,'service/put/'):
-			$this->post(explode("service/put/",$routes)[1],'PUT');
-			break;
-			case strpos($routes,'service/delete/'):
-			$this->post(explode("service/delete/",$routes)[1],'DELETE');
-			break;
-			case strpos($routes,'service/get/'):
-			$this->get(explode("service/get/",$routes)[1]);
-			break;
-		}
-	}
-	private function getRouteName($url){
-		$name = explode('/', $url);
-		return $name[0];
-	}
+        $this->args = explode('/', rtrim($request, '/'));
+        $this->endpoint = array_shift($this->args);
+        if (array_key_exists(0, $this->args) && !is_numeric($this->args[0])) {
+            $this->verb = array_shift($this->args);
+        }
 
-	private function post($url,$method=null){
-		$serviceUrl = $url;
-		$routeName = $this->getRouteName($url);
-		if($this->routes[$routeName])
-		{
-			$arr = explode('_|_'.$routeName.'/', '_|_'.$url);
-			$serviceUrl = $this->routes[$routeName]['url'].(sizeof($arr)>1?$arr[1]:"");
+        $this->method = $_SERVER['REQUEST_METHOD'];
+        if ($this->method == 'POST' && array_key_exists('HTTP_X_HTTP_METHOD', $_SERVER)) {
+            if ($_SERVER['HTTP_X_HTTP_METHOD'] == 'DELETE') {
+                $this->method = 'DELETE';
+            } else if ($_SERVER['HTTP_X_HTTP_METHOD'] == 'PUT') {
+                $this->method = 'PUT';
+            } else {
+                throw new Exception("Unexpected Header");
+            }
+        }
 
-		}else{
+        switch($this->method) {
+        case 'DELETE':
+        case 'POST':
+            $this->request = $this->_cleanInputs($_POST);
+            break;
+        case 'GET':
+            $this->request = $this->_cleanInputs($_GET);
+            break;
+        case 'PUT':
+            $this->request = $this->_cleanInputs($_GET);
+            $this->file = file_get_contents("php://input");
+            break;
+        default:
+            $this->_response('Invalid Method', 405);
+            break;
+        }
+    }
 
-		}
+    public function processAPI() {
+        if ((int)method_exists($this, $this->endpoint) > 0) {
+            return $this->_response($this->{$this->endpoint}($this->args));
+        }
+        return $this->_response("No Endpoint: $this->endpoint", 404);
+    }
 
-		$timeout = 5;
-		curl_setopt($this->curl, CURLOPT_URL, $serviceUrl);
-		if($method)curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, $method);
-		curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, $timeout);
-		curl_setopt($this->curl, CURLOPT_FOLLOWLOCATION, true);
-		curl_setopt($this->curl, CURLOPT_HEADER, 1);
-		curl_setopt($this->curl, CURLOPT_POST, true);
-		 curl_setopt($this->curl, CURLOPT_POSTFIELDS, $_POST);
-		$data = curl_exec($this->curl);
-		curl_close($this->curl);
-		echo $data;
-	}
-	private function get($url){
-		$serviceUrl = $url;
-		$routeName = $this->getRouteName($url);
-		if($this->routes[$routeName])
-		{
-			$arr = explode('_|_'.$routeName.'/', '_|_'.$url);
-			$serviceUrl = $this->routes[$routeName]['url'].(sizeof($arr)>1?$arr[1]:"");
+    private function _response($data, $status = 200) {
+        header("HTTP/1.1 " . $status . " " . $this->_requestStatus($status));
+        return json_encode($data);
+    }
 
-		}else{
+    private function _cleanInputs($data) {
+        $clean_input = Array();
+        if (is_array($data)) {
+            foreach ($data as $k => $v) {
+                $clean_input[$k] = $this->_cleanInputs($v);
+            }
+        } else {
+            $clean_input = trim(strip_tags($data));
+        }
+        return $clean_input;
+    }
 
-		}
-
-		$timeout = 5;
-		curl_setopt($this->curl, CURLOPT_URL, $serviceUrl);
-		curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, $timeout);
-		curl_setopt($this->curl, CURLOPT_FOLLOWLOCATION, true);
-		$data = curl_exec($this->curl);
-		curl_close($this->curl);
-		echo $data;
-	}
+    private function _requestStatus($code) {
+        $status = array(  
+            200 => 'OK',
+            404 => 'Not Found',   
+            405 => 'Method Not Allowed',
+            500 => 'Internal Server Error',
+	    ); 
+	    return ($status[$code])?$status[$code]:$status[500];
+    } 
 }
-
-$server = new Server();
-$server->init();
 
 ?>
