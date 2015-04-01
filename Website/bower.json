@@ -1,0 +1,30 @@
+{
+  "name": "Kinect-Bodyscanner",
+  "version": "0.0.0",
+  "authors": [
+    "JackHR <roper.jack.h@gmail.com>"
+  ],
+  "description": "COMP2014 Project",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.5.5",
+    "roboto-fontface": "~0.3.0",
+    "core-header-panel": "Polymer/core-header-panel#~0.5.5",
+    "core-toolbar": "Polymer/core-toolbar#~0.5.5",
+    "paper-tabs": "Polymer/paper-tabs#~0.5.5",
+    "core-icon-button": "Polymer/core-icon-button#~0.5.5",
+    "paper-dropdown-menu": "Polymer/paper-dropdown-menu#~0.5.5",
+    "core-transition": "Polymer/core-transition#~0.5.5",
+    "core-tooltip": "Polymer/core-tooltip#~0.5.5",
+    "core-pages": "Polymer/core-pages#~0.5.5"
+  }
+

@@ -1,0 +1,42 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="card-image">
+
+  <template>
+
+    <style>
+      :host {
+        display: block;
+        position: relative;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 1.5rem;
+      }
+
+
+      polyfill-next-selector { content: '.card-img img'; }
+      .card-img ::content img {
+        border-radius: 10px;
+        height: 20%;
+        width: 20%;
+        min-width: 120px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+    </style>
+
+    <div class="card-img" layout horizontal around-justified>
+      <content select="img"></content>
+    </div>
+    <div class="text" layout horizontal center-justified>
+      <content></content>
+    </div>
+
+  </template>
+  <script>
+    Polymer({
+
+    });
+  </script>
+
+</polymer-element>

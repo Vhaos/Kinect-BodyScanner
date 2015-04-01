@@ -1,0 +1,105 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="card-people" attributes="person">
+
+  <template>
+
+    <style>
+      :host {
+        display: block;
+        position: relative;
+        width: 100%;
+        margin: 20px auto;
+      }
+
+      .people {
+        width: 80%;
+        margin: 50px auto;
+      }
+
+      .people img {
+        margin: 0 auto;
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+        opacity: 0.6;
+        transition: opacity 400ms ease-in-out;
+      }
+
+      .descriptor {
+        width: 80%;
+        margin-top: 0;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1.2rem;
+        text-align: justify;
+      }
+
+      @media (max-width: 800px) {
+        .people
+        {
+          margin: 0 auto;
+          width: 80%;
+        }
+
+        .descriptor
+        {
+          width: 80%;
+        }
+
+        .people img
+        {
+          margin: 0 0;
+          display: none;
+        }
+      }
+
+      .people img:hover {
+          opacity: 1;
+      }
+
+      polyfill-next-selector { content: '.descriptor h2'; }
+      .descriptor ::content h2 {
+        font-size: 1.3rem;
+        font-weight: 300;
+        margin: 10px;
+      }
+      polyfill-next-selector { content: '.descriptor p'; }
+      .descriptor ::content p {
+        margin: 10px;
+      }
+
+    </style>
+
+    <div class="people" layout horizontal center around-justified>
+      <template repeat="{{ person in people }}">
+        <core-tooltip position="top" label={{person.person}}><img src="img/people/{{person.person}}.jpg"></core-tooltip>
+      </template>
+    </div>
+
+    <div class="descriptor" layout vertical center>
+      <content select="h2"></content>
+      <content select="p"></content>
+      <content></content>
+    </div>
+  </template>
+  <script>
+
+    Polymer({
+      ready: function()
+      {
+        this.people = [
+          {
+            person: 'Shubham'
+          },{
+            person: 'Jack'
+          },{
+            person: 'Kareem'
+          }
+        ];
+      }
+    });
+  </script>
+
+</polymer-element>

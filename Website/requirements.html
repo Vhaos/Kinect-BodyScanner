@@ -1,119 +1,91 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="main.css">
-        <link href="css/lightbox.css" rel="stylesheet">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="js/lightbox.min.js"></script>
-        <script src="js/main.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-        <div id="my-menu" class="container-fluid my-menu">
-            <div class="menu-box">
-                <a href="index.html">Home</a>
-            </div>
-            <div class="menu-box">
-                <a href="background.html">Background</a>
-            </div>
-            <div class="menu-box">
-                <a href="requirements.html">Requirements</a>
-            </div>
-            <div class="menu-box">
-                <a href="interface.html">Interface</a>
-            </div>
-            <div class="menu-box">
-                <a href="research.html">Research</a>
-            </div>
-            <div class="menu-box">
-                <a href="prototypes.html">Prototype</a>
-            </div>
-            <div class="menu-box">
-                <a href="versioncontrol.html">Version Control</a>
-            </div>
-            <div class="menu-box">
-                <a href="testing.html">Testing</a>
-            </div>
-            <div class="menu-box">
-                <a href="records.html">Records</a>
-            </div>
-            <div class="menu-box">
-                <a href="future.html">Future</a>
-            </div>
-            <div class="menu-box">
-                <a href="kinecttutorial.html">Tutorial</a>
-            </div>
-        </div>
-        <div class="container my-main-container">
-            <!-- Nav bar -->
-            <nav id="my-navbar" class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <!--<a class="navbar-brand" href="#">Kinect</a>-->
-                    </div>
-                    <div>
-                        <ul class="nav navbar-nav">
-                            <li id="menu-icon" class="pull-left"><a href="#">Menu</a></li>
-                            <li id="theTitle" class="my-title"><a href="index.html">Kinect Bodyscanner</a></li>
-                            <li id="about-icon" class="pull-right"><a href="about.html">About</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <hr class="my-line">
-            <h2 class="sub-heading">Requirements</h2>
-            <div class="container slim text-sheet">
-            <b>The Client</b>
-                <p>
-                    For the purposes of this project, our client was Prof. Philip Treleaven, a professor of Computer Science at UCL. Professor Treleaven first led the effort of building and encouraging the use of body scanners for the clothing industry. He, alongside Dr.Tony Ruto, developed the initial sizing software, which scanned and extracted measurements from an already existing point cloud using the Kinect 1.0. Our Secondary point of contact was Dr. Tony Ruto, whom we would refer to in the event of any particular technical difficulties as well as in seeking guidance on the quality of our extracted point cloud.
-                </p>
-            <b>Project Scope</b>
-                <p>
-                    Our main goal for the project, as was discussed and agreed upon with our client, was to first examine the Kinect for Windows 2 SDK, with the aim of extracting an accurate point cloud from a static model. Once extracted, and quality approved by Dr. Tony Ruto, we could later combine our data with the aforementioned measurement extraction software to create a full, low cost Body Scanning service that utilises the Kinect 2.0.
-                </p>
-            </div>
 
-            <div class="container slim text-sheet">
-            <b>Project Requirements</b>
-                <p>
-                    After our intial meetings with Prof. Treleaven, and communication with Dr. Ruto on the matter of the point cloud, we concluded on a final set of clear requirements that the system must have. 
-                </p>
-                <ul>
-                    <li>
-                        <b>Kinect Capture</b><p> - The software firstly needed to be able to capture depth information from the Kinect 2.0 in order to generate a 3D point cloud of the subject in a simple, quick and easy way - One click run</p>
-                    </li>
-                    <li>
-                        <b>Accuracy of the point cloud</b><p> - the 3D point cloud needs to be accurate enough to correctly detect body shape and depth. This meant trying to map out as many points as possible without too much quality of the cloud lost due to noise.</p>
-                    </li>
-                    <li>
-                        <b>Extractabilty</b><p> - Most importantly, the point cloud, generated by the Kinect, needed to be compatible with Dr. Tony Ruto's measurement software. This required the data to be sent to the size extraction software in a particular format.</p>
-                    </li>
-                    <li>
-                        <b>Display of calculated measurements</b><p> - After data has been extracted, the software must also be able to show the calculated measurements, considering numerous of HCI factors when doing so (see the Interface page for more info). A potential companion app could interact with our output data by way of QR code or NFC, allowing users a convenient and controllable method of storing their information.</p>
-                    </li>
-                </ul>
-            <b>Use Cases</b>
-                <p>
-                    Before we started on designing the UI, we first thought upon the different use case scenarios of the product and its possible applications. Shown below is a depiction of a scenario in health care for better health monitoring of patients.
-                </p><br> 
-                <div class="col-centered">
-                    <a href="img/health_UseCase.png" data-lightbox="requirements">
-                        <img class="img-sized-centered" src="img/health_UseCase.png" style="width:100%">
-                    </a>
-                </div><br>
-                <p>
-                    Another scenario relating to apparel includes quickly extracting the measurements of customers in order to make size recommendations. 
-                </p><br>
-                <div class="col-centered">
-                    <a href="img/fashion_UseCase.png" data-lightbox="requirements">
-                        <img class="img-sized-centered" src="img/fashion_UseCase.png" style="width:100%">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </body>
+  <head>
+    <title>Kinect Bodyscanner</title>
+    <!-- Load platform support before anything else -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <link rel="icon" type="type/png" href="img/Misc/k-icon.png"/>
+      <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+
+      <link rel="stylesheet" href="main.css">
+      <link rel="import" href="bower_components/font-roboto/roboto.html">
+      <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
+      <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
+      <link rel="import" href="elements/card-content.html">
+      <link rel="import" href="elements/card-banner.html">
+      <link rel="import" href="elements/common-links.html">
+
+  </head>
+
+  <style shim-shadowdom>
+    paper-tabs /deep/ #ink {
+      color: firebrick;
+    }
+    paper-tabs /deep/ #selectionBar {
+      background-color: firebrick;
+    }
+  </style>
+
+  <body unresolved fullbleed layout vertical>
+
+    <core-header-panel layout vertical>
+
+      <a name="top"></a>
+          <core-toolbar>
+            <h2><a href="#top">Kinect Bodyscanner</a></h2>
+          </core-toolbar>
+
+
+          <common-links select='2'></common-links>
+
+
+          <card-banner solid=true>
+            <h1>Requirements</h1>
+          </card-banner>
+
+          <card-content>
+            <h2>The Client</h2>
+            <p>For the purposes of this project, our client was Prof. Philip Treleaven, a professor of Computer Science at UCL. Professor Treleaven first led the effort of building and encouraging the use of body scanners for the clothing industry. He, alongside Dr.Tony Ruto, developed the initial sizing software, which scanned and extracted measurements from an already existing point cloud using the Kinect 1.0. Our Secondary point of contact was Dr. Tony Ruto, whom we would refer to in the event of any particular technical difficulties as well as in seeking guidance on the quality of our extracted point cloud.</p>
+          </card-content>
+
+          <card-content>
+            <h2>Project Scope</h2>
+            <p>Our main goal for the project, as was discussed and agreed upon with our client, was to first examine the Kinect for Windows 2 SDK, with the aim of extracting an accurate point cloud from a static model. Once extracted, and quality approved by Dr. Tony Ruto, we could later combine our data with the aforementioned measurement extraction software to create a full, low cost Body Scanning service that utilises the Kinect 2.0.</p>
+          </card-content>
+
+      <card-content>
+        <h2>Project Requirements:</h2>
+        <p>After our intial meetings with Prof. Treleaven, and communication with Dr. Ruto on the matter of the point cloud, we concluded on a final set of clear requirements that the system must have.</p>
+        <ul>
+
+          <li><b>Kinect Capture</b><br>The software firstly needed to be able to capture depth information from the Kinect 2.0 in order to generate a 3D point cloud of the subject in a simple, quick and easy way - One click run</li>
+
+          <li><b>Accuracy of the point cloud</b><br>The 3D point cloud needs to be accurate enough to correctly detect body shape and depth. This meant trying to map out as many points as possible without too much quality of the cloud lost due to noise.</li>
+
+          <li><b>Extractabilty</b><br>Most importantly, the point cloud, generated by the Kinect, needed to be compatible with Dr. Tony Ruto's measurement software. This required the data to be sent to the size extraction software in a particular format.</li>
+
+          <li><b>Display of calculated measurements</b><br>After data has been extracted, the software must also be able to show the calculated measurements, considering numerous of HCI factors when doing so (see the Interface page for more info). A potential companion app could interact with our output data by way of QR code or NFC, allowing users a convenient and controllable method of storing their information.</li>
+        </ul>
+      </card-content>
+
+      <card-content>
+        <h2>Use Cases</h2>
+        <p>Before we started on designing the UI, we first thought upon the different use case scenarios of the product and its possible applications. Shown below is a scenario based on clothing and retail, where the scanner quickly extracts the measurements of customers in order to make size recommendations.</p>
+        <img src="img/fashion_UseCase.png">
+      </card-content>
+
+      <card-content>
+        <p>Another scenario, shown below, depicts an application in health care for better monitoring of patients.</p>
+        <img src="img/health_UseCase.png">
+      </card-content>
+
+          <common-links select='2'></common-links>
+
+      </core-header-panel>
+    <script type="text/javascript">
+      Polymer({ });
+    </script>
+  </body>
+
 </html>
