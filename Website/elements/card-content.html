@@ -1,0 +1,77 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="card-content" attributes="imagePosition solid full">
+
+  <template>
+
+    <style>
+      :host {
+        display: block;
+        position: relative;
+        width: 90%;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      polyfill-next-selector { content: '.card-header h1'; }
+      .card-header ::content h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        font-weight: 300;
+        letter-spacing: 6px;
+        padding: 10px;
+      }
+
+      polyfill-next-selector { content: '.card-header h2'; }
+      .card-header ::content h2 {
+        margin: 0;
+        font-size: 1.8rem;
+        font-weight: 300;
+      }
+      polyfill-next-selector { content: '.card-header img'; }
+      .card-header ::content img {
+        border-radius: 10px;
+        max-height: 300px;
+        max-width: 100%;
+        margin: 10px;
+      }
+
+    </style>
+
+    <div id="moi" class="card-header" layout vertical>
+      <content select="div"></content>
+      <content></content>
+    </div>
+
+  </template>
+  <script>
+
+    Polymer('card-content', {
+
+      imagePosition: "bottom",
+      solid: false,
+      full: false,
+
+      ready: function() {
+
+        if(this.solid)
+          this.style.backgroundColor = '#efefef';
+
+        if(this.full)
+          this.style.width = '100%';
+
+        var contents = this.shadowRoot.querySelector(".card-header");
+        var headers = '<content select="h1"></content><content select="h2"></content>';
+        if(this.imagePosition == "bottom")
+        {
+          contents.innerHTML = headers + contents.innerHTML + '<content select="img"></content>';
+        }
+        else
+        {
+          contents.innerHTML = headers + '<content select="img"></content>' + contents.innerHTML;
+        }
+      }
+    });
+  </script>
+
+</polymer-element>

@@ -1,0 +1,48 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+
+<polymer-element name="common-links" attributes="select">
+
+  <template>
+
+    <style shim-shadowdom>
+      paper-tabs /deep/ a {
+        text-transform: uppercase;
+        text-decoration: none;
+        color: inherit;
+      }
+    </style>
+
+    <paper-tabs id="tabs" selected="{{select}}" scrollable noink nobar selfend>
+      <paper-tab id="tab0"><a href="../index.html">Home</a>
+      </paper-tab>
+      <paper-tab id="tab1"><a href="../background.html">Background</a>
+      </paper-tab>
+      <paper-tab id="tab2"><a href="../requirements.html">Requirements</a>
+      </paper-tab>
+      <paper-tab id="tab3"><a href="../interface.html">Interface</a>
+      </paper-tab>
+      <paper-tab id="tab4"><a href="../research.html">Research</a>
+      </paper-tab>
+      <paper-tab id="tab5"><a href="../prototypes.html">Prototypes</a>
+      </paper-tab>
+      <paper-tab id="tab6"><a href="../versioncontrol.html">Version Control</a>
+      </paper-tab>
+      <paper-tab id="tab7"><a href="../testing.html">Testing</a>
+      </paper-tab>
+      <paper-tab id="tab8"><a href="../records.html">Records</a>
+      </paper-tab>
+      <paper-tab id="tab9"><a href="../kinecttutorial.html">Hardware Tutorial</a>
+      </paper-tab>
+      <paper-tab id="tab10">Further Development</paper-tab>
+    </paper-tabs>
+
+  </template>
+  <script>
+    Polymer('common-links', {
+
+      select: 0
+    });
+  </script>
+
+</polymer-element>

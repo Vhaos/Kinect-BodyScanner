@@ -1,220 +1,145 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="main.css">
-        <link href="css/lightbox.css" rel="stylesheet">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="js/main.js"></script>
-        <script src="js/lightbox.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-        <div id="my-menu" class="container-fluid my-menu">
-            <div class="menu-box">
-                <a href="index.html">Home</a>
-            </div>
-            <div class="menu-box">
-                <a href="background.html">Background</a>
-            </div>
-            <div class="menu-box">
-                <a href="requirements.html">Requirements</a>
-            </div>
-            <div class="menu-box">
-                <a href="interface.html">Interface</a>
-            </div>
-            <div class="menu-box">
-                <a href="research.html">Research</a>
-            </div>
-            <div class="menu-box">
-                <a href="prototypes.html">Prototype</a>
-            </div>
-            <div class="menu-box">
-                <a href="versioncontrol.html">Version Control</a>
-            </div>
-            <div class="menu-box">
-                <a href="testing.html">Testing</a>
-            </div>
-            <div class="menu-box">
-                <a href="records.html">Records</a>
-            </div>
-            <div class="menu-box">
-                <a href="future.html">Future</a>
-            </div>
-            <div class="menu-box">
-                <a href="kinecttutorial.html">Tutorial</a>
-            </div>
-        </div>
-        <div class="container my-main-container">
-            <!-- Nav bar -->
-            <nav id="my-navbar" class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <!--<a class="navbar-brand" href="#">Kinect</a>-->
-                    </div>
-                    <div>
-                        <ul class="nav navbar-nav">
-                            <li id="menu-icon" class="pull-left"><a href="#">Menu</a></li>
-                            <li id="theTitle" class="my-title"><a href="index.html">Kinect Bodyscanner</a></li>
-                            <li id="about-icon" class="pull-right"><a href="about.html">About</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <hr class="my-line">
-            <h2 class="sub-heading">Prototypes</h2>
-            <div class="container slim text-sheet">
-                <h3>Sensor Modification</h3>
-                <p>
-                    To reduce cost, we decided to use the Kinect 2.0 that is available with Xbox
 
-One.  This meant we had to modify the wiring to make it work with Windows. 
+<head>
+  <title>Kinect Bodyscanner</title>
+  <!-- Load platform support before anything else -->
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <link rel="icon" type="type/png" href="img/Misc/k-icon.png"/>
+  <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
 
-Originally the Kinect came with a proprietary connector that plugs into Xbox. 
+  <link rel="stylesheet" href="main.css">
+  <link rel="import" href="bower_components/font-roboto/roboto.html">
+  <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
+  <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
+  <link rel="import" href="elements/card-content.html">
+  <link rel="import" href="elements/card-banner.html">
+  <link rel="import" href="elements/common-links.html">
 
-We had to split the connector into Power and USB 3.0 connectors.
-                </p><br>
-                <a href="img/Prototyping/Connectors.png" data-lightbox="proto">
-                    <img class="img-sized-centered" src="img/Prototyping/Connectors.png">
-                </a><br>
-                <p>
-                Here are some images of the modification. A step-by-step process can be 
+</head>
 
-found <a href="kinecttutorial.html">here</a>.
-                </p><br>
-                <div class="row row-centered">
-                    <div class="col-xs-6 col-centered">
-                        <a href="img/Tutorial/2_connector2.jpg" data-lightbox="proto">
-                            <img class="img-sized-centered" src="img/Tutorial/2_connector2.jpg">
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-centered">
-                        <a href="img/Tutorial/27_solder1.jpg" data-lightbox="proto">
-                            <img class="img-sized-centered" src="img/Tutorial/27_solder1.jpg">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="container slim text-sheet">
-                <h3>Choices</h3>
-                <br>
-                <b>Operating System</b>
-                <p>
-                    We are using the Kinect sensor for this project, naturally leading to our use of Windows, as Microsoft provides drivers and documentation exclusively for their platform. We considered using Linux as open source drivers do exist online; however, advanced configuartion, as well as mainstream adoptance of Windows in businesses and homes makes it the better choice in that regard.
-                </p><br>
-            
-                <b>Programming Languages</b>
-                <p>
-                    We were in dilemma as to which language to use for this project. We considered two programming languages: C++ and C#.
-                </p><hr class="my-line">
-                <div class="row row-centered">
-                    <div style="text-align: center;" class="col-xs-6 col-centered"><b>C++</b></div>
-                    <div style="text-align: center;" class="col-xs-6 col-centered"><b>C#</b></div>
-                    <br><br>
-                    <div class="col-xs-6">Pros
-                        <ul>
-                            <li>Plenty of 3rd party libraries, especially for 3D point cloud analysis</li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-6">Pros
-                        <ul>
-                            <li>Official support from Microsoft</li>
-                            <li>Official APIs available</li>
-                            <li>Most tutorials on Kinect in C#</li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-6">Cons
-                        <ul>
-                            <li>Little support for Kinect</li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-6">Cons
-                        <ul>
-                            <li>Not many third party libraries</li>
-                        </ul>
-                    </div>
-                </div>
-                <hr class="my-line">
-                <p>
-                    In the end, we decided to use C# as our main language when programming the sensor. However, this does not prevent us from using third party libraries written in C++ language using a wrapper in C#.
-                </p>
-                <br>
-                <b>Toolchain</b>
-                <p>
-                    Following the choices made for the operating system and programming 
+<style shim-shadowdom>
+  paper-tabs /deep/ #ink {
+    color: firebrick;
+  }
 
-language, it was natural to use Microsoft Visual Studio as our IDE, as Microsoft 
+  paper-tabs /deep/ #selectionBar {
+    background-color: firebrick;
+  }
+</style>
 
-has official tutorials and documentation based around it. We used Git for 
+<body unresolved fullbleed layout vertical>
 
-Version control, as all the members in our groups were familiar with it and we 
+  <core-header-panel layout vertical>
 
-used GitHub to host our Git repo remotely.
-                </p>
-            </div>
-            <div class="container slim text-sheet">
-                <h3>System Prototype</h3>
-                <p>
-                    For our prototype, we had to utilise existing software and design our body 
+    <a name="top"></a>
+    <core-toolbar>
+      <h2><a href="#top">Kinect Bodyscanner</a></h2>
+    </core-toolbar>
 
-scanner accordingly. We spoke to Dr. Tony Ruto who is an expert in 
 
-this field and is familiar with the existing software. He asked us to provide him with
+    <common-links select='5'></common-links>
 
-a 3D point-cloud of the body for him to test with the existing software with the aim of extracting body measurements. As a result, term 1 has primarily been focused on mdofiying the Kinects, extracting the point cloud from the Kinect 2.0 sensor and designing the user interface.
-                </p>
-                <br>
-                <b>System Activity Diagram</b>
-                <p>
-                    This diagram gives an abstract view of what the system is supposed to do.
-                </p>
-                <br>
-                <a href="img/Prototyping/ActivityDiagram.png" data-lightbox="proto">
-                    <img class="img-sized-centered" src="img/Prototyping/ActivityDiagram.png">
-                </a><br>
-                <b>Computing the Point Cloud</b>
-                <p>
-                    In order to extract the point cloud:
-                    <ul>
-                        <li>We needed to get the depth data for every pixel, using the depth frame source reader</li>
-                        <li>Use the Coordinate Mapper class to map the depth frame data to camera space point objects, which store 3D coordinate values for every pixel</li>
-                        <li>Use BodyIndexFrame to exclude pixels that do not comprise the human body</li>
-                        <li>Write the 3d coordinates from the remaining camera space points to a file, hence creating a pointcloud </li>
-                    </ul>
-                </p>
-                <br>
-                <b>Extracting the Measurements</b>
-                <p>
-                    To extract the measurements, we need to train a classifier algorithm to
 
-recognize which points correspond to which parts of the body. However, this 
+    <card-banner solid=true>
+      <h1>Prototypes</h1>
+    </card-banner>
 
-has already been done by UCL using the National Sizing Survey, and we have 
+    <card-content>
+      <h2>Sensor Modification</h2>
+      <p>To reduce cost, we decided to use the Kinect 2.0 that is available with Xbox One. This meant we had to modify the wiring to make it work with Windows. Originally the Kinect came with a proprietary connector that plugs into Xbox. We had to split the connector into Power and USB 3.0 connectors.</p>
+      <img src="img/Prototyping/Connectors.png">
+    </card-content>
 
-contacted Dr. Tony Ruto for access to this algorithm. We are still awaiting his 
+    <card-content>
+      <p>Here are some images of the modification. A step-by-step process can be found <a style="text-decoration: underline;" href=""><b>here</b></a>.</p>
+    </card-content>
 
-response.
-                </p><br>
-            <b>Libraries Used</b>
-            <p>
-                <ul>
-                    <li>Microsoft.Kinect - used when interfacing with the Kinect Sensor</li>
-                    <li>System.Math - used for mathematical operations such as flooring and distance calculations</li>
-                    <li>System.Windows.Media - used for calculating colour values and getting RGB formats</li>
-                    <li>System.IO - used for reading/writing files / exporting the point cloud</li>
-                </ul>
-            </p>
-            </div>
-            <div class="container slim text-sheet">
-                <h3>Point Cloud</h3><br>
-                <p>An example of the resulting point cloud at half resolution: </p><br>
-                <a href="img/Prototyping/Mr.Red.jpg" data-lightbox="proto">
-                    <img class="img-sized-centered" src="img/Prototyping/Mr.Red.jpg">
-                </a>
-            </div>
-        </div>
-    </body>
+    <div layout horizontal around-justified>
+      <img width="300px" height="200px" src="img/Tutorial/12_data_cables2.jpg">
+      <img width="300px" height="200px" src="img/Tutorial/27_solder1.jpg">
+    </div>
+    <br>
+    <br>
+    <card-content>
+      <h2>Choices</h2>
+      <p><b>Operating System</b>
+        <br>We are using the Kinect sensor for this project, naturally leading to our use of Windows, as Microsoft provides drivers and documentation exclusively for their platform. We considered using Linux as open source drivers do exist online; however, advanced configuartion, as well as mainstream adoptance of Windows in businesses and homes makes it the better choice in that regard.</p>
+      <p><b>Programming Languages</b>
+        <br> We were in dilemma as to which language to use for this project. We considered two programming languages: C++ and C#.</p>
+    </card-content>
+    <div layout horizontal around-justified>
+      <div>
+        <b>C++</b>
+        <ul>
+          <b>Pros</b>
+          <li>Plenty of 3rd party libraries, especially for 3D point cloud analysis</li>
+          <b>Cons</b>
+          <li>Less direct support for Kinect</li>
+        </ul>
+      </div>
+      <div>
+        <b>C#</b>
+        <ul>
+          <b>Pros</b>
+          <li>Official support from Microsoft</li>
+          <li>Official APIs available</li>
+          <li>Most tutorials on Kinect in C#</li>
+          <b>Cons</b>
+          <li>Not many third party libraries</li>
+        </ul>
+      </div>
+    </div>
+    <card-content>
+      <p>In the end, we decided to use C# as our main language when programming the sensor. However, this does not prevent us from using third party libraries written in C++ language using a wrapper in C#.</p>
+
+      <p><b>Toolchain</b><br>Following the choices made for the operating system and programming language, it was natural to use Microsoft Visual Studio as our IDE, as Microsoft has official tutorials and documentation based around it. We used Git for Version control, as all the members in our groups were familiar with it and we used GitHub to host our Git repo remotely.</p>
+    </card-content>
+
+    <card-content>
+      <h2>System Prototype</h2>
+      <p>For our prototype, we had to utilise existing software and design our body scanner accordingly. We spoke to Dr. Tony Ruto who is an expert in this field and is familiar with the existing software. He asked us to provide him with a 3D point-cloud of the body for him to test with the existing software with the aim of extracting body measurements. As a result, term 1 has primarily been focused on mdofiying the Kinects, extracting the point cloud from the Kinect 2.0 sensor and designing the user interface.</p>
+      <b style="text-align: center;">System Activity Diagram</b>
+    </card-content>
+    <div layout horizontal center-justified>
+      <img style="border: 1px solid black;" width="300px" src="img/Prototyping/ActivityDiagram.png">
+    </div>
+
+    <card-content>
+      <p><b>Computing the Point Cloud</b><br><br>
+        In order to extract the point cloud:
+        <ul>
+        <li>We needed to get the depth data for every pixel, using the depth frame source reader</li>
+          <li>Use the Coordinate Mapper class to map the depth frame data to camera space point objects, which store 3D coordinate values for every pixel</li>
+          <li>Use BodyIndexFrame to exclude pixels that do not comprise the human body</li>
+          <li>Write the 3d coordinates from the remaining camera space points to a file, hence creating a pointcloud</li>
+      </ul>
+      </p>
+      <p><b>Extracting the Measurements</b><br>
+      To extract the measurements, we need to train a classifier algorithm to recognize which points correspond to which parts of the body. However, this has already been done by UCL using the National Sizing Survey, and we have contacted Dr. Tony Ruto for access to this algorithm. We are still awaiting his response.
+    </p>
+    <p><b>Key Libraries Used</b>
+        <ul>
+        <li>Microsoft.Kinect - used when interfacing with the Kinect Sensor</li>
+          <li>System.Math - used for mathematical operations such as flooring and distance calculations</li>
+          <li>System.Windows.Media - used for calculating colour values and getting RGB formats</li>
+          <li>System.IO - used for reading/writing files / exporting the point cloud</li>
+      </ul>
+      </p>
+    </card-content>
+
+    <card-content>
+    <h2>Point Cloud</h2>
+      <p>An example of the resulting point cloud at half resolution and in colour:</p>
+      <img width="300px" src="img/Prototyping/Mr.Red.jpg">
+  </card-content>
+
+    <common-links select='5'></common-links>
+
+  </core-header-panel>
+  <script type="text/javascript">
+    Polymer({});
+  </script>
+</body>
+
 </html>

@@ -1,0 +1,53 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="card-banner" attributes="solid">
+
+  <template>
+
+    <style>
+      :host {
+        display: block;
+        position: relative;
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      polyfill-next-selector { content: '.card-header h1'; }
+      .card-header ::content h1 {
+        margin: 0;
+        text-align: center;
+        font-size: 3rem;
+        font-weight: 300;
+        padding: 30px;
+        letter-spacing: 6px;
+      }
+
+      polyfill-next-selector { content: '.card-header img'; }
+      .card-header ::content img {
+        max-width: 75%;
+        margin: 10px;
+      }
+
+    </style>
+
+    <div class="card-header" layout vertical center>
+      <content select="h1"></content>
+      <content select="img"></content>
+      <content></content>
+    </div>
+  </template>
+  <script>
+
+    Polymer('card-banner', {
+      ready: function()
+      {
+        if(this.solid)
+        {
+          this.style.backgroundColor = '#efefef';
+        }
+      }
+    });
+  </script>
+
+</polymer-element>
