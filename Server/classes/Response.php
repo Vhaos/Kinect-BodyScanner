@@ -2,6 +2,9 @@
 
 class Response
 {
+    /*
+     * Constructor.
+     */
 
     public static function create($data, $format)
     {

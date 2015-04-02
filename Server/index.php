@@ -15,7 +15,15 @@ function autoload_class($class_name) {
     }
 }
 
+/**
+ * Register autoloader functions.
+ */
+
 spl_autoload_register('autoload_class');
+
+/**
+ * Parse the incoming request.
+ */
 
 $request = new Request();
 if (isset($_SERVER['PATH_INFO'])) {
@@ -34,6 +42,10 @@ switch ($request->method) {
     break;
 }
 
+/**
+ * Route the request.
+ */
+
 if (!empty($request->url_elements)) {
     $controller_name = ucfirst($request->url_elements[0]) . 'Controller';
     if (class_exists($controller_name)) {
@@ -49,6 +61,10 @@ if (!empty($request->url_elements)) {
 else {
     $response_str = 'Unknown request';
 }
+
+/**
+ * Send the response to the client.
+ */
 
 $response_obj = Response::create($response_str, $_SERVER['HTTP_ACCEPT']);
 echo $response_obj->render();
