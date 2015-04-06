@@ -24,7 +24,7 @@ core-header-panel {
 
 core-toolbar {
   min-height: 50px;
-  height: 6vw;
+  height: 50px;
   background: #333;
   color: white;
 }
@@ -55,12 +55,6 @@ core-toolbar a  {
 footer  {
   position: relative;
   bottom: 0;
-}
-
-@media (min-width: 881px) {
-  #tabs {
-    width: 200px;
-  }
 }
 
 @media (max-height: 800px) {
