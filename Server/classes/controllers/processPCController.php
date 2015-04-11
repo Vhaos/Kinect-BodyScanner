@@ -1,11 +1,11 @@
 <?php
 
 /*
- * Unique ID Controller.
- * eg. 5522e70fe6cb4
+ * Point cloud processor Controller.
+ * 
 */ 
 
-class newIDController extends AbstractController
+class processPCController extends AbstractController
 {
     /*
      * GET method.
@@ -13,8 +13,14 @@ class newIDController extends AbstractController
 
     public function get($request)
     {	
-    	$uniqueId = $this -> generateUniqueID();
-        return $uniqueId;
+    	//return "invalid request";
+    	$output = 'null';
+        $disabled = explode(', ', ini_get('disable_functions'));
+    	
+    	return exec('"C:\Program Files (x86)\Tony Ruto\Home Scanner Tools\ScanMeasureCmd.exe" "C:\xampp\htdocs\phpresttest\scans\5522e70fe6cb4\pointcloud.wrl" "MKF1"');
+    	//exec('C:\Program Files (x86)\Tony Ruto\Home Scanner Tools\ScanMeasure.exe');
+    	//return !in_array('exec', $disabled);
+    	//return $output;
     }
 
     /*
@@ -29,28 +35,14 @@ class newIDController extends AbstractController
     	header("Access-Control-Allow-Orgin: *");
         header("Access-Control-Allow-Methods: *");
 
-        // name of the root folder for our scans
-        $dir = "scans";
-        $file_to_write = 'status.txt';
+        echo exec('whoami');
 
-        $id = $request->url_elements[1];
-
-        if( is_dir($dir. '/' .$id) === false )
-        {
-            mkdir($dir. '/' .$id, 0700);
-        }
-        
-        $file = fopen($dir. '/' . $id . '/' . $file_to_write,"w");
-        fwrite($file,"not yet processed");
-        fclose($file);
-
-        return "just created ".$id." folder";
+        return "running process";
     	
     }
 
-    protected function generateUniqueID()
-    {
-        //file_put_contents($this->articles_file, serialize($articles));
-        return uniqid();
+    public function exec_enabled() {
+    	$disabled = explode(', ', ini_get('disable_functions'));
+    	return !in_array('exec', $disabled);
     }
 }

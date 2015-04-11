@@ -12,7 +12,7 @@ class TestController extends AbstractController
 
     public function get($request)
     {
-        return "Test Passed ༼ つ ◕_◕ ༽つ";
+        return "Test Passed, dis API be sick";
     }
 
 }
