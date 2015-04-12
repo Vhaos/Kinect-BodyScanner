@@ -2,9 +2,9 @@
 <?xml-stylesheet type="text/xsl" href="./MSV_Stylesheet.xslt"?>
 <MSV_Measures>
 <file name="5522e70fe6cb4//pointcloud"/>
-<measure id="MSV_Height" name="Height" valid="true" unit="cm">147.528</measure>
+<measure id="MSV_Height" name="Height" valid="true" unit="cm">147.529</measure>
 <measure id="MSV_Hip" name="Hip" valid="true" unit="cm">105.469</measure>
 <measure id="MSV_Chest" name="Chest | Bust" valid="true" unit="cm">94.8168</measure>
-<measure id="MSV_Waist" name="Waist" valid="true" unit="cm">81.6678</measure>
-<measure id="MSV_InsideLeg" name="Inside Leg" valid="true" unit="cm">75.0961</measure>
+<measure id="MSV_Waist" name="Waist" valid="true" unit="cm">81.6679</measure>
+<measure id="MSV_InsideLeg" name="Inside Leg" valid="true" unit="cm">75.0965</measure>
 </MSV_Measures>

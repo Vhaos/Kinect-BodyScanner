@@ -5,7 +5,7 @@
  * eg. 5522e70fe6cb4
 */ 
 
-class newIDController extends AbstractController
+class NewIDController extends AbstractController
 {
     /*
      * GET method.
@@ -48,7 +48,7 @@ class newIDController extends AbstractController
     	
     }
 
-    protected function generateUniqueID()
+    private function generateUniqueID()
     {
         //file_put_contents($this->articles_file, serialize($articles));
         return uniqid();
