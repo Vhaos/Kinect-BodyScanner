@@ -1,0 +1,8 @@
+﻿<Window x:Class="BodyScanner.WaitingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CalculatingWindow" Width="900" Height="700"  WindowStyle="None" WindowState="Maximized">
+    <Grid>
+        <TextBlock Text="{StaticResource WAIT}" Foreground="Red" FontSize="82" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Grid>
+</Window>

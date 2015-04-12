@@ -1,7 +1,7 @@
 ﻿<Window x:Class="BodyScanner.KinectWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Scan Yourself" Width="900" Height="700"  WindowStyle="None" >
+        Title="Scan Yourself" Width="900" Height="700"  WindowStyle="None" WindowState="Maximized">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.4*"/>

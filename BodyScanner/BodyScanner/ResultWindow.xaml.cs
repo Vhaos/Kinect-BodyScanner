@@ -26,75 +26,20 @@ namespace BodyScanner
     {
         private enum QR_Quality {High, Medium, Low};
 
-        public ResultWindow()
+        String measurementRequestID;
+
+        public ResultWindow(String id)
         {
             InitializeComponent();
+            this.measurementRequestID = id;
 
-            Bitmap qr_code = get_qr_code(QR_Quality.Low);
+           QREncoder qr_encoder = new QREncoder(QREncoder.QR_Quality.Low);
 
-            BitmapImage imageSource = bitmapToBitmapImage(qr_code);
+           BitmapImage imageSource = qr_encoder.getQRCodeBitmapImage(measurementRequestID);
  
-            bitmap_qr_code.Source = imageSource;
+           bitmap_qr_code.Source = imageSource;
         }
         
-        private Bitmap encodeResults(QRCodeEncoder encoder)
-        {
-            String xmlMeasurementsFile = new FileManager(null).getMeasurementsFile();
-
-            XmlDocument xmlDoc = new XmlDocument(); // Create an XML document object
-            xmlDoc.LoadXml(xmlMeasurementsFile); // Load the XML document from the specified file
-
-            XmlNode height = xmlDoc.SelectSingleNode("/MSV_Measures/measure[@name='Height']");
-            XmlNode hip = xmlDoc.SelectSingleNode("/MSV_Measures/measure[@name='Hip']");
-            XmlNode chest = xmlDoc.SelectSingleNode("/MSV_Measures/measure[@name='Chest | Bust']");
-            XmlNode waist = xmlDoc.SelectSingleNode("/MSV_Measures/measure[@name='Waist']");
-            XmlNode insideLeg = xmlDoc.SelectSingleNode("/MSV_Measures/measure[@name='Inside Leg']");
-
-            String measurements = "Height: " + height.InnerText + "\n" +
-                                  "Hip: " + hip.InnerText + "\n" +
-                                  "Chest: " + chest.InnerText + "\n" +
-                                  "Waist: " + waist.InnerText + "\n" +
-                                  "InsideLeg: " + insideLeg.InnerText;
-
-            return encoder.Encode(measurements);
-        }
-
-        private Bitmap get_qr_code(QR_Quality qualitySetting, int scale = 25)
-        {
-            QRCodeEncoder encoder = new QRCodeEncoder();
-            encoder.QRCodeScale = scale;
-
-            switch(qualitySetting)
-            {
-                case(QR_Quality.High):
-                    encoder.QRCodeErrorCorrect = QRCodeEncoder.ERROR_CORRECTION.H; break;
-                case(QR_Quality.Medium):
-                    encoder.QRCodeErrorCorrect = QRCodeEncoder.ERROR_CORRECTION.M; break;
-                case(QR_Quality.Low):
-                    encoder.QRCodeErrorCorrect = QRCodeEncoder.ERROR_CORRECTION.L; break;
-            }
-
-            return encodeResults(encoder);
-        }
-
-        private BitmapImage bitmapToBitmapImage(Bitmap bitmap)
-        {
-            using(MemoryStream memoryStream = new MemoryStream())
-            {
-                bitmap.Save(memoryStream, ImageFormat.Png);
-                memoryStream.Position = 0;
-                BitmapImage imageSource = new BitmapImage();
-                imageSource.BeginInit();
-                imageSource.CacheOption = BitmapCacheOption.OnLoad;
-                imageSource.StreamSource = memoryStream;
-                imageSource.EndInit();
-                imageSource.Freeze();
-
-                // Attempted to validate the imageSource by comparing pixelHeight and width, but doesn't add up :(
-                Log.Write("image source with H: " + imageSource.Height + " and W: " + imageSource.Width);
-                return imageSource;
-            }
-        }
 
         private void done_btn_Click(object sender, RoutedEventArgs e)
         {

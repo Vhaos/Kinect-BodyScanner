@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,14 +22,14 @@ using System.Xml;
 namespace BodyScanner
 {
     /// <summary>
-    /// Interaction logic for CalculatingWindow.xaml
+    /// Interaction logic for WaitingWindow.xaml
     /// </summary>
-    public partial class CalculatingWindow : Window
+    public partial class WaitingWindow : Window
     {
         private BackgroundWorker bw = new BackgroundWorker();
         private GenderWindow.GenderType gender_type;
 
-        public CalculatingWindow(GenderWindow.GenderType gender_type)
+        public WaitingWindow(GenderWindow.GenderType gender_type)
         {
             InitializeComponent();
             this.gender_type = gender_type;
@@ -37,15 +40,67 @@ namespace BodyScanner
 
         void bw_DoWork(object sender, DoWorkEventArgs e)
         {
-            String pointCloudPath = FileManager.getPointCloudPath(PointCloudFormatter.Format.XYZ) ;
+            WebRequest webRequest = WebRequest.Create(App.REQUEST_NEW_ID_URL);
+            webRequest.Method = "GET";
+            WebResponse webResp = webRequest.GetResponse();
+            StreamReader sr = new StreamReader(webResp.GetResponseStream());
+            e.Result = sanatizeIDResponse(sr.ReadToEnd());
+            return;
+        }
+
+        private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Log.Write(e.Result.ToString());
+
+            if (e.Error != null)
+            {
+                MessageBox.Show(e.Error.Message);
+            }
+
+            ResultWindow rw = new ResultWindow(e.Result.ToString());
+            rw.Show();
+            this.Hide();
+
+            //Log.Write(e.Result);
+        }
+
+        private String sanatizeIDResponse(String response)
+        {
+            String withoutTags = Regex.Replace(response, "<.*>", string.Empty);
+            String withoutQuotes = withoutTags.Replace("\"", string.Empty);
+            return withoutQuotes.Trim();
+        }
+      
+
+    }
+}
+
+/*
+ using ()
+            {
+                Log.Write("Calculating...");
+
+                while (!proc.StandardOutput.EndOfStream)
+                {
+                    string line = proc.StandardOutput.ReadLine();
+                    Log.Write(Log.Tag.INFO, line);
+                }
+
+
+                proc.WaitForExit();
+                Log.Write("Finished");
+
+            }
+*/
+/*
+String pointCloudPath = FileManager.getPointCloudPath(PointCloudFormatter.Format.XYZ) ;
             String scanMeasureSoftwarePath = App.SCANMEASURE_PATH;
 
-            /*
+            
              * Arguments:
              * Path for output file
              * MKF{1/2} = female/male
-             */
-
+             *
             String arguments = pointCloudPath;
             if (gender_type == GenderWindow.GenderType.Male)
                 arguments += App.GENDER_ARG_MALE;
@@ -98,45 +153,4 @@ namespace BodyScanner
 
 
             //e.Result = true;
-
-            return;
-        }
-
-        private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            Log.Write("HERE Changing to results window");
-            // First, handle the case where an exception was thrown. 
-            if (e.Error != null)
-            {
-                MessageBox.Show(e.Error.Message);
-            }
-
-            ResultWindow rw = new ResultWindow();
-            rw.Show();
-            this.Hide();
-
-            //Log.Write(e.Result);
-        }
-
-      
-
-    }
-}
-
-/*
- using ()
-            {
-                Log.Write("Calculating...");
-
-                while (!proc.StandardOutput.EndOfStream)
-                {
-                    string line = proc.StandardOutput.ReadLine();
-                    Log.Write(Log.Tag.INFO, line);
-                }
-
-
-                proc.WaitForExit();
-                Log.Write("Finished");
-
-            }
 */

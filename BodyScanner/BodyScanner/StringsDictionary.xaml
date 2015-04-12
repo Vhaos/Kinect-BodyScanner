@@ -36,6 +36,7 @@
     <system:String x:Key="ERROR">Error</system:String>
 
     <system:String x:Key="CALCULATING">Calculating...</system:String>
+    <system:String x:Key="WAIT">Please Wait...</system:String>
 
     <system:String x:Key="RESULT_TITLE">Your Body Results</system:String>
     <system:String x:Key="SCAN_FOR_RESULTS">Please use our app to scan this barcode to get your results</system:String>

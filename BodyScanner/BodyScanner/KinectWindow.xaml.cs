@@ -195,7 +195,7 @@ namespace BodyScanner
             sensor.stopScanning();
             sensor = null;
 
-            CalculatingWindow cw = new CalculatingWindow(gender_type);
+            WaitingWindow cw = new WaitingWindow(gender_type);
             cw.Show();
 
             this.Hide();
