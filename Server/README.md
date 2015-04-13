@@ -68,7 +68,7 @@ ___
 
 **Endpoint definition**  
 ```
-GET http://localhost/phpresttest/check/5522e70fe6cb4
+GET http://localhost/server/check/5522e70fe6cb4
 ```
 Check whether point cloud has finished processing, and sends back results if it has:
 
