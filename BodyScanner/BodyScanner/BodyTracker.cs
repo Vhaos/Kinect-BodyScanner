@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 /*
  * Author: Jack Roper
@@ -24,14 +25,19 @@ namespace BodyScanner
         private BodyFrame _bf; // should be updated on-access to this class
         private Body subject;
 
-        private BodyTracker() { }
+        private KinectWindow parent; // parent window to allow access to text block etc.
 
-        public static BodyTracker UpdateInstance(BodyFrame bodyFrame)
+        private BodyTracker(KinectWindow parent_window) 
+        {
+            this.parent = parent_window;
+        }
+
+        public static BodyTracker UpdateInstance(KinectWindow parent, BodyFrame bodyFrame)
         {
             // lock used to protect singleton from multithreaded access
             lock(_dummyLock)
             {
-                if (_instance == null) { _instance = new BodyTracker(); }
+                if (_instance == null) { _instance = new BodyTracker(parent); }
             }
             _instance._bf = bodyFrame;
             return _instance;
@@ -45,6 +51,8 @@ namespace BodyScanner
             if (subject == null || !correctDistance(subject)) { return false; }
 
             if (!handsCheck(subject) || !feetCheck(subject)) { return false; }
+
+            parent.help_text.Text = (string)Application.Current.FindResource("BODY_SCANNING_HELP");
 
             return true;
         }
@@ -93,13 +101,25 @@ namespace BodyScanner
         {
             double actualDistanceFromCam = getDistance(subject);
             double difference = actualDistanceFromCam - targetDistanceFromCam;
-
-            if(Math.Abs(difference) > distanceTolerance)
+            double abs_diff = Math.Abs(difference);
+            if (abs_diff > distanceTolerance)
             {
+
                 // Replace with some sort of visual feedback for liveness
-                Log.Write("INCORRECT DISTANCE FROM CAMERA! You're " + difference + " metres away from target.");
+                if (difference < 0)
+                {
+                    parent.help_text.Text = (string)Application.Current.FindResource("MOVE_AWAY") + "\n" + Math.Round(abs_diff, 2) +" metres";
+                    Log.Write("Move away: " + abs_diff + " metres");
+                }
+                else if (abs_diff > 0)
+                {
+                    parent.help_text.Text = (string)Application.Current.FindResource("MOVE_CLOSER") +"\n" + Math.Round(abs_diff, 2) + " metres";
+                    Log.Write("Move closer: " + abs_diff + " metres");
+                }
                 return false;
             }
+            else
+                parent.help_text.Text = (string)Application.Current.FindResource("BODY_NOT_ALIGNED_HELP");
 
             return true;
         }

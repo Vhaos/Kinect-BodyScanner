@@ -31,6 +31,8 @@
     <system:String x:Key="NO_BODY_DETECTED">No Body Detected</system:String>
     <system:String x:Key="BODY_NOT_ALIGNED">Body Not Aligned</system:String>
     <system:String x:Key="SCANNING">Scanning...</system:String>
+    <system:String x:Key="MOVE_CLOSER">Move Closer </system:String>
+    <system:String x:Key="MOVE_AWAY">Move Away </system:String>
 
     <system:String x:Key="APOLOGY_MESSAGE">Sorry, something seems to have gone wrong.</system:String>
     <system:String x:Key="ERROR">Error</system:String>

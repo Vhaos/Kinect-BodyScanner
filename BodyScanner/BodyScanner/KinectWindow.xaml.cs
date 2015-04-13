@@ -46,7 +46,7 @@ namespace BodyScanner
         public KinectWindow(GenderWindow.GenderType gender_type)
         {
             InitializeComponent();
-            
+
             // Initialise gender_type for when constructing CalculatingWindow
             this.gender_type = gender_type;
 
@@ -84,7 +84,7 @@ namespace BodyScanner
             switch (state)
             {
                 case State.NO_BODY:
-                    help_text.Text = (string)Application.Current.FindResource("BODY_NOT_ALIGNED_HELP");
+                    //help_text.Text = (string)Application.Current.FindResource("BODY_NOT_ALIGNED_HELP"); <--- Let the BodyTracker do this
                     seconds_text.Visibility = Visibility.Hidden;
                     wait_text.Visibility = Visibility.Hidden;
                     help_btn.Visibility = Visibility.Visible;
@@ -96,7 +96,7 @@ namespace BodyScanner
                     break;
 
                 case State.NOT_ALIGNED:
-                    help_text.Text = (string)Application.Current.FindResource("BODY_NOT_ALIGNED_HELP");
+                    //help_text.Text = (string)Application.Current.FindResource("BODY_NOT_ALIGNED_HELP"); <--- Let the BodyTracker do this
                     seconds_text.Visibility = Visibility.Hidden;
                     wait_text.Visibility = Visibility.Hidden;
                     help_btn.Visibility = Visibility.Visible;
@@ -108,7 +108,7 @@ namespace BodyScanner
                     break;
 
                 case State.SCANNING:
-                    help_text.Text = (string)Application.Current.FindResource("BODY_SCANNING_HELP");
+                    //help_text.Text = (string)Application.Current.FindResource("BODY_SCANNING_HELP"); <--- Let the BodyTracker do this
                     seconds_text.Visibility = Visibility.Visible;
                     wait_text.Visibility = Visibility.Visible;
                     help_btn.Visibility = Visibility.Hidden;
@@ -155,8 +155,11 @@ namespace BodyScanner
         // Called when all farmes are available from the sensor
         void sensor_AllFrameCallback(BodyFrame bf, BodyIndexFrame bif, DepthFrame df)
         {
-            BodyTracker Tracker = BodyTracker.UpdateInstance(bf); // Gets/creates, as well as updates, the singleton instance of BodyTracker
+            BodyTracker Tracker = BodyTracker.UpdateInstance(this, bf); // Gets/creates, as well as updates, the singleton instance of BodyTracker
+            
             if (Tracker.CorrectPose()) { currentState = State.SCANNING; }
+
+            else { currentState = State.NOT_ALIGNED; }
 
             updateDisplayedBitmap(bif);
             updateControls(currentState);

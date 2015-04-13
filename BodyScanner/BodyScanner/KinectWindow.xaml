@@ -25,7 +25,6 @@
                  Content="{StaticResource HELP}"/>
         <Button Name="stop_btn" Grid.Row="0" Grid.Column="2" Background="DarkRed" Foreground="White" FontSize="28" FontWeight="SemiBold"  Margin="10" FontFamily="Arial" 
                 Click="stop_btn_Click" Content="{StaticResource STOP}"/>
-
         <TextBlock Name="help_text" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" TextWrapping="Wrap" FontSize="30" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontFamily="Arial" 
                    Text="{StaticResource BODY_NOT_ALIGNED_HELP}"/>
 
