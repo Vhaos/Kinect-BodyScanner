@@ -3,17 +3,27 @@ package ucl.group18.bodyscanner.model;
 import java.util.Calendar;
 
 /**
+ * Class for a measurement request to the server
+ * Has parity with a measurement request record in the MeasurementRequests Database.
+ * Holds information on:
+ * 1. Database Unique ID
+ * 2. server request ID
+ * 3. if scan processed by server
+ * 4. time of last request to the server
+ * 5. Measurements (if scan is processed)
+ *
  * Created by Shubham on 12/04/2015.
  */
 public class MeasurementRequest {
 
-    int id;
+    long id = -1;
+    String requestID;
     boolean processed = false;
     Calendar lastRequest;
-    Measurement measurement;
+    Measurement measurement = null;
 
-    public MeasurementRequest(int id){
-        this.id = id;
+    public MeasurementRequest(String requestID){
+        this.requestID = requestID;
     }
 
     public Measurement getMeasurements (){
@@ -26,9 +36,15 @@ public class MeasurementRequest {
 
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
+
+    public String getRequestID() {
+        return requestID;
+    }
+
+    public void setId(long id) { this.id=id; }
 
     public boolean isProcessed() {
         return processed;
@@ -44,10 +60,6 @@ public class MeasurementRequest {
 
     public void setLastRequest(Calendar lastRequest) {
         this.lastRequest = lastRequest;
-    }
-
-    public Measurement getMeasurement() {
-        return measurement;
     }
 
     public void setMeasurement(Measurement measurement) {

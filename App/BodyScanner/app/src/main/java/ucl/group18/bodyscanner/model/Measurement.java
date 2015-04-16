@@ -1,36 +1,29 @@
 package ucl.group18.bodyscanner.model;
 
 /**
+ * Class for all the Measurable Parameters of the Body
  * Created by Shubham on 12/04/2015.
  */
 public class Measurement {
 
-    int id;
     double height;
     double hip;
     double chest;
     double waist;
     double insideLeg;
-    boolean processed = false;
 
 
-    public Measurement (int id){
-        this.id = id;
-    }
+    public Measurement (){ }
 
-    public void setMeasurements( double height, double hip, double chest,
+    public void setMeasurements( double height, double chest, double hip,
                                  double waist, double insideLeg){
 
-        this.height = id;
-        this.hip = id;
-        this.chest = id;
-        this.waist = id;
-        this.insideLeg = id;
+        this.height = height;
+        this.hip = hip;
+        this.chest = chest;
+        this.waist = waist;
+        this.insideLeg = insideLeg;
 
-    }
-
-    public int getId() {
-        return id;
     }
 
     public double getHeight() {
@@ -53,7 +46,12 @@ public class Measurement {
         return insideLeg;
     }
 
-    public boolean isProcessed() {
-        return processed;
+    public String toString() {
+        return "height: " + height + ", " +
+               "hip: " + hip + ", " +
+               "chest: " + chest + ", " +
+               "waist: " + waist + ", " +
+               "insideLeg: " + insideLeg + ", ";
     }
+
 }

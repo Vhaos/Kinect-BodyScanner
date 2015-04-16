@@ -10,9 +10,10 @@ import android.util.Log;
  */
 public class SQLiteHelper extends SQLiteOpenHelper {
 
-    public static final String TABLE_NAME = "comments";
+    public static final String TABLE_NAME = "measurement_requests";
 
     public static final String ID_COLUMN = "_id";
+    public static final String REQUEST_ID_COLUMN = "request_id";
     public static final String PROCESSED_COLUMN = "processed";
     public static final String LAST_UPDATE_COLUMN = "last_update";
     public static final String HEIGHT_COLUMN = "height";
@@ -29,13 +30,14 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static final String DATABASE_CREATE = "create table "
             + TABLE_NAME + "("
             + ID_COLUMN + " integer primary key autoincrement, "
-            + PROCESSED_COLUMN + " text not null"
-            + LAST_UPDATE_COLUMN + " text not null"
-            + HEIGHT_COLUMN + " text not null"
-            + HIP_COLUMN + " text not null"
-            + CHEST_COLUMN + " text not null"
-            + WAIST_COLUMN + " text not null"
-            + INSIDE_LEG_COLUMN + " text not null"
+            + REQUEST_ID_COLUMN + " text not null,"
+            + PROCESSED_COLUMN + " text not null,"
+            + LAST_UPDATE_COLUMN + " text not null,"
+            + HEIGHT_COLUMN + " text null,"
+            + HIP_COLUMN + " text null,"
+            + CHEST_COLUMN + " text null,"
+            + WAIST_COLUMN + " text null,"
+            + INSIDE_LEG_COLUMN + " text null"
             + ");";
 
     public SQLiteHelper(Context context) {

@@ -4,18 +4,55 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.Calendar;
+import java.util.List;
+
+import ucl.group18.bodyscanner.database.DataSource;
+import ucl.group18.bodyscanner.model.Measurement;
+import ucl.group18.bodyscanner.model.MeasurementRequest;
+
 
 public class MainActivity extends ActionBarActivity {
 
+    private static final String LOG_TAG = "MainActivity";
+
+    DataSource ds;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        ds = new DataSource(getApplicationContext());
+        ds.open();
+
+         /* EXPERIMENTAL PURPOSES
+        List<MeasurementRequest> requests =  ds.getAllMeasurementRequests();
+
+
+
+
+        ds.deleteMeasurementRequest(requests.get(1));
+        ds.deleteMeasurementRequest(requests.get(2));
+
+
+        MeasurementRequest request = requests.get(0);
+        request.setProcessed(true);
+
+        Measurement measurement = new Measurement();
+        measurement.setMeasurements(3.0,25.3,12.1,25.0,12.2);
+
+        request.setMeasurement(measurement);
+
+        ds.updateMeasurementRequest(request);
+        */
+
     }
 
 
@@ -44,8 +81,34 @@ public class MainActivity extends ActionBarActivity {
     }
     public void fabPressed(View view){
 
+
+
        launchBarCodeScanner();
 
+        /* EXPERIMENTAL PURPOSES
+         List<MeasurementRequest> requests =  ds.getAllMeasurementRequests();
+        Log.v(LOG_TAG, "No of Requests: " + requests.size());
+
+        for (MeasurementRequest request : requests){
+
+            Log.v(LOG_TAG, "Request ID: " + request.getRequestID());
+            Log.v(LOG_TAG, "Processed: " + request.isProcessed());
+            Log.v(LOG_TAG, "Last Request: " + request.getLastRequest().toString());
+            Log.v(LOG_TAG, "Measurement: " + request.getMeasurements().toString());
+            Log.v(LOG_TAG, "=============END OF REQUEST============");
+
+
+        }
+         */
+
+
+
+
+    }
+
+    @Override
+    protected void onDestroy(){
+        ds.close();
     }
 
     private void launchBarCodeScanner() {
