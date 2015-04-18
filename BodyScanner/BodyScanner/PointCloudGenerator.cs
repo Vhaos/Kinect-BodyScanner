@@ -11,7 +11,7 @@ using System.Globalization;
 
 namespace BodyScanner
 {
-    class PointCloudGenerator
+    public class PointCloudGenerator
     {
 
         CoordinateMapper coordinateMapper;

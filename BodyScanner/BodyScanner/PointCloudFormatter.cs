@@ -9,7 +9,7 @@ namespace BodyScanner
     /// <summary>
     /// Class to format a pointCloud to a string representative using a format
     /// </summary>
-    class PointCloudFormatter
+    public class PointCloudFormatter
     {
         public enum Format {RGB_PLY,PLY,XYZ};
 

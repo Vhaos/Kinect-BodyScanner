@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BodyScanner
 {
-    class FileManager
+    public class FileManager
     {
 
         PointCloudFormatter pointCloudFormatter;
@@ -22,7 +22,7 @@ namespace BodyScanner
             else
             {
                 //Log.Write(Log.Tag.INFO, "Point Cloud Formatter is NULL. Creating new with XYZ"); Not helpful if we're using it to get XML document as well
-                pointCloudFormatter = new PointCloudFormatter(PointCloudFormatter.Format.XYZ);
+                this.pointCloudFormatter = new PointCloudFormatter(PointCloudFormatter.Format.XYZ);
             }
            
         }
@@ -59,7 +59,6 @@ namespace BodyScanner
             String path = App.POINT_CLOUD_PATH + "\\" + pointCloudFileName + "." + PointCloudFormatter.getFormatExtension(format);
             return path;
         }
-
 
     }
 }

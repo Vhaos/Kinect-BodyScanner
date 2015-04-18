@@ -15,7 +15,7 @@ namespace BodyScanner
      /// </summary>
 
    
-    class PointCloud
+     public class PointCloud
      {
         public enum Axis { X, Y, Z };
         private List<Point3D> points = null;

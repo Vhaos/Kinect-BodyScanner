@@ -20,7 +20,7 @@ using System.Xml;
 
 namespace BodyScanner
 {
-    class QREncoder
+    public class QREncoder
     {
         
         public enum QR_Quality { High, Medium, Low };
