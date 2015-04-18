@@ -15,7 +15,7 @@ public class Measurement {
 
     public Measurement (){ }
 
-    public void setMeasurements( double height, double chest, double hip,
+    public void setMeasurements( double height, double hip, double chest,
                                  double waist, double insideLeg){
 
         this.height = height;

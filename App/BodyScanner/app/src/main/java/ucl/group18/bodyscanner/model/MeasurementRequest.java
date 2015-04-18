@@ -1,5 +1,7 @@
 package ucl.group18.bodyscanner.model;
 
+import android.util.Log;
+
 import java.util.Calendar;
 
 /**
@@ -16,6 +18,7 @@ import java.util.Calendar;
  */
 public class MeasurementRequest {
 
+    private static final String LOG_TAG = "MeasurementRequest";
     long id = -1;
     String requestID;
     boolean processed = false;
@@ -31,6 +34,7 @@ public class MeasurementRequest {
         if (processed){
             return measurement;
         }else{
+            Log.e(LOG_TAG,"Measurement Request not processed by Server yet");
             return null;
         }
 
@@ -63,6 +67,10 @@ public class MeasurementRequest {
     }
 
     public void setMeasurement(Measurement measurement) {
+
+
         this.measurement = measurement;
+        Log.v("MR", measurement.toString());
+        Log.v("MR", this.measurement.toString());
     }
 }

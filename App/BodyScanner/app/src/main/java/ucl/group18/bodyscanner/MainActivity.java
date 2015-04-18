@@ -2,6 +2,7 @@ package ucl.group18.bodyscanner;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,26 +33,7 @@ public class MainActivity extends ActionBarActivity {
         ds = new DataSource(getApplicationContext());
         ds.open();
 
-         /* EXPERIMENTAL PURPOSES
-        List<MeasurementRequest> requests =  ds.getAllMeasurementRequests();
 
-
-
-
-        ds.deleteMeasurementRequest(requests.get(1));
-        ds.deleteMeasurementRequest(requests.get(2));
-
-
-        MeasurementRequest request = requests.get(0);
-        request.setProcessed(true);
-
-        Measurement measurement = new Measurement();
-        measurement.setMeasurements(3.0,25.3,12.1,25.0,12.2);
-
-        request.setMeasurement(measurement);
-
-        ds.updateMeasurementRequest(request);
-        */
 
     }
 
@@ -81,25 +63,23 @@ public class MainActivity extends ActionBarActivity {
     }
     public void fabPressed(View view){
 
+        ServerConnect network = new ServerConnect(getApplicationContext());
+        final MeasurementRequest mr = new MeasurementRequest("5522e70fe6cb4");
 
+        network.getMeasurementsFromServerAsync(mr, new ServerConnect.ServerConnectCallback() {
+            @Override
+            public void getMeasurementCallback(Measurement m) {
 
-       launchBarCodeScanner();
-
-        /* EXPERIMENTAL PURPOSES
-         List<MeasurementRequest> requests =  ds.getAllMeasurementRequests();
-        Log.v(LOG_TAG, "No of Requests: " + requests.size());
-
-        for (MeasurementRequest request : requests){
-
-            Log.v(LOG_TAG, "Request ID: " + request.getRequestID());
-            Log.v(LOG_TAG, "Processed: " + request.isProcessed());
-            Log.v(LOG_TAG, "Last Request: " + request.getLastRequest().toString());
-            Log.v(LOG_TAG, "Measurement: " + request.getMeasurements().toString());
-            Log.v(LOG_TAG, "=============END OF REQUEST============");
-
-
+                Log.v(LOG_TAG, "RESULT: " + m.toString());
+                if (m != null){
+                    mr.setMeasurement(m);
+                    mr.setProcessed(true);
+                    Log.v(LOG_TAG,"MEASUREMENTS: " + mr.getMeasurements().toString());
+                }else{
+                    Log.wtf(LOG_TAG, "Seriously?");
+                }
         }
-         */
+        });
 
 
 
@@ -108,6 +88,7 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onDestroy(){
+        super.onDestroy();
         ds.close();
     }
 
