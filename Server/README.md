@@ -6,13 +6,19 @@ Basic RESTful API server Kinect Bodyscanner written in PHP. Allows you to create
 Simply deploy directory files onto your local web server. Controllers and accepted endpoints can be found in the `classes/controllers/` directory. First I would recommend downloading and installing [Xampp](https://www.apachefriends.org) for Windows, an easy to install Apache and PHP distribution; this can be found [here](https://www.apachefriends.org/download.html). Full installation instructions can be found below.
 	
 To install:
-
  * Install Xampp to C:\ folder
  * Place the folder "***Server***" into C:\xammp\htdocs
  * Start up Xampp then start up Apache on it's control panel
  * Open up your browser and go to `localhost/server/test`
  * Bodyscanner server is now installed :+1:
- 
+
+
+For the app to work, you must:
+ * Open Xampp Control Panel
+ * Click Config on the Apache row
+ * Click Apache (httpd-xampp.conf)
+ * Comment out "Require Local" at the end of the file.
+
 ## Development
 
 Assuming you are using Google Chrome, you may also wish to get the REST Console Chrome App, available from the Chrome web store [here](http://bit.ly/1k9zsGu). Full description of the available API calls are displayed below.
