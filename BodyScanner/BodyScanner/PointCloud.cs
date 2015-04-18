@@ -51,33 +51,6 @@ namespace BodyScanner
             return output.ToString();
         }
 
-        /*
-         * Commented the TOString Method and instead replaced it with generateString.  WHY YOU ASK? 
-         * Because The rational and the irrational complement each other. Individually they're far less powerful.
-         * - Raymond Tusk
-         * 
-       // ToString() method, outputting each point on a new line
-       public override String ToString()
-       {
-           
-       }
-
-       // ToString() using supplied string header
-       public String ToString(String header)
-       {                
-           StringBuilder output = new StringBuilder(header);
-           if (output[output.Length - 1] != '\n')
-           {
-               output.Append('\n');
-           }
-           foreach (Point3D point in points)
-           {
-               output.Append(String.Format(CultureInfo.InvariantCulture, "{0} {1} {2}\n", point.X, point.Y, point.Z));
-           }
-           return output.ToString();
-       }
-       */
-
         public void addPoint(Point3D point)
         {
             points.Add(point);

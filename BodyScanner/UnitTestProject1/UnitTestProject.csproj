@@ -57,6 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="FileManagerTests.cs" />
+    <Compile Include="PointCloudTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
