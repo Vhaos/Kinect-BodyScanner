@@ -7,8 +7,9 @@ Android App
 
 Done:
 - Main UI/Activity
+- Settings Activity
+- Db system to store neasurenents locally 
 
 Todo:
 - Background Service for server polling
-- Settings Activity
-- Db system to store neasurenents locally 
+
