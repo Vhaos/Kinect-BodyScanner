@@ -1,5 +1,8 @@
 package ucl.group18.bodyscanner;
 
+import android.app.job.JobInfo;
+import android.app.job.JobParameters;
+import android.app.job.JobService;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -28,6 +31,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 
         ds = new DataSource(getApplicationContext());
@@ -68,16 +72,10 @@ public class MainActivity extends ActionBarActivity {
 
         network.getMeasurementsFromServerAsync(mr, new ServerConnect.ServerConnectCallback() {
             @Override
-            public void getMeasurementCallback(Measurement m) {
+            public void getMeasurementCallback(MeasurementRequest m) {
 
                 Log.v(LOG_TAG, "RESULT: " + m.toString());
-                if (m != null){
-                    mr.setMeasurement(m);
-                    mr.setProcessed(true);
-                    Log.v(LOG_TAG,"MEASUREMENTS: " + mr.getMeasurements().toString());
-                }else{
-                    Log.wtf(LOG_TAG, "Seriously?");
-                }
+
         }
         });
 

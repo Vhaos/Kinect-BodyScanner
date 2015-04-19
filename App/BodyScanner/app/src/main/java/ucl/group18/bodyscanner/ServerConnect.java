@@ -24,6 +24,7 @@ import ucl.group18.bodyscanner.model.Measurement;
 import ucl.group18.bodyscanner.model.MeasurementRequest;
 
 /**
+ * Class that provides method to communicate with the server
  * Created by Shubham on 18/04/2015.
  */
 public class ServerConnect  {
@@ -32,7 +33,13 @@ public class ServerConnect  {
     Context context;
 
     public interface ServerConnectCallback{
-        public void getMeasurementCallback(Measurement measurement);
+        /**
+         *  Callback method for when server replies for measurement request
+         * @param measurementRequest The measurement request containing the measurements, measurements
+         *                           can be null if no measurements were sent by the server. Check
+         *                           isProcessed to see if the server has processed and sent the measurements.
+         */
+        public void getMeasurementCallback(MeasurementRequest measurementRequest);
     }
 
     private String ip_name = "shubhampc";
@@ -48,7 +55,12 @@ public class ServerConnect  {
         this.context = context;
     }
 
-    public void getMeasurementsFromServerAsync(MeasurementRequest measurementRequest,
+    /**
+     * Gets the measurements from the server ASYNCHRONOUSLY.
+     * @param measurementRequest The Measurement request containing the requestID
+     * @param callback Callback method for when the server replies back.
+     */
+    public void getMeasurementsFromServerAsync(final MeasurementRequest measurementRequest,
                                                ServerConnectCallback callback){
 
         new AsyncTask<Object,Void,Boolean>(){
@@ -60,8 +72,14 @@ public class ServerConnect  {
                 ServerConnectCallback callback = (ServerConnectCallback) params[1];
 
                 Measurement m = getMeasurementsFromServer (mr);
-                Log.v(LOG_TAG,"Calling Back...");
-                callback.getMeasurementCallback(m);
+
+                if (m != null){
+                    measurementRequest.setProcessed(true);
+                    mr.setMeasurement(m);
+                }
+
+
+                callback.getMeasurementCallback(mr);
 
                 return true;
             }
@@ -69,6 +87,12 @@ public class ServerConnect  {
 
     }
 
+    /**
+     * Gets the measurements from the server.
+     * If none exist/not processed by server yet then it returns null.
+     * @param measurementRequest The Measurement request containing the requestID
+     * @return returns the measurement
+     */
     public Measurement getMeasurementsFromServer(MeasurementRequest measurementRequest){
 
         Measurement measurement = null;
@@ -120,6 +144,12 @@ public class ServerConnect  {
 
     }
 
+    /**
+     * Parses the String from the server for measurements
+     * @param measurements String representation of the measurement
+     * @return Measurement object with the measurements.
+     * @throws NumberFormatException
+     */
     private Measurement parseMeasurements(String measurements) throws NumberFormatException{
 
         Pattern p = Pattern.compile("\"(.*?)\"");

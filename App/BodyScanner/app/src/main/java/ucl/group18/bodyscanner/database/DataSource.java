@@ -130,6 +130,27 @@ public class DataSource {
     }
 
     /**
+     * Returns a list of all measurement requests
+     * @return List of MeasurementRequests
+     */
+    public List<MeasurementRequest> getAllUnProcessedMeasurementRequests() {
+        List<MeasurementRequest> MeasurementRequests = new ArrayList<MeasurementRequest>();
+
+        Cursor cursor = database.query(SQLiteHelper.TABLE_NAME,
+                allColumns, SQLiteHelper.PROCESSED_COLUMN +"="+Boolean.toString(false) , null, null, null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            MeasurementRequest measurementRequest = cursorToMeasurementRequest(cursor);
+            MeasurementRequests.add(measurementRequest);
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        return MeasurementRequests;
+    }
+
+    /**
      * Updates a measurement request record
      * @param measurementRequest the measurement request to be updated
      * @return false if update failed true otherwise
