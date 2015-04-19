@@ -175,5 +175,32 @@ namespace UnitTestProject
             Assert.IsTrue(   p1.X == 0   && p1.Y == 0   && p1.Z == 0
                           && p2.X == 100 && p2.Y == 100 && p2.Z == 100);
         }
+		
+        /// <summary>
+        /// This method tests the subtractFromPointAxis() method
+        /// </summary>
+
+        [TestMethod]
+        public void subtractFromPointAxisTest()
+        {	
+			PointCloud cloud = new PointCloud();
+			for(int i = 0; i < 10; i++)
+			{
+				Point3D p = new Point3D(i,i,i);
+				cloud.add(p);
+			}
+
+			cloud.subtractFromPointAxis(1.23, PointCloud.Axis.X);
+			cloud.subtractFromPointAxis(2.34, PointCloud.Axis.Y);
+			cloud.subtractFromPointAxis(3.45, PointCloud.Axis.Z);
+
+			bool result = true;
+			for(int i = 0; i < 10; i++)
+			{
+				Point3D point = cloud.getPoint(i);
+				result = (point.X == (i-1.23) && point.Y == (i-2.34) && point.Z == (i-3.45));
+			}
+            Assert.IsTrue(result);
+        }
     }
 }
