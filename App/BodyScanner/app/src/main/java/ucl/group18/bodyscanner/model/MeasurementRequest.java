@@ -1,5 +1,7 @@
 package ucl.group18.bodyscanner.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 import java.util.Calendar;
@@ -16,7 +18,9 @@ import java.util.Calendar;
  *
  * Created by Shubham on 12/04/2015.
  */
-public class MeasurementRequest {
+public class MeasurementRequest implements Parcelable {
+
+    public enum Gender {MALE,FEMALE};
 
     private static final String LOG_TAG = "MeasurementRequest";
     long id = -1;
@@ -24,21 +28,14 @@ public class MeasurementRequest {
     boolean processed = false;
     Calendar lastRequest;
     Measurement measurement = null;
+    Gender gender;
 
-    public MeasurementRequest(String requestID){
+    public MeasurementRequest(String requestID, Gender gender){
         this.requestID = requestID;
+        this.gender = gender;
     }
 
-    public Measurement getMeasurements (){
-
-        if (processed){
-            return measurement;
-        }else{
-            Log.e(LOG_TAG,"Measurement Request not processed by Server yet");
-            return null;
-        }
-
-    }
+    public Measurement getMeasurements (){ return measurement;}
 
     public long getId() {
         return id;
@@ -62,15 +59,53 @@ public class MeasurementRequest {
         return lastRequest;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
     public void setLastRequest(Calendar lastRequest) {
         this.lastRequest = lastRequest;
     }
 
-    public void setMeasurement(Measurement measurement) {
+    public void setMeasurement(Measurement measurement) {this.measurement = measurement;}
 
-
-        this.measurement = measurement;
-        Log.v("MR", measurement.toString());
-        Log.v("MR", this.measurement.toString());
+    /*
+    Methods and Constructor for Parcelable interface
+    */
+    protected MeasurementRequest(Parcel in) {
+        id = in.readLong();
+        requestID = in.readString();
+        processed = in.readByte() != 0x00;
+        lastRequest = (Calendar) in.readValue(Calendar.class.getClassLoader());
+        measurement = (Measurement) in.readValue(Measurement.class.getClassLoader());
+        gender = (Gender) in.readValue(Gender.class.getClassLoader());
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(id);
+        dest.writeString(requestID);
+        dest.writeByte((byte) (processed ? 0x01 : 0x00));
+        dest.writeValue(lastRequest);
+        dest.writeValue(measurement);
+        dest.writeValue(gender);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<MeasurementRequest> CREATOR = new Parcelable.Creator<MeasurementRequest>() {
+        @Override
+        public MeasurementRequest createFromParcel(Parcel in) {
+            return new MeasurementRequest(in);
+        }
+
+        @Override
+        public MeasurementRequest[] newArray(int size) {
+            return new MeasurementRequest[size];
+        }
+    };
 }

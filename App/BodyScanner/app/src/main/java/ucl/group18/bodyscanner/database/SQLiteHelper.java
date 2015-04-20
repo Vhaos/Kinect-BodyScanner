@@ -14,6 +14,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public static final String ID_COLUMN = "_id";
     public static final String REQUEST_ID_COLUMN = "request_id";
+    public static final String GENDER_COLUMN = "gender";
     public static final String PROCESSED_COLUMN = "processed";
     public static final String LAST_UPDATE_COLUMN = "last_update";
     public static final String HEIGHT_COLUMN = "height";
@@ -26,11 +27,13 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
 
+
     // Database creation sql statement
     private static final String DATABASE_CREATE = "create table "
             + TABLE_NAME + "("
             + ID_COLUMN + " integer primary key autoincrement, "
             + REQUEST_ID_COLUMN + " text not null,"
+            + GENDER_COLUMN + " text not null,"
             + PROCESSED_COLUMN + " text not null,"
             + LAST_UPDATE_COLUMN + " text not null,"
             + HEIGHT_COLUMN + " text null,"

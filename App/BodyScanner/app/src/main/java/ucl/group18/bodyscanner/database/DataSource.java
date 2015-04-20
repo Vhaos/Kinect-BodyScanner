@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import ucl.group18.bodyscanner.model.Measurement;
 import ucl.group18.bodyscanner.model.MeasurementRequest;
@@ -30,6 +31,7 @@ public class DataSource {
     private SQLiteHelper dbHelper;
     private String[] allColumns = { SQLiteHelper.ID_COLUMN,
                                     SQLiteHelper.REQUEST_ID_COLUMN,
+                                    SQLiteHelper.GENDER_COLUMN,
                                     SQLiteHelper.PROCESSED_COLUMN,
                                     SQLiteHelper.LAST_UPDATE_COLUMN,
                                     SQLiteHelper.HEIGHT_COLUMN,
@@ -74,6 +76,7 @@ public class DataSource {
 
         ContentValues values = new ContentValues();
         values.put(SQLiteHelper.REQUEST_ID_COLUMN, measurementRequest.getRequestID());
+        values.put(SQLiteHelper.GENDER_COLUMN, measurementRequest.getGender().name());
         values.put(SQLiteHelper.PROCESSED_COLUMN, Boolean.toString(measurementRequest.isProcessed()));
         values.put(SQLiteHelper.LAST_UPDATE_COLUMN, dateFormat.format(
                 measurementRequest.getLastRequest().getTime()));
@@ -167,6 +170,7 @@ public class DataSource {
         ContentValues values = new ContentValues();
         values.put(SQLiteHelper.ID_COLUMN, id);
         values.put(SQLiteHelper.REQUEST_ID_COLUMN, measurementRequest.getRequestID());
+        values.put(SQLiteHelper.GENDER_COLUMN, measurementRequest.getGender().name());
         values.put(SQLiteHelper.PROCESSED_COLUMN, Boolean.toString(measurementRequest.isProcessed()));
         values.put(SQLiteHelper.LAST_UPDATE_COLUMN, dateFormat.format(
                 measurementRequest.getLastRequest().getTime()));
@@ -198,12 +202,15 @@ public class DataSource {
      * @return converted MeasurementRequest Object
      */
     private MeasurementRequest cursorToMeasurementRequest(Cursor cursor) {
+
         int id = cursor.getInt(cursor.getColumnIndex(SQLiteHelper.ID_COLUMN));
         String requestId = cursor.getString(cursor.getColumnIndex(SQLiteHelper.REQUEST_ID_COLUMN));
+       MeasurementRequest.Gender gender = MeasurementRequest.Gender.valueOf(
+               cursor.getString(cursor.getColumnIndex(SQLiteHelper.GENDER_COLUMN)).toUpperCase(Locale.US));
         String lastUpdateString = cursor.getString(cursor.getColumnIndex(SQLiteHelper.LAST_UPDATE_COLUMN));
         String processed = cursor.getString(cursor.getColumnIndex(SQLiteHelper.PROCESSED_COLUMN));
 
-        MeasurementRequest measurementRequest = new MeasurementRequest(requestId);
+        MeasurementRequest measurementRequest = new MeasurementRequest(requestId,gender);
 
         Calendar lastUpdate = Calendar.getInstance();
         try {

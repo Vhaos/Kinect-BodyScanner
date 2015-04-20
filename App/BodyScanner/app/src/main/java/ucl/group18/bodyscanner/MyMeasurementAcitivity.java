@@ -22,7 +22,7 @@ import ucl.group18.bodyscanner.model.Measurement;
 import ucl.group18.bodyscanner.model.MeasurementRequest;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MyMeasurementAcitivity extends ActionBarActivity {
 
     private static final String LOG_TAG = "MainActivity";
 

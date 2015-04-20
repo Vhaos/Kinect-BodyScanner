@@ -1,13 +1,12 @@
 package ucl.group18.bodyscanner;
 
-import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
-import android.os.Binder;
 import android.os.IBinder;
-import android.util.Log;
-import android.widget.Toast;
+import android.support.v4.app.NotificationCompat;
 
+import java.util.Calendar;
 import java.util.List;
 
 import ucl.group18.bodyscanner.database.DataSource;
@@ -63,8 +62,34 @@ public class MeasurementPollService extends Service implements ServerConnect.Ser
     @Override
     public void getMeasurementCallback(MeasurementRequest measurementRequest) {
 
+        if (measurementRequest.isProcessed()){
 
-
+        }
+        measurementRequest.setLastRequest(Calendar.getInstance());
+        ds.updateMeasurementRequest(measurementRequest);
 
     }
+
+    private void notifyUser(MeasurementRequest measurementRequest){
+
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_qr_scanner_icon)
+                        .setContentTitle("Your Measurements are Ready!");
+
+
+        Intent resultIntent = new Intent(this, MyMeasurementAcitivity.class);
+
+            // Because clicking the notification opens a new ("special") activity, there's
+               // no need to create an artificial back stack.
+        PendingIntent resultPendingIntent =
+                PendingIntent.getActivity(
+                        this,
+                        0,
+                        resultIntent,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+
+    }
+
 }
