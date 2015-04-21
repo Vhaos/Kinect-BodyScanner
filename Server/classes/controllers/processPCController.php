@@ -57,7 +57,7 @@ class ProcessPCController extends AbstractController
         $id = $request->url_elements[1];
 
         $ftp_server="localhost"; 
-        $ftp_user_name="newuser"; 
+        $ftp_user_name="anonymous"; 
         $ftp_user_pass=""; 
         $file = $request->parameters['file'];  //tobe uploaded 
         $remote_file = $id . '/pointcloud.xyz'; 

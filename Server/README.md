@@ -8,10 +8,23 @@ Simply deploy directory files onto your local web server. Controllers and accept
 To install:
  * Install Xampp to C:\ folder
  * Place the folder "***Server***" into C:\xammp\htdocs
- * Start up Xampp then start up Apache on it's control panel
+ * Open Xampp Control Panel
+ * Click Apache Start
  * Open up your browser and go to `localhost/server/test`
  * Bodyscanner server is now installed :+1:
 
+To Configure the ftp client
+ * Open Xampp Control Panel
+ * Click Config on the Apache row
+ * Start the FileZilla module
+ * Click Admin on the FileZilla row
+ * Click ok (no administration password is needed)
+ * Go to Edit > Users > General > Add
+ * Name this user "anonymous", click OK
+ * Go to the Shared Folders page
+ * Add new Shared directory for anonymous, this will be the "C:\xampp\htdocs\server\scans" folder
+ * Give this directory Read, write, delete and append permissions
+ * ftp client is now configured 
 
 For the app to work, you must:
  * Open Xampp Control Panel
@@ -62,13 +75,30 @@ ___
 
 **Endpoint definition**  
 ```
-POST http://localhost/server/ProcessPC/5522e70fe6cb4/F
+GET http://localhost/server/ProcessPC/5522e70fe6cb4/F
 ```
 Assuming pointcloud.xyz was saved to server, and now want the server to start processing it. Specify F or M for gender in url.
 
 **Response Body** PlainText
 ```
 "OK, started processing pointcloud"
+```	
+___
+
+**Endpoint definition**  
+```
+PUT http://localhost/server/ProcessPC/5522e70fe6cb4
+```
+Upload local pointcloud file to the server. Must specify path to the local file in request body.
+
+**Example Request Body** JSON
+```
+{"file":"C:\\Users\\Kareem\\Documents\\Test\\pointcloud.xyz"}
+```	
+
+**Response Body** PlainText
+```
+"successfully uploaded C:\Users\Kareem\Documents\Test\pointcloud.xyz"
 ```	
 ___
 
