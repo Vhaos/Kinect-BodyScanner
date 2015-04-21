@@ -19,37 +19,74 @@ class ProcessPCController extends AbstractController
 
     public function get($request)
     {	
-    	return $this -> _requestStatus(405);
+        //setting up header files
+        header('HTTP/1.1 201 Created');
+        header('Location: /news/');
+        header("Access-Control-Allow-Orgin: *");
+        header("Access-Control-Allow-Methods: *");
+
+        $id = $request->url_elements[1];
+        $gender = $this->get_gender($request->url_elements[2]);
+
+        if($this -> exec_enabled())
+        {
+            $cmd = $this->process_pointcloud_cmd($id,$gender);
+        }else{
+            return "exec function is disabled.";
+        }
+
+        $output = $this->execInBackground($cmd);
+
+        return $this->_requestStatus(200).", started processing pointcloud";
+
+        //return $this -> _requestStatus(405);
     }
 
     /*
-     * POST method.
+     * PUT method.
+     * 
      */ 
 
-    public function post($request)
+    public function put($request)
     {	
-        //setting up header files
-    	header('HTTP/1.1 201 Created');
-    	header('Location: /news/');
-    	header("Access-Control-Allow-Orgin: *");
-    	header("Access-Control-Allow-Methods: *");
+        header('HTTP/1.1 201 Created');
+        header('Location: /news/');
+        header("Access-Control-Allow-Orgin: *");
+        header("Access-Control-Allow-Methods: *");
 
-    	$id = $request->url_elements[1];
-    	$gender = $this->get_gender($request->url_elements[2]);
+        $id = $request->url_elements[1];
 
-    	if($this -> exec_enabled())
-    	{
-    		$cmd = $this->generate_cmd($id,$gender);
-    	}else{
-    		return "exec function is disabled.";
-    	}
+        $ftp_server="localhost"; 
+        $ftp_user_name="newuser"; 
+        $ftp_user_pass=""; 
+        $file = $request->parameters['file'];  //tobe uploaded 
+        $remote_file = $id . '/pointcloud.xyz'; 
 
-    	$output = $this->execInBackground($cmd);
+        // set up basic connection 
+        $conn_id = ftp_connect($ftp_server); 
 
-    	return $this->_requestStatus(200).", started processing pointcloud";
+        // login with username and password 
+        $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass); 
+
+        // upload a file 
+        if (ftp_put($conn_id, $remote_file, $file, FTP_BINARY)) { 
+            echo "successfully uploaded $file\n"; 
+            exit;
+            ftp_close($conn_id);  
+        } else { 
+            echo "There was a problem while uploading $file\n"; 
+            exit; 
+            ftp_close($conn_id); 
+        }
+
+        // close the connection 
+        ftp_close($conn_id); 
+
+        return "request completed";
+
     }
 
-    private function generate_cmd($id, $gender) 
+    private function process_pointcloud_cmd($id, $gender) 
     {
     	if($this -> exec_enabled())
     	{
@@ -67,6 +104,14 @@ class ProcessPCController extends AbstractController
     	} else { 
     		exec($cmd . " > /dev/null &");
     	} 
+    }
+
+    private function does_file_exist($filename){
+        // Check if file already exists
+        if (file_exists($target_file)) {
+            return TRUE;
+            $uploadOk = 0;
+        }
     } 
 
     private function exec_enabled() 

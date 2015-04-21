@@ -1,5 +1,6 @@
 <?php
 
+
 function autoload_class($class_name) {
     $directories = array(
         'classes/',
@@ -29,6 +30,7 @@ $request = new Request();
 if (isset($_SERVER['PATH_INFO'])) {
     $request->url_elements = explode('/', trim($_SERVER['PATH_INFO'], '/'));
 }
+
 $request->method = strtoupper($_SERVER['REQUEST_METHOD']);
 switch ($request->method) {
     case 'GET':
@@ -38,9 +40,15 @@ switch ($request->method) {
         $request->parameters = $_POST;
     break;
     case 'PUT':
-        parse_str(file_get_contents('php://input'), $request->parameters);
-    break;
+        //parse_str(file_get_contents('php://input'), $request->parameters);
+        $request->parameters = json_decode(file_get_contents('php://input'), TRUE);
 }
+
+
+/*    if (strpos($request->parameters->get('Content-Type'), 'application/json')) {
+        $data = json_decode($request->getContent(), true);
+        $request->request->replace(is_array($data) ? $data : array());
+    }*/
 
 /**
  * Route the request.
