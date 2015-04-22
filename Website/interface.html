@@ -5,7 +5,7 @@
   <title>Kinect Bodyscanner</title>
   <!-- Load platform support before anything else -->
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-  <link rel="icon" type="type/png" href="img/Misc/k-icon.png"/>
+  <link rel="icon" type="type/png" href="img/Misc/k-icon.png" />
   <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
 
   <link rel="stylesheet" href="main.css">
@@ -25,7 +25,6 @@
 </head>
 
 <style>
-
   core-pages {
     width: 100%;
   }
@@ -57,16 +56,16 @@
 
     <card-content>
       <div layout horizontal>
-      <paper-button onclick="prevDesign()">
-        <core-icon icon="arrow-back"></core-icon>
-        PREV DESIGN
-      </paper-button>
-      <div flex></div>
-      <paper-button onclick="nextDesign()">
-        NEXT DESIGN
-        <core-icon icon="arrow-forward"></core-icon>
-      </paper-button>
-    </div>
+        <paper-button onclick="prevDesign()">
+          <core-icon icon="arrow-back"></core-icon>
+          PREV DESIGN
+        </paper-button>
+        <div flex></div>
+        <paper-button onclick="nextDesign()">
+          NEXT DESIGN
+          <core-icon icon="arrow-forward"></core-icon>
+        </paper-button>
+      </div>
     </card-content>
     <core-pages id="design-pages" selected="0">
       <div>
@@ -75,38 +74,38 @@
           <p>In this design, the required touchscreen interaction from users is kept to a minimum. This is because the user will spend most of the time aligning with the camera, making frequent interaction obstructive.</p>
         </card-content>
         <!--<core-pages style="background-color: white;" id="design-images-1" selected="0" onclick="nextImage(1)">-->
-          <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
-            <div layout vertical center-justified>
-              <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/1/1.png">
-              <card-content>
-                <p>This is the first Screen that users see. The view shows the live camera feed with a body silhouette overlaid on top. The silhouette provides motion feedback and encrouages proper alignment with the silhouette- thus incorporating affordance (Norman Design Principles).</p>
-              </card-content>
-            </div>
-          <!--</core-tooltip>-->
-          <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
-            <div layout vertical center-justified>
-              <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/1/2.png">
-              <card-content>
-                <p>The Help button also incorporates affordance, as it has a thick border implying depth as a visual que. The status of the system is always shown in large font, as the user might be further from screen, trying to align with silhouette. The status of the system is colour coded with traffic light colours along with the silhouette. This helps with mapping the movements of the user and its effect on the system.</p>
-              </card-content>
-            </div>
-          <!--</core-tooltip>-->
-          <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
-            <div layout vertical center-justified>
-              <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/1/3.png">
-              <card-content>
-                <p>The camera feed, instruction text, system status bar are always located in the same location. This provides consistency for the user. The Help Button disappears as it does not make sense to go to help screen while the system is scanning. This puts an appropriate constraint on what the user can do at times. A countdown timer provides feedback, indicating how long the user has to wait.</p>
-              </card-content>
-            </div>
-          <!--</core-tooltip>-->
-          <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
-            <div layout vertical center-justified>
-              <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/1/4.png">
-              <card-content>
-                <p>The various measurements are colour coded with the lines on the silhouette suggesting which measurement each jargon refers to. The Done button aids visibility, indicating what to do next. It is also coloured green to for mapping purposes. The Privacy Policy button is situated in the top right and is smaller than Done button, this is to preserve the minimalist design while also offering easy access to privacy information.</p>
-              </card-content>
-            </div>
-          <!--</core-tooltip>-->
+        <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
+        <div layout vertical center-justified>
+          <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/1/1.png">
+          <card-content>
+            <p>This is the first Screen that users see. The view shows the live camera feed with a body silhouette overlaid on top. The silhouette provides motion feedback and encrouages proper alignment with the silhouette- thus incorporating affordance (Norman Design Principles).</p>
+          </card-content>
+        </div>
+        <!--</core-tooltip>-->
+        <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
+        <div layout vertical center-justified>
+          <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/1/2.png">
+          <card-content>
+            <p>The Help button also incorporates affordance, as it has a thick border implying depth as a visual que. The status of the system is always shown in large font, as the user might be further from screen, trying to align with silhouette. The status of the system is colour coded with traffic light colours along with the silhouette. This helps with mapping the movements of the user and its effect on the system.</p>
+          </card-content>
+        </div>
+        <!--</core-tooltip>-->
+        <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
+        <div layout vertical center-justified>
+          <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/1/3.png">
+          <card-content>
+            <p>The camera feed, instruction text, system status bar are always located in the same location. This provides consistency for the user. The Help Button disappears as it does not make sense to go to help screen while the system is scanning. This puts an appropriate constraint on what the user can do at times. A countdown timer provides feedback, indicating how long the user has to wait.</p>
+          </card-content>
+        </div>
+        <!--</core-tooltip>-->
+        <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
+        <div layout vertical center-justified>
+          <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/1/4.png">
+          <card-content>
+            <p>The various measurements are colour coded with the lines on the silhouette suggesting which measurement each jargon refers to. The Done button aids visibility, indicating what to do next. It is also coloured green to for mapping purposes. The Privacy Policy button is situated in the top right and is smaller than Done button, this is to preserve the minimalist design while also offering easy access to privacy information.</p>
+          </card-content>
+        </div>
+        <!--</core-tooltip>-->
         <!--</core-pages>-->
         <card-content>
           <ul>
@@ -132,62 +131,62 @@
           <p>Our second design has some required touchscreen interaction from users and risks appearing more cluttered. However, it respects user privacy and provides detailed feedback at each stage.</p>
         </card-content>
         <!--<core-pages style="background-color: white;" id="design-images-2" selected="0" onclick="nextImage(2)">-->
-          <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
-            <div layout vertical center-justified>
-              <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/2/1.jpg">
-              <card-content>
-                <p>When taking detailed measurements of the body, the primary concern must be privacy and transparency. Therefore, the UI design has to appear non-convoluted and minimalist, with privacy information readily available to the user. Using a touchscreen or mouse, the user will navigate the UI with button presses. The interface is comprised of three parts, each with a function implied by its title.</p>
-              </card-content>
-            </div>
-          <!--</core-tooltip>-->
-          <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
-            <div layout vertical center-justified>
-              <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/2/2.jpg">
-              <card-content>
-                <p>For consistency, the UI layout should remain the same as much as possible. Therefore, the three interface parts never shuffle or resize, changing notably only once scanning has finished. The console, supported by the prompt (which shows number of steps), provides readable and up-to-date feedback to the user.</p>
-              </card-content>
-            </div>
-          <!--</core-tooltip>-->
-          <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
-            <div layout vertical center-justified>
-              <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/2/2.1.jpg">
-              <card-content>
-                <p>Upon scanning, the user position is reflected by red skeletal lines. This remains inoffensive but useful to the user for mapping movement to the effect it has on the scanner input. Red is used to colour the STOP function for user recognition System displays % completion during scanning.</p>
-              </card-content>
-            </div>
-          <!--</core-tooltip>-->
-          <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
-            <div layout vertical center-justified>
-              <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/2/3.jpg">
-              <card-content>
-                <p>By matching the design of the normal buttons, the user may find it intuitive that they serve the same purpose The rounded rectangular shaped buttons incorporate affordance as their size indicates they are more than just informative, supported by established patterns in button design.</p>
-              </card-content>
-            </div>
-          <!--</core-tooltip>-->
-          <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
-            <div layout vertical center-justified>
-              <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/2/4.jpg">
-              <card-content>
-                <p>Having the privacy policy and data promises readily available is an intrinsic requirement of this system Other decisions made to accommodate the user are to avoid displaying a live feed of the scan, so as to avoid offending users or appearing invasive. The console never displays more than three lines of text, in order to avoid cluttering.</p>
-              </card-content>
-            </div>
-          <!--</core-tooltip>-->
+        <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
+        <div layout vertical center-justified>
+          <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/2/1.jpg">
+          <card-content>
+            <p>When taking detailed measurements of the body, the primary concern must be privacy and transparency. Therefore, the UI design has to appear non-convoluted and minimalist, with privacy information readily available to the user. Using a touchscreen or mouse, the user will navigate the UI with button presses. The interface is comprised of three parts, each with a function implied by its title.</p>
+          </card-content>
+        </div>
+        <!--</core-tooltip>-->
+        <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
+        <div layout vertical center-justified>
+          <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/2/2.jpg">
+          <card-content>
+            <p>For consistency, the UI layout should remain the same as much as possible. Therefore, the three interface parts never shuffle or resize, changing notably only once scanning has finished. The console, supported by the prompt (which shows number of steps), provides readable and up-to-date feedback to the user.</p>
+          </card-content>
+        </div>
+        <!--</core-tooltip>-->
+        <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
+        <div layout vertical center-justified>
+          <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/2/2.1.jpg">
+          <card-content>
+            <p>Upon scanning, the user position is reflected by red skeletal lines. This remains inoffensive but useful to the user for mapping movement to the effect it has on the scanner input. Red is used to colour the STOP function for user recognition System displays % completion during scanning.</p>
+          </card-content>
+        </div>
+        <!--</core-tooltip>-->
+        <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
+        <div layout vertical center-justified>
+          <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/2/3.jpg">
+          <card-content>
+            <p>By matching the design of the normal buttons, the user may find it intuitive that they serve the same purpose The rounded rectangular shaped buttons incorporate affordance as their size indicates they are more than just informative, supported by established patterns in button design.</p>
+          </card-content>
+        </div>
+        <!--</core-tooltip>-->
+        <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
+        <div layout vertical center-justified>
+          <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/2/4.jpg">
+          <card-content>
+            <p>Having the privacy policy and data promises readily available is an intrinsic requirement of this system Other decisions made to accommodate the user are to avoid displaying a live feed of the scan, so as to avoid offending users or appearing invasive. The console never displays more than three lines of text, in order to avoid cluttering.</p>
+          </card-content>
+        </div>
+        <!--</core-tooltip>-->
         <!--</core-pages>-->
         <br>
         <card-content>
           <ul>
-          <b>Pros</b>
-          <li>Use of skeleton rather than silhouette, hence not suggesting any body shape</li>
-          <li>No live camera feed</li>
-          <li>All screens can be accessed from any screen including the privacy policy</li>
-          <li>All instructions are provided clearly on screen</li>
-        </ul>
-        <ul>
-          <b>Cons</b>
-          <li>Redundancy issues with some buttons</li>
-          <li>Too verbose and distracting at times</li>
-          <li>Awkward use of colouring</li>
-        </ul>
+            <b>Pros</b>
+            <li>Use of skeleton rather than silhouette, hence not suggesting any body shape</li>
+            <li>No live camera feed</li>
+            <li>All screens can be accessed from any screen including the privacy policy</li>
+            <li>All instructions are provided clearly on screen</li>
+          </ul>
+          <ul>
+            <b>Cons</b>
+            <li>Redundancy issues with some buttons</li>
+            <li>Too verbose and distracting at times</li>
+            <li>Awkward use of colouring</li>
+          </ul>
         </card-content>
       </div>
       <div>
@@ -203,54 +202,54 @@
           </p>
         </card-content>
         <!--<core-pages style="background-color: white;" id="design-images-3" selected="0" onclick="nextImage(3)">-->
-          <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
-            <div layout vertical center-justified>
-              <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/3/1.png">
-              <card-content>
-                <p>User input is reduced to simply selecting start or privacy policy at this stage. Privacy conscious users are given the opportunity to review the privacy policy early on.</p>
-              </card-content>
-            </div>
-          <!--</core-tooltip>-->
-          <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
-            <div layout vertical center-justified>
-              <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/3/2.png">
-              <card-content>
-                <p>Help and Stop buttons are available for the user to select. Skeletal guidelines do not impose a shape expectation but preserve the pose information. In the interest of liveness, a live feed was chosen in spite of previous concerns.</p>
-              </card-content>
-            </div>
-          <!--</core-tooltip>-->
-          <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
-            <div layout vertical center-justified>
-              <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/3/3.png">
-              <card-content>
-                <p>Minimalist design preserved throughout the interface. Button and text prompt positioning remain consistent. System status always reported to the user.</p>
-              </card-content>
-            </div>
-          <!--</core-tooltip>-->
-          <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
-            <div layout vertical center-justified>
-              <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/3/4.png">
-              <card-content>
-                <p>Feedback during scanning helps assure users that the scanner is functioning properly. In the interest of error prevention and reduced user confusion- buttons removed at this point as scan is to be performed remotely, freeing users to leave.</p>
-              </card-content>
-            </div>
-          <!--</core-tooltip>-->
-          <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
-            <div layout vertical center-justified>
-              <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/3/6.png">
-              <card-content>
-                <p>Button input capabilities restored. QR Code also displayed for accompanying app to scan. Done button available for users to finish the session.</p>
-              </card-content>
-            </div>
-          <!--</core-tooltip>-->
-          <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
-            <div layout vertical center-justified>
-              <img style="margin: 20px auto; height: 300px;" src="img/UI/3/8.png">
-              <card-content>
-                <p>A lo-fi example of the accompanying app's interface upon scanning. Measurement information available on user's device controlled solely by them.</p>
-              </card-content>
-            </div>
-          <!--</core-tooltip>-->
+        <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
+        <div layout vertical center-justified>
+          <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/3/1.png">
+          <card-content>
+            <p>User input is reduced to simply selecting start or privacy policy at this stage. Privacy conscious users are given the opportunity to review the privacy policy early on.</p>
+          </card-content>
+        </div>
+        <!--</core-tooltip>-->
+        <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
+        <div layout vertical center-justified>
+          <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/3/2.png">
+          <card-content>
+            <p>Help and Stop buttons are available for the user to select. Skeletal guidelines do not impose a shape expectation but preserve the pose information. In the interest of liveness, a live feed was chosen in spite of previous concerns.</p>
+          </card-content>
+        </div>
+        <!--</core-tooltip>-->
+        <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
+        <div layout vertical center-justified>
+          <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/3/3.png">
+          <card-content>
+            <p>Minimalist design preserved throughout the interface. Button and text prompt positioning remain consistent. System status always reported to the user.</p>
+          </card-content>
+        </div>
+        <!--</core-tooltip>-->
+        <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
+        <div layout vertical center-justified>
+          <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/3/4.png">
+          <card-content>
+            <p>Feedback during scanning helps assure users that the scanner is functioning properly. In the interest of error prevention and reduced user confusion- buttons removed at this point as scan is to be performed remotely, freeing users to leave.</p>
+          </card-content>
+        </div>
+        <!--</core-tooltip>-->
+        <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
+        <div layout vertical center-justified>
+          <img style="margin: 20px auto; min-width: 200px; width: 40%;" src="img/UI/3/6.png">
+          <card-content>
+            <p>Button input capabilities restored. QR Code also displayed for accompanying app to scan. Done button available for users to finish the session.</p>
+          </card-content>
+        </div>
+        <!--</core-tooltip>-->
+        <!--<core-tooltip label="click to cycle images" style="width:100%;">-->
+        <div layout vertical center-justified>
+          <img style="margin: 20px auto; height: 300px;" src="img/UI/3/8.png">
+          <card-content>
+            <p>A lo-fi example of the accompanying app's interface upon scanning. Measurement information available on user's device controlled solely by them.</p>
+          </card-content>
+        </div>
+        <!--</core-tooltip>-->
         <!--</core-pages>-->
       </div>
     </core-pages>
@@ -260,12 +259,12 @@
         <p>We performed a heurisitc evaluation on our third design. The results can be viewed here: <a style="text-decoration: underline;" href="reports/HeuristicEvaluation.pdf">Heuristic Evaluation</a>
         </p>
         <p>As a result of the evaluaiton we added a feedback screen to inform users of the system's current state while calculating measurements.</p>
+        <img style="margin: 20px auto;" src="img/UI/3/5.png">
       </card-content>
-      <img style="margin: 20px auto; height: 300px;" src="img/UI/3/5.png">
       <card-content>
         <p>We also added an error screen as a precaution in case our system encounters a problem.</p>
+        <img style="margin: 20px auto;" src="img/UI/3/7.png">
       </card-content>
-      <img style="margin: 20px auto; height: 300px;" src="img/UI/3/7.png">
     </div>
     <!--<common-links select='3'></common-links>-->
 
