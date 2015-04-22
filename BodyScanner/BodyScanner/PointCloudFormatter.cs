@@ -11,9 +11,9 @@ namespace BodyScanner
     /// </summary>
     public class PointCloudFormatter
     {
-        public enum Format {RGB_PLY,PLY,XYZ};
+        public enum Format {RGB_PLY,PLY,XYZ, VRML};
 
-        Format format;
+        private Format format;
 
         public PointCloudFormatter(Format format)
         {
@@ -21,6 +21,11 @@ namespace BodyScanner
         }
 
         public Format getFormat() { return format;}
+
+        private String getVRMLFooter()
+        {
+            return"]\n}\n}\n}\n]\n}\n";
+        }
 
         private String getHeader(int numberOfPoints){
 
@@ -50,6 +55,16 @@ namespace BodyScanner
                                 "end_header \n";
                     break;
 
+                case Format.VRML:
+
+                    header = "#VRML V2.0 utf8\n" +
+                             "#Scan pointcloud\n" +
+                                "Transform {\n" +
+                                    "children [\n" +
+                                        "geometry PointSet {\n" +
+                                            "coord Coordinate {\n" +
+                                                "point [\n";
+                    break;
             }
 
             return header;
@@ -73,7 +88,10 @@ namespace BodyScanner
                 case Format.XYZ:
                     pointFormat = "{0} {1} {2} 0.00 0.00 0.00\n";
                     break;
-
+                
+                case Format.VRML:
+                    pointFormat = "{0} {1} {2},\n";
+                    break;
             }
 
             return pointFormat;
@@ -83,12 +101,16 @@ namespace BodyScanner
 
         public String formatPointCloud(PointCloud pointCloud)
         {
-
             String header = getHeader(pointCloud.getSize());
 
             String points = pointCloud.generateString(getPointFormat());
 
             String result = header + points;
+
+            if(format == Format.VRML)
+            {
+                result += getVRMLFooter();
+            }
 
             return result;
 
@@ -113,7 +135,9 @@ namespace BodyScanner
                 case Format.XYZ:
                     extension = "xyz";
                     break;
-
+                case Format.VRML:
+                    extension = "wrl";
+                    break;
             }
 
             return extension;

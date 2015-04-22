@@ -25,7 +25,7 @@ namespace BodyScanner
         private BodyFrame _bf; // should be updated on-access to this class
         private Body subject;
 
-        private KinectWindow parent; // parent window to allow access to text block etc.
+        private readonly KinectWindow parent; // parent window to allow access to text block etc.
 
         private BodyTracker(KinectWindow parent_window) 
         {

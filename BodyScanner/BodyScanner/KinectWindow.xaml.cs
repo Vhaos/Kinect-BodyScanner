@@ -206,7 +206,7 @@ namespace BodyScanner
 
         private void saveFile(PointCloud pcl)
         {
-            PointCloudFormatter pcf = new PointCloudFormatter(PointCloudFormatter.Format.XYZ); // Choosing the XYZ format to save the pointCloud
+            PointCloudFormatter pcf = new PointCloudFormatter(PointCloudFormatter.Format.VRML); // Choosing the VRML (.wrl) format to save the pointCloud
             FileManager fm = new FileManager(pcf);
             fm.savePointCloudFile(pcl);
             

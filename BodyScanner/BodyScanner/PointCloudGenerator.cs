@@ -14,7 +14,7 @@ namespace BodyScanner
     public class PointCloudGenerator
     {
 
-        CoordinateMapper coordinateMapper;
+        private CoordinateMapper coordinateMapper;
         private CameraSpacePoint[] cameraPoints = null;
 
         private readonly int bytesPerPixel = (PixelFormats.Bgr32.BitsPerPixel + 7) / 8;

@@ -22,7 +22,7 @@ namespace BodyScanner
             else
             {
                 //Log.Write(Log.Tag.INFO, "Point Cloud Formatter is NULL. Creating new with XYZ"); Not helpful if we're using it to get XML document as well
-                this.pointCloudFormatter = new PointCloudFormatter(PointCloudFormatter.Format.XYZ);
+                this.pointCloudFormatter = new PointCloudFormatter(PointCloudFormatter.Format.VRML);
             }
            
         }

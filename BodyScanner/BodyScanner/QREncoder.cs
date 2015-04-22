@@ -25,7 +25,7 @@ namespace BodyScanner
         
         public enum QR_Quality { High, Medium, Low };
 
-        QR_Quality qualitySetting;
+        private QR_Quality qualitySetting;
 
         public QREncoder(QR_Quality qualitySetting)
         {
