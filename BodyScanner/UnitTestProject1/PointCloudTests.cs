@@ -187,7 +187,7 @@ namespace UnitTestProject
 			for(int i = 0; i < 10; i++)
 			{
 				Point3D p = new Point3D(i,i,i);
-				cloud.add(p);
+				cloud.addPoint(p);
 			}
 
 			cloud.subtractFromPointAxis(1.23, PointCloud.Axis.X);
