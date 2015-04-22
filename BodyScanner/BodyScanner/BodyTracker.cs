@@ -16,7 +16,7 @@ namespace BodyScanner
 {
     sealed class BodyTracker
     {
-        const double distanceTolerance = 0.2, jointTolerance = 0.2, targetDistanceFromCam = 2;
+        const double distanceTolerance = 0.1, jointTolerance = 0.2, targetDistanceFromCam = 2;
 
         private static BodyTracker _instance; // Static instance reference, implementing the Singleton pattern
         private static Object _dummyLock = new Object();
@@ -94,12 +94,14 @@ namespace BodyScanner
             double actualDistanceFromCam = getDistance(subject);
             double difference = actualDistanceFromCam - targetDistanceFromCam;
 
-            if(Math.Abs(difference) > distanceTolerance)
+            if (Math.Abs(difference) > distanceTolerance)
             {
                 // Replace with some sort of visual feedback for liveness
                 Log.Write("INCORRECT DISTANCE FROM CAMERA! You're " + difference + " metres away from target.");
                 return false;
             }
+            else
+                Log.Write("CORRECT DISTANCE: " + actualDistanceFromCam);
 
             return true;
         }

@@ -178,7 +178,7 @@ namespace BodyScanner
                 PointCloudGenerator pcg = new PointCloudGenerator(coordinateMapper);
                 PointCloud pointCloud = pcg.generate(df, bif);
                 Log.Write(Log.Tag.INFO,pointCloud.getSize());
-   
+
                 saveFile(pointCloud);
                 startNextWindow();
             }

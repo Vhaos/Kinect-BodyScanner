@@ -18,7 +18,7 @@ namespace BodyScanner
         private CameraSpacePoint[] cameraPoints = null;
 
         private readonly int bytesPerPixel = (PixelFormats.Bgr32.BitsPerPixel + 7) / 8;
-        private const double depthLimit = 3.0;
+        private const double depthLimit = 8.0;
         private const double unitScale = 100.0;// scale from m to cm etc.
 
         private byte[] bodyIndexFrameData = null;
