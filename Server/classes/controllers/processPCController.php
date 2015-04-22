@@ -60,7 +60,7 @@ class ProcessPCController extends AbstractController
         $ftp_user_name="anonymous"; 
         $ftp_user_pass=""; 
         $file = $request->parameters['file'];  //tobe uploaded 
-        $remote_file = $id . '/pointcloud.xyz'; 
+        $remote_file = $id . '/pointcloud.wrl'; 
 
         // set up basic connection 
         $conn_id = ftp_connect($ftp_server); 
@@ -90,7 +90,7 @@ class ProcessPCController extends AbstractController
     {
     	if($this -> exec_enabled())
     	{
-    		return 'cd C:\Program Files (x86)\Tony Ruto\Home Scanner Tools & start /B ScanMeasureCmd.exe ' .$this->read_dir .'\\'. $id .'\pointcloud.xyz '.$gender;
+    		return 'cd C:\Program Files (x86)\Tony Ruto\Home Scanner Tools & start /B ScanMeasureCmd.exe ' .$this->read_dir .'\\'. $id .'\pointcloud.wrl '.$gender;
     	}else{
     		return "exec function not enabled.";
     	} 
