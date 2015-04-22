@@ -6,6 +6,23 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 /**
+ * Opens (if does not exist then Creates) the SQLite Database.
+ *
+ * Database Name: measurementRequests.db
+ * Table Name: measurement_requests
+ *
+ * Columns:
+ *  - _id (Primary Key/ Auto Increment)
+ *  - request_id (Text) - The request ID for server
+ *  - gender (Text)
+ *  - processed (Text) - If the scan has been processed by the server
+ *  - last_update (Text) - Last update from the server on the measurement request
+ *  - height (Text) - in centimeters
+ *  - hip (Text) - in centimeters
+ *  - chest (Text) - in centimeters
+ *  - waist (Text) - in centimeters
+ *  - inside_leg (Text) - in centimeters
+ *
  * Created by Shubham on 12/04/2015.
  */
 public class SQLiteHelper extends SQLiteOpenHelper {
@@ -17,6 +34,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String GENDER_COLUMN = "gender";
     public static final String PROCESSED_COLUMN = "processed";
     public static final String LAST_UPDATE_COLUMN = "last_update";
+    public static final String NO_OF_REQUESTS_COLUMN = "no_of_requests";
     public static final String HEIGHT_COLUMN = "height";
     public static final String HIP_COLUMN = "hip";
     public static final String CHEST_COLUMN = "chest";
@@ -36,6 +54,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             + GENDER_COLUMN + " text not null,"
             + PROCESSED_COLUMN + " text not null,"
             + LAST_UPDATE_COLUMN + " text not null,"
+            + NO_OF_REQUESTS_COLUMN + " integer not null,"
             + HEIGHT_COLUMN + " text null,"
             + HIP_COLUMN + " text null,"
             + CHEST_COLUMN + " text null,"

@@ -29,6 +29,7 @@ public class MeasurementRequest implements Parcelable {
     Calendar lastRequest;
     Measurement measurement = null;
     Gender gender;
+    int noOfRequests;
 
     public MeasurementRequest(String requestID, Gender gender){
         this.requestID = requestID;
@@ -68,6 +69,10 @@ public class MeasurementRequest implements Parcelable {
     }
 
     public void setMeasurement(Measurement measurement) {this.measurement = measurement;}
+
+    public void setNoOfRequests(int noOfRequests) {this.noOfRequests = noOfRequests;}
+
+    public int getNoOfRequests() {return noOfRequests;}
 
     /*
     Methods and Constructor for Parcelable interface

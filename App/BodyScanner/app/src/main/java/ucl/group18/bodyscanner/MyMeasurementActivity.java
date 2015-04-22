@@ -6,38 +6,79 @@ import android.app.job.JobService;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.List;
 
 import ucl.group18.bodyscanner.database.DataSource;
+import ucl.group18.bodyscanner.fragments.MeasurementFragment;
 import ucl.group18.bodyscanner.model.Measurement;
 import ucl.group18.bodyscanner.model.MeasurementRequest;
 
 
-public class MyMeasurementAcitivity extends ActionBarActivity {
+public class MyMeasurementActivity extends ActionBarActivity implements MeasurementFragment.OnFragmentInteractionListener {
 
     private static final String LOG_TAG = "MainActivity";
 
+    FrameLayout rootView;
+    TextView no_measurements;
     DataSource ds;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        Log.v(LOG_TAG, "My Measurement Activity Started");
 
         ds = new DataSource(getApplicationContext());
         ds.open();
 
 
+        //Adding Fake Measurement Request
+        MeasurementRequest mr1 = new MeasurementRequest("23io2i3ng2", MeasurementRequest.Gender.MALE);
+        mr1.setProcessed(true);
+        mr1.setLastRequest(Calendar.getInstance());
+        Measurement measurement = new Measurement();
+        measurement.setMeasurements(178.4,85.3,84.2,86.5,120.3);
+        mr1.setMeasurement(measurement);
+        mr1.setNoOfRequests(2);
+        ds.addMeasurementRequest(mr1);
+        ds.updateMeasurementRequest(mr1);
+
+        //List<MeasurementRequest> lmr = ds.getAllMeasurementRequests();
+        //Log.v(LOG_TAG, String.valueOf(lmr.size()));
+
+        rootView = (FrameLayout) findViewById(R.id.root_view);
+        no_measurements = (TextView)findViewById(R.id.no_measurement_text);
+
+
+
+        if (getIntent().getParcelableExtra("measurementRequest") == null){
+            MeasurementRequest mr = ds.getLatestProcessedMeasurementRequests();
+            if (mr != null){
+                no_measurements.setVisibility(View.GONE);
+
+                Fragment newFragment = MeasurementFragment.newInstance(mr.getMeasurements());
+                FragmentTransaction ft =  getSupportFragmentManager().beginTransaction();
+                ft.add(R.id.root_view, newFragment).commit();
+
+            }else{
+                no_measurements.setVisibility(View.VISIBLE);
+            }
+
+        }
 
     }
 
@@ -67,20 +108,9 @@ public class MyMeasurementAcitivity extends ActionBarActivity {
     }
     public void fabPressed(View view){
 
-        ServerConnect network = new ServerConnect(getApplicationContext());
-        final MeasurementRequest mr = new MeasurementRequest("5522e70fe6cb4");
+        Log.e(LOG_TAG, "Fab FUCKING pressed");
 
-        network.getMeasurementsFromServerAsync(mr, new ServerConnect.ServerConnectCallback() {
-            @Override
-            public void getMeasurementCallback(MeasurementRequest m) {
-
-                Log.v(LOG_TAG, "RESULT: " + m.toString());
-
-        }
-        });
-
-
-
+        //launchBarCodeScanner();
 
     }
 
@@ -119,5 +149,10 @@ public class MyMeasurementAcitivity extends ActionBarActivity {
                 Toast.makeText(this, qr_text,Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

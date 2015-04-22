@@ -43,14 +43,9 @@ public class MeasurementPollService extends Service implements ServerConnect.Ser
         List<MeasurementRequest> unProcessedMR = ds.getAllUnProcessedMeasurementRequests();
 
         for (MeasurementRequest measurementRequest : unProcessedMR){
-
             ServerConnect serverConnect = new ServerConnect(getApplicationContext());
-
             serverConnect.getMeasurementsFromServerAsync(measurementRequest, this);
-
         }
-
-
 
         return START_STICKY;
     }
@@ -63,7 +58,7 @@ public class MeasurementPollService extends Service implements ServerConnect.Ser
     public void getMeasurementCallback(MeasurementRequest measurementRequest) {
 
         if (measurementRequest.isProcessed()){
-
+            //measurementRequest.
         }
         measurementRequest.setLastRequest(Calendar.getInstance());
         ds.updateMeasurementRequest(measurementRequest);
@@ -73,15 +68,15 @@ public class MeasurementPollService extends Service implements ServerConnect.Ser
     private void notifyUser(MeasurementRequest measurementRequest){
 
         NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(this)
+                        new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_qr_scanner_icon)
                         .setContentTitle("Your Measurements are Ready!");
 
 
-        Intent resultIntent = new Intent(this, MyMeasurementAcitivity.class);
-
-            // Because clicking the notification opens a new ("special") activity, there's
-               // no need to create an artificial back stack.
+        Intent resultIntent = new Intent(this, MyMeasurementActivity.class);
+        resultIntent.putExtra("measurementRequest", measurementRequest);
+        // Because clicking the notification opens a new ("special") activity, there's
+        // no need to create an artificial back stack.
         PendingIntent resultPendingIntent =
                 PendingIntent.getActivity(
                         this,

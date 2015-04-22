@@ -34,6 +34,7 @@ public class DataSource {
                                     SQLiteHelper.GENDER_COLUMN,
                                     SQLiteHelper.PROCESSED_COLUMN,
                                     SQLiteHelper.LAST_UPDATE_COLUMN,
+                                    SQLiteHelper.NO_OF_REQUESTS_COLUMN,
                                     SQLiteHelper.HEIGHT_COLUMN,
                                     SQLiteHelper.HIP_COLUMN,
                                     SQLiteHelper.CHEST_COLUMN,
@@ -74,19 +75,24 @@ public class DataSource {
      */
     public boolean addMeasurementRequest(MeasurementRequest measurementRequest) {
 
+        Log.v(LOG_TAG, "Adding Measurement");
+
         ContentValues values = new ContentValues();
         values.put(SQLiteHelper.REQUEST_ID_COLUMN, measurementRequest.getRequestID());
         values.put(SQLiteHelper.GENDER_COLUMN, measurementRequest.getGender().name());
         values.put(SQLiteHelper.PROCESSED_COLUMN, Boolean.toString(measurementRequest.isProcessed()));
         values.put(SQLiteHelper.LAST_UPDATE_COLUMN, dateFormat.format(
                 measurementRequest.getLastRequest().getTime()));
+        values.put(SQLiteHelper.NO_OF_REQUESTS_COLUMN,measurementRequest.getNoOfRequests());
 
         long insertId = database.insert(SQLiteHelper.TABLE_NAME, null, values);
 
         if (insertId == -1){
+            Log.e(LOG_TAG, "Could not add record");
             return false;
         }
 
+        Log.v(LOG_TAG, "Measurement Added with ID: " + insertId);
         measurementRequest.setId(insertId);
         return true;
 
@@ -122,10 +128,12 @@ public class DataSource {
                 allColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
+        if (cursor.getCount() <= 0){ // Return null if no resulting query
+            return null;
+        }
+
         while (!cursor.isAfterLast()) {
             MeasurementRequest measurementRequest = cursorToMeasurementRequest(cursor);
-            MeasurementRequests.add(measurementRequest);
-            cursor.moveToNext();
         }
 
         cursor.close();
@@ -143,6 +151,11 @@ public class DataSource {
                 allColumns, SQLiteHelper.PROCESSED_COLUMN +"="+Boolean.toString(false) , null, null, null, null);
 
         cursor.moveToFirst();
+
+        if (cursor.getCount() <= 0){ // Return null if no resulting query
+            return null;
+        }
+
         while (!cursor.isAfterLast()) {
             MeasurementRequest measurementRequest = cursorToMeasurementRequest(cursor);
             MeasurementRequests.add(measurementRequest);
@@ -151,6 +164,32 @@ public class DataSource {
 
         cursor.close();
         return MeasurementRequests;
+    }
+
+    /**
+     * Returns the processed latest measurement request
+     * @return latest processed measurement request, null if none exist
+     */
+    public MeasurementRequest getLatestProcessedMeasurementRequests() {
+        List<MeasurementRequest> MeasurementRequests = new ArrayList<MeasurementRequest>();
+
+        Cursor cursor = database.query(SQLiteHelper.TABLE_NAME,
+                allColumns, SQLiteHelper.PROCESSED_COLUMN +"="+"\'"+Boolean.toString(true)+"\'" , null, null,
+                null, null);
+
+        Log.v(LOG_TAG, "Processed MRs : " + cursor.getCount());
+
+        cursor.moveToFirst();
+
+        if (cursor.getCount() <= 0){ // Return null if no resulting query
+            return null;
+        }
+
+        MeasurementRequest measurementRequest = cursorToMeasurementRequest(cursor);
+        cursor.close();
+
+        return measurementRequest;
+
     }
 
     /**
@@ -174,6 +213,7 @@ public class DataSource {
         values.put(SQLiteHelper.PROCESSED_COLUMN, Boolean.toString(measurementRequest.isProcessed()));
         values.put(SQLiteHelper.LAST_UPDATE_COLUMN, dateFormat.format(
                 measurementRequest.getLastRequest().getTime()));
+        values.put(SQLiteHelper.NO_OF_REQUESTS_COLUMN, measurementRequest.getNoOfRequests());
 
         if (measurementRequest.getMeasurements() != null){
 
@@ -209,6 +249,7 @@ public class DataSource {
                cursor.getString(cursor.getColumnIndex(SQLiteHelper.GENDER_COLUMN)).toUpperCase(Locale.US));
         String lastUpdateString = cursor.getString(cursor.getColumnIndex(SQLiteHelper.LAST_UPDATE_COLUMN));
         String processed = cursor.getString(cursor.getColumnIndex(SQLiteHelper.PROCESSED_COLUMN));
+        int noOfRequest = cursor.getInt(cursor.getColumnIndex(SQLiteHelper.NO_OF_REQUESTS_COLUMN));
 
         MeasurementRequest measurementRequest = new MeasurementRequest(requestId,gender);
 
@@ -222,11 +263,11 @@ public class DataSource {
         measurementRequest.setId(id);
         measurementRequest.setLastRequest(lastUpdate);
         measurementRequest.setProcessed(Boolean.parseBoolean(processed));
+        measurementRequest.setNoOfRequests(noOfRequest);
 
         /*
         Getting the Measurements if measurement exists
-         */
-
+        */
         if (!cursor.isNull(cursor.getColumnIndex(SQLiteHelper.HEIGHT_COLUMN))) {
 
             String height = cursor.getString(cursor.getColumnIndex(SQLiteHelper.HEIGHT_COLUMN));

@@ -10,6 +10,7 @@
     <string name="inside_leg">Inside Leg</string>
     <string name="your_measurements">Your Measurements</string>
 
+    <!-- Preferences Strings -->
     <string name="incognito_mode">Incognito Mode</string>
     <string name="incognito_mode_summary">No measurements will be saved on this device!</string>
     <string name="measurement_units">Measurement Units</string>
@@ -17,14 +18,16 @@
     <string name="measurement_units_summary">Change the units of measurement</string>
     <string name="measurement_history">Measurement History</string>
     <string name="measurement_history_summary">Manage your measurement History</string>
+    <string name="set_server_name">[DEBUG] Set server name</string>
+
     <string name="download_app_message">Please download the QR Scanner app.</string>
+    <string name="no_measurements_help">No measurements to display   :(</string>
+
     <string-array
         name="measurement_units_choices">
         <item>Default</item>
         <item>Centimeters</item>
         <item>Inches</item>
-        <item>SI</item>
-        <item>Imperial</item>
     </string-array>
 
     <string-array
@@ -32,8 +35,9 @@
         <item>default</item>
         <item>cm</item>
         <item>inch</item>
-        <item>si</item>
-        <item>imperial</item>
     </string-array>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -71,7 +71,7 @@ public class ServerConnect  {
                 MeasurementRequest mr = (MeasurementRequest) params[0];
                 ServerConnectCallback callback = (ServerConnectCallback) params[1];
 
-                Measurement m = getMeasurementsFromServer (mr);
+                Measurement m = getMeasurementsFromServer (mr.getRequestID());
 
                 if (m != null){
                     measurementRequest.setProcessed(true);
@@ -90,10 +90,10 @@ public class ServerConnect  {
     /**
      * Gets the measurements from the server.
      * If none exist/not processed by server yet then it returns null.
-     * @param measurementRequest The Measurement request containing the requestID
+     * @param requestId The request id of the scan to send to server
      * @return returns the measurement
      */
-    public Measurement getMeasurementsFromServer(MeasurementRequest measurementRequest){
+    public Measurement getMeasurementsFromServer(String requestId){
 
         Measurement measurement = null;
 
@@ -102,7 +102,7 @@ public class ServerConnect  {
 
         try {
 
-            String url = checkURL + measurementRequest.getRequestID();
+            String url = checkURL + requestId;
             Log.v(LOG_TAG, url);
             response = client.execute(new HttpGet(url));
 

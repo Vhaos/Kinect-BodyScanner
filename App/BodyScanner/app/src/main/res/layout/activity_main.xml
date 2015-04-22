@@ -1,148 +1,15 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id = "@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
+    tools:context=".MyMeasurementActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-
-            <TextView
-                android:id = "@+id/measurements_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="25dp"
-                android:layout_marginBottom="10dp"
-                android:text = "@string/your_measurements"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/measurements_title"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id = "@+id/silhouette"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="10dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_weight="1.5"
-                    android:src = "@drawable/app_silhouette"/>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="10dp"
-                    android:id="@+id/measurements_container">
-
-                    <TextView
-                        android:id = "@+id/height_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text = "@string/height"
-                        android:textSize="@dimen/measurement_title_text_size"
-                        android:textColor="@color/height_color"/>
-
-                    <TextView
-                        android:id = "@+id/height_value_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/height_text"
-                        android:textSize="@dimen/measurement_value_text_size"
-                        android:layout_marginBottom="@dimen/measurement_text_bottom_margin"
-                        android:text = "5 Feet 11 Inch" />
-
-                    <TextView
-                        android:id = "@+id/chest_bust_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text = "@string/chest"
-                        android:layout_below="@id/height_value_text"
-                        android:textSize="@dimen/measurement_title_text_size"
-                        android:textColor="@color/chest_bust_color"/>
-
-                    <TextView
-                        android:id = "@+id/chest_bust_value_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/chest_bust_text"
-                        android:textSize="@dimen/measurement_value_text_size"
-                        android:layout_marginBottom="@dimen/measurement_text_bottom_margin"
-                        android:text = "80 cm"/>
-
-                    <TextView
-                        android:id = "@+id/waist_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text = "@string/waist"
-                        android:layout_below="@id/chest_bust_value_text"
-                        android:textSize="@dimen/measurement_title_text_size"
-                        android:textColor="@color/waist_color"/>
-
-
-                    <TextView
-                        android:id = "@+id/waist_value_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/waist_text"
-                        android:textSize="@dimen/measurement_value_text_size"
-                        android:layout_marginBottom="@dimen/measurement_text_bottom_margin"
-                        android:text = "93cm"/>
-
-                    <TextView
-                        android:id = "@+id/hip_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text = "@string/hip"
-                        android:layout_below="@id/waist_value_text"
-                        android:textSize="@dimen/measurement_title_text_size"
-                        android:textColor="@color/hip_color"/>
-
-                    <TextView
-                        android:id = "@+id/hip_value_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/hip_text"
-                        android:textSize="@dimen/measurement_value_text_size"
-                        android:layout_marginBottom="@dimen/measurement_text_bottom_margin"
-                        android:text = "85cm"/>
-
-                    <TextView
-                        android:id = "@+id/inside_leg_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text = "@string/inside_leg"
-                        android:layout_below="@id/hip_value_text"
-                        android:textSize="@dimen/measurement_title_text_size"
-                        android:textColor="@color/inside_leg_color"/>
-
-                    <TextView
-                        android:id = "@+id/inside_leg_value_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/inside_leg_text"
-                        android:textSize="@dimen/measurement_value_text_size"
-                        android:layout_marginBottom="@dimen/measurement_text_bottom_margin"
-                        android:text = "78 cm"/>
-
-
-                </RelativeLayout>
-
-            </LinearLayout>
-        </RelativeLayout>
-    </ScrollView>
     <com.melnykov.fab.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -153,5 +20,13 @@
         android:src="@drawable/ic_qr_scanner_icon"
         fab:fab_colorNormal="@color/brand_color"
         fab:fab_colorPressed="@color/brand_color_dark"
+        />
+
+    <TextView
+        android:id="@+id/no_measurement_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/no_measurements_help"
         />
 </FrameLayout>

@@ -22,4 +22,9 @@
         android:summary="@string/measurement_history_summary"
         />
 
+    <EditTextPreference
+        android:key="server_name_ip"
+        android:title = "@string/set_server_name"
+        />
+
 </PreferenceScreen>
