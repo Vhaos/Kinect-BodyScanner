@@ -28,14 +28,14 @@ namespace BodyScanner
 
         String measurementRequestID;
 
-        public ResultWindow(String id)
+        public ResultWindow(String id, GenderWindow.GenderType gender)
         {
             InitializeComponent();
             this.measurementRequestID = id;
 
            QREncoder qr_encoder = new QREncoder(QREncoder.QR_Quality.Low);
 
-           BitmapImage imageSource = qr_encoder.getQRCodeBitmapImage(measurementRequestID);
+           BitmapImage imageSource = qr_encoder.getQRCodeBitmapImage(measurementRequestID + ";" + Enum.GetName(typeof(GenderWindow.GenderType), gender));
  
            bitmap_qr_code.Source = imageSource;
         }

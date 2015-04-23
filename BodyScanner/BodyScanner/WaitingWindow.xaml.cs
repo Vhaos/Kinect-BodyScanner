@@ -57,7 +57,7 @@ namespace BodyScanner
                 MessageBox.Show(e.Error.Message);
             }
 
-            ResultWindow rw = new ResultWindow(e.Result.ToString());
+            ResultWindow rw = new ResultWindow(e.Result.ToString(), gender_type);
             rw.Show();
             this.Hide();
 
