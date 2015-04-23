@@ -90,7 +90,7 @@
           <card-content>
         <p>We also decided to test the ScanMeasure software on 3D data obtained from outside our developed system. By using the Kinect Fusion application from the SDK, which constructs a 3-dimensional mesh based on averaging scans from multiple perspectives. The result was a high-quality scan, capturing far more details than our point-cloud representations; however, such details arrive at the cost of time and memory.<br><br>
 
-          The Fusion mesh not only requires far longer to successfully average and produce an accurate and consistent model, but it also produces unwieldy amounts of data that would be less fitting for our purposes for the following reasons:
+          The Fusion mesh not only requires far longer to successfully average and produce its high level-of-detail model, but it also produces unwieldy amounts of data that would be less fitting for our purposes for the following reasons:
           <ul>
           <li>1) We have intended for the point cloud to be transfered and processed remotely, making a mesh of size >20mb inappropriate for large scale operation.</li>
             <li>2) The ScanMeasure software was developed to work on the point cloud representations we are providing. Attempts to apply it to a large mesh have proven unsuccessful, giving rise to complications with speed and memory capacity.</li>
