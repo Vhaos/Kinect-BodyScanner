@@ -56,7 +56,7 @@ namespace BodyScanner
         public void processPointCloudFile(String requestId, GenderWindow.GenderType gender)
         {
 
-            String genderArgument = (gender == GenderWindow.GenderType.Male) ? "M" : "F";
+            String genderArgument = (gender == GenderWindow.GenderType.Male) ? "m" : "f";
 
             WebRequest webRequest = WebRequest.Create(PROCESS_POINTCLOUD_URL + "/" + requestId + "/" + genderArgument);
             webRequest.Method = "GET";

@@ -2,6 +2,8 @@ package ucl.group18.bodyscanner.cloudconnection;
 
 import android.app.AlarmManager;
 import android.app.IntentService;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -96,23 +98,28 @@ public class MeasurementPollService extends IntentService implements ServerConne
 
     private void notifyUser(MeasurementRequest measurementRequest){
 
-        NotificationCompat.Builder mBuilder =
-                        new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_qr_scanner_icon)
-                        .setContentTitle("Your Measurements are Ready!");
-
-
         Intent resultIntent = new Intent(this, MyMeasurementActivity.class);
         resultIntent.putExtra("measurementRequest", measurementRequest);
-        // Because clicking the notification opens a new ("special") activity, there's
-        // no need to create an artificial back stack.
         PendingIntent resultPendingIntent =
                 PendingIntent.getActivity(
                         this,
                         0,
                         resultIntent,
-                        PendingIntent.FLAG_UPDATE_CURRENT
+                        PendingIntent.FLAG_CANCEL_CURRENT
                 );
+
+
+        NotificationCompat.Builder mBuilder =
+                        new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_qr_scanner_icon)
+                        .setContentTitle("Your Measurements are Ready!")
+                        .setContentIntent(resultPendingIntent);
+
+        Notification notification = mBuilder.build();
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0, notification);
 
     }
 
