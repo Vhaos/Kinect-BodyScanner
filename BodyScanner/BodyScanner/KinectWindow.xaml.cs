@@ -214,6 +214,7 @@ namespace BodyScanner
 
         private void updateDisplayedBitmap(BodyIndexFrame bif)
         {
+            this.help_text.Text = (string)Application.Current.FindResource("BODY_NOT_ALIGNED_HELP");
             using (Microsoft.Kinect.KinectBuffer bodyIndexBuffer = bif.LockImageBuffer())
             {
                 //Verify if the frame is of right size - not sure why but recommended in tutorials

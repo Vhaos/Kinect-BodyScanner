@@ -59,8 +59,12 @@ namespace BodyScanner
             }
         }
 
-        public void startScanning(){
+        public void startScanning()
+        {
             kinectSensor.Open();
+
+            Log.Write("ID: "+ kinectSensor.UniqueKinectId);
+            Log.Write(kinectSensor.IsAvailable);
         }
 
         public void stopScanning()
