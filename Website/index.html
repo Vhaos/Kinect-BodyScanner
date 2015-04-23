@@ -42,15 +42,44 @@
         <img src="img/Kinect%202.png">
       </card-banner>
 
+      <card-banner>
+        <h1>Feature List</h1>
+      </card-banner>
 
-      <card-people>
-        <p> We are a group of UCL students working on a low-cost, effective and easy to use application involving the Kinect 2.0. As a part of our COMP2013/14 module, and in conjunction with Dr. Tony Ruto (UCL), we have developed software that can measure the body for a variety of applications.
-        </p>
-      </card-people>
+      <card-content style="width: 85%; padding: 20px 0;">
+        <div layout horizontal justified>
+          <div style="margin: 10px 20px;" flex>
+            <h2 style="text-align: center; min-height: 50px;">Measuring</h2>
+            <p>Utilising the Kinect 2.0, in conjunction with Dr. Tony Ruto's ScanMeasure software, we have developed a solution for bridging the gap between affordability and accurate body scanning.</p>
+          </div>
+          <div style="margin: 10px 20px;" flex>
+            <h2 style="text-align: center; min-height: 50px;">Android Companion App</h2>
+            <p>Giving users control of their data was a key aim for our project. By placing a user's measurements right in the palm of their hand, they can feel secure about their privacy and more able to put the results to good use.</p>
+          </div>
+          <div style="margin: 10px 20px;" flex>
+            <h2 style="text-align: center; min-height: 50px;">Remote Execution</h2>
+            <p>By running the ScanMeasure software remotely, we are able to free users from waiting times and uncertainty. Users can appraoch and be scanned, all within seconds, before continuing about their day while the processing is done remotely. Results are sent straight to the companion app once ready.</p>
+          </div>
+        </div>
+      </card-content>
+
+      <card-content style="width: 85%; padding: 20px 0;">
+        <div layout horizontal justified>
+          <div style="margin: 10px 20px;" flex>
+            <h2 style="text-align: center; min-height: 50px;">Body Pose Detection</h2>
+            <p>By combining the simple building blocks delivered by the Kinect SDK, we have produced a body pose tracker to ease the scanning process and facilitate user interaction. Users are provided feedback about their current pose, urging them to move closer or further away as needed.</p>
+          </div>
+          <div style="margin: 10px 20px;" flex>
+            <h2 style="text-align: center; min-height: 50px;">Point Cloud Generation</h2>
+            <p>As a part of our process, user's scans are stored as point cloud representations containing 3-dimensional data for use with ScanMeasure later on. Our PointCloud datastructure has options for PLY, XYZ and VRML output with ther latter being chosen for our purposes. Though unnecessary for producing measurements, there is also the option of capturing colour information for other applications.</p>
+          </div>
+          <div style="margin: 10px 20px;" flex>
+            <h2 style="text-align: center; min-height: 50px;">Future</h2>
+            <p>The applications of cost-effective body scanning are vast, with just a small subset of its reachings being in media, medicine and apparrel. We have aimed to deliver an extensible API with the potential to outgrow its humble roots.</p>
+          </div>
+        </div>
+      </card-content>
     </main>
-    <footer>
-      <!--<common-links select='0'></common-links>-->
-    </footer>
   </core-header-panel>
 </body>
 
