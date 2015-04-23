@@ -57,8 +57,15 @@ footer  {
   bottom: 0;
 }
 
-@media (max-height: 800px) {
-  common-links-bottom {
-    background-color: red;
+@media screen and (max-width: 1000px) {
+  #features-horizontal {
+    display: none;
   }
 }
+@media screen and (min-width: 1000px) {
+  #features-vertical {
+    display: none;
+  }
+}
+
+
