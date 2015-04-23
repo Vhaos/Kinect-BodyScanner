@@ -7,7 +7,7 @@
 
 class ProcessPCController extends AbstractController
 {
-	protected $read_dir = "C:\\xampp\htdocs\phpresttest\scans";
+	protected $read_dir = "C:\\xampp\htdocs\Server\scans";
 
 	protected $write_dir = "scans\\";
 	
