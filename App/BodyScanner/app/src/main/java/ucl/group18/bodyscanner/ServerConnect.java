@@ -1,6 +1,8 @@
 package ucl.group18.bodyscanner;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -42,9 +44,7 @@ public class ServerConnect  {
         public void getMeasurementCallback(MeasurementRequest measurementRequest);
     }
 
-    private String ip_name = "shubhampc";
 
-    public String checkURL = "http://" + ip_name + "/server/check/"; // + request_Id
 
     public String negativeResult = "OK, Scan not yet finished";
     //5531bd226edd8 - unfinished
@@ -102,6 +102,10 @@ public class ServerConnect  {
 
         try {
 
+            String ip_name = new SharedPrefsHandler(context).getServerName();
+
+            String checkURL = "http://" + ip_name + "/server/check/"; // + request_Id
+
             String url = checkURL + requestId;
             Log.v(LOG_TAG, url);
             response = client.execute(new HttpGet(url));
@@ -142,6 +146,13 @@ public class ServerConnect  {
 
         return measurement;
 
+    }
+
+    public static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     /**

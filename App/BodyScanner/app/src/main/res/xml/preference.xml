@@ -17,10 +17,13 @@
         android:defaultValue="@string/measurement_units_default"
         />
 
-    <Preference
+    <PreferenceScreen
         android:title = "@string/measurement_history"
-        android:summary="@string/measurement_history_summary"
-        />
+        android:summary="@string/measurement_history_summary">
+        <intent
+            android:targetPackage="ucl.group18.bodyscanner"
+            android:targetClass="ucl.group18.bodyscanner.MeasurementHistoryActivity"/>
+    </PreferenceScreen  >
 
     <EditTextPreference
         android:key="server_name_ip"

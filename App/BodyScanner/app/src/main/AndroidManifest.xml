@@ -2,16 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ucl.group18.bodyscanner" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
-
         <activity
             android:name=".MyMeasurementActivity"
             android:label="@string/app_name" >
@@ -21,9 +19,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".SettingsActivity"></activity>
-
+        <activity android:name=".SettingsActivity" />
+        <activity
+            android:name=".MeasurementHistoryActivity"
+            android:label="@string/title_activity_measurement_history" >
+        </activity>
+        <service android:name=".MeasurementPollService"
+            android:label="@string/app_name" android:enabled="true"/>
     </application>
 
 </manifest>

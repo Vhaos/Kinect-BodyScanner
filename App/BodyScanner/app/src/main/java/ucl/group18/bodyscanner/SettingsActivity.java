@@ -1,5 +1,6 @@
 package ucl.group18.bodyscanner;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
@@ -55,6 +56,11 @@ public class SettingsActivity extends PreferenceActivity {
         });
     }
 
+    public void onHistoryClick (View view){
+
+        Intent intent = new Intent();
+
+    }
 
 
 }

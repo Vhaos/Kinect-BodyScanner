@@ -18,6 +18,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.melnykov.fab.FloatingActionButton;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -30,9 +32,12 @@ import ucl.group18.bodyscanner.model.MeasurementRequest;
 public class MyMeasurementActivity extends ActionBarActivity implements MeasurementFragment.OnFragmentInteractionListener {
 
     private static final String LOG_TAG = "MainActivity";
+    public static final String INTENT_EXTRA_ID = "measurementRequest";
 
+    boolean calledFromAnotherActivity = false;
     FrameLayout rootView;
     TextView no_measurements;
+    FloatingActionButton fab;
     DataSource ds;
 
     @Override
@@ -43,13 +48,13 @@ public class MyMeasurementActivity extends ActionBarActivity implements Measurem
         Log.v(LOG_TAG, "My Measurement Activity Started");
 
         ds = new DataSource(getApplicationContext());
-        ds.open();
 
 
         //Adding Fake Measurement Request
         MeasurementRequest mr1 = new MeasurementRequest("23io2i3ng2", MeasurementRequest.Gender.MALE);
         mr1.setProcessed(true);
         mr1.setLastRequest(Calendar.getInstance());
+        mr1.setFirstCreated(Calendar.getInstance());
         Measurement measurement = new Measurement();
         measurement.setMeasurements(178.4,85.3,84.2,86.5,120.3);
         mr1.setMeasurement(measurement);
@@ -57,28 +62,36 @@ public class MyMeasurementActivity extends ActionBarActivity implements Measurem
         ds.addMeasurementRequest(mr1);
         ds.updateMeasurementRequest(mr1);
 
-        //List<MeasurementRequest> lmr = ds.getAllMeasurementRequests();
-        //Log.v(LOG_TAG, String.valueOf(lmr.size()));
-
         rootView = (FrameLayout) findViewById(R.id.root_view);
         no_measurements = (TextView)findViewById(R.id.no_measurement_text);
+        fab = (FloatingActionButton)findViewById(R.id.fab);
 
+        MeasurementRequest mr;
 
+        if (getIntent().getParcelableExtra(INTENT_EXTRA_ID) == null){
+            //App just launched
+            calledFromAnotherActivity = false;
+            fab.setVisibility(View.VISIBLE);
+            mr = ds.getLatestProcessedMeasurementRequests();
+        }else{
 
-        if (getIntent().getParcelableExtra("measurementRequest") == null){
-            MeasurementRequest mr = ds.getLatestProcessedMeasurementRequests();
-            if (mr != null){
-                no_measurements.setVisibility(View.GONE);
-
-                Fragment newFragment = MeasurementFragment.newInstance(mr.getMeasurements());
-                FragmentTransaction ft =  getSupportFragmentManager().beginTransaction();
-                ft.add(R.id.root_view, newFragment).commit();
-
-            }else{
-                no_measurements.setVisibility(View.VISIBLE);
-            }
-
+            //Activity called from somewhere else
+            calledFromAnotherActivity = true;
+            fab.setVisibility(View.GONE);
+            mr = (MeasurementRequest)getIntent().getParcelableExtra(INTENT_EXTRA_ID);
         }
+
+        if (mr != null){
+            no_measurements.setVisibility(View.GONE); // hide the no measurement to display message
+            Fragment newFragment = MeasurementFragment.newInstance(mr.getMeasurements());
+            FragmentTransaction ft =  getSupportFragmentManager().beginTransaction();
+            ft.add(R.id.root_view, newFragment).commit();
+
+        }else{
+            no_measurements.setVisibility(View.VISIBLE);
+        }
+
+
 
     }
 
@@ -86,7 +99,10 @@ public class MyMeasurementActivity extends ActionBarActivity implements Measurem
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        if (!calledFromAnotherActivity){
+            getMenuInflater().inflate(R.menu.menu_main, menu);
+        }
         return true;
     }
 
@@ -108,16 +124,15 @@ public class MyMeasurementActivity extends ActionBarActivity implements Measurem
     }
     public void fabPressed(View view){
 
-        Log.e(LOG_TAG, "Fab FUCKING pressed");
+        Log.e(LOG_TAG, "Launching BarCodeScanner");
 
-        //launchBarCodeScanner();
+        launchBarCodeScanner();
 
     }
 
     @Override
     protected void onDestroy(){
         super.onDestroy();
-        ds.close();
     }
 
     private void launchBarCodeScanner() {
@@ -147,6 +162,32 @@ public class MyMeasurementActivity extends ActionBarActivity implements Measurem
             if (resultCode == RESULT_OK) {
                 String qr_text = data.getStringExtra("SCAN_RESULT"); //this is the result
                 Toast.makeText(this, qr_text,Toast.LENGTH_LONG).show();
+
+                String[] measurementRequestInfo = qr_text.split(";");
+
+                if (measurementRequestInfo.length != 2){ // something went wrong
+                    Toast.makeText(this, getString(R.string.problem_scanning),
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                MeasurementRequest mr = new MeasurementRequest(measurementRequestInfo[0],
+                        measurementRequestInfo[1].equals("Male") ?
+                                MeasurementRequest.Gender.MALE :
+                                MeasurementRequest.Gender.FEMALE);
+
+
+                mr.setNoOfRequests(0);
+                mr.setLastRequest(Calendar.getInstance());
+                mr.setFirstCreated(Calendar.getInstance());
+                ds.addMeasurementRequest(mr);
+
+                if (ServerConnect.isNetworkAvailable(this)){
+                    Intent serviceIntent = new Intent(this, MeasurementPollService.class);
+                    startService(serviceIntent);
+                }
+
+
             }
         }
     }

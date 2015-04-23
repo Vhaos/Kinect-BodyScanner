@@ -10,11 +10,14 @@ import java.util.Calendar;
  * Class for a measurement request to the server
  * Has parity with a measurement request record in the MeasurementRequests Database.
  * Holds information on:
- * 1. Database Unique ID
- * 2. server request ID
- * 3. if scan processed by server
- * 4. time of last request to the server
- * 5. Measurements (if scan is processed)
+ * - Database Unique ID
+ * - server request ID
+ * - if scan processed by server
+ * - time of creation of the request
+ * - time of last request to the server
+ * - Gender
+ * - No of times this request has been made to the server
+ * - Measurements (if scan is processed)
  *
  * Created by Shubham on 12/04/2015.
  */
@@ -27,6 +30,7 @@ public class MeasurementRequest implements Parcelable {
     String requestID;
     boolean processed = false;
     Calendar lastRequest;
+    Calendar firstCreated;
     Measurement measurement = null;
     Gender gender;
     int noOfRequests;
@@ -60,6 +64,10 @@ public class MeasurementRequest implements Parcelable {
         return lastRequest;
     }
 
+    public Calendar getFirstCreated() {
+        return firstCreated;
+    }
+
     public Gender getGender() {
         return gender;
     }
@@ -68,11 +76,27 @@ public class MeasurementRequest implements Parcelable {
         this.lastRequest = lastRequest;
     }
 
+    public void setFirstCreated(Calendar firstCreated) {
+        this.firstCreated = firstCreated;
+    }
+
     public void setMeasurement(Measurement measurement) {this.measurement = measurement;}
 
     public void setNoOfRequests(int noOfRequests) {this.noOfRequests = noOfRequests;}
 
     public int getNoOfRequests() {return noOfRequests;}
+
+    public MeasurementRequest shallowCopy(){
+
+        MeasurementRequest measurementRequestCopy = new MeasurementRequest(requestID,gender);
+        measurementRequestCopy.setLastRequest(getLastRequest());
+        measurementRequestCopy.setNoOfRequests(getNoOfRequests());
+        measurementRequestCopy.setProcessed(isProcessed());
+        measurementRequestCopy.setId(getId());
+        measurementRequestCopy.setMeasurement(getMeasurements());
+
+        return measurementRequestCopy;
+    }
 
     /*
     Methods and Constructor for Parcelable interface

@@ -34,6 +34,7 @@ public class DataSource {
                                     SQLiteHelper.GENDER_COLUMN,
                                     SQLiteHelper.PROCESSED_COLUMN,
                                     SQLiteHelper.LAST_UPDATE_COLUMN,
+                                    SQLiteHelper.FIRST_CREATED_COLUMN,
                                     SQLiteHelper.NO_OF_REQUESTS_COLUMN,
                                     SQLiteHelper.HEIGHT_COLUMN,
                                     SQLiteHelper.HIP_COLUMN,
@@ -57,14 +58,14 @@ public class DataSource {
      * Remember to close the database after accessing
      * @throws SQLException
      */
-    public void open() throws SQLException {
+    private void open() throws SQLException {
         database = dbHelper.getWritableDatabase();
     }
 
     /**
      * Closes the Database
      */
-    public void close() {
+    private void close() {
         dbHelper.close();
     }
 
@@ -76,13 +77,15 @@ public class DataSource {
     public boolean addMeasurementRequest(MeasurementRequest measurementRequest) {
 
         Log.v(LOG_TAG, "Adding Measurement");
-
+        open();
         ContentValues values = new ContentValues();
         values.put(SQLiteHelper.REQUEST_ID_COLUMN, measurementRequest.getRequestID());
         values.put(SQLiteHelper.GENDER_COLUMN, measurementRequest.getGender().name());
         values.put(SQLiteHelper.PROCESSED_COLUMN, Boolean.toString(measurementRequest.isProcessed()));
         values.put(SQLiteHelper.LAST_UPDATE_COLUMN, dateFormat.format(
                 measurementRequest.getLastRequest().getTime()));
+        values.put(SQLiteHelper.FIRST_CREATED_COLUMN, dateFormat.format(
+                measurementRequest.getFirstCreated().getTime()));
         values.put(SQLiteHelper.NO_OF_REQUESTS_COLUMN,measurementRequest.getNoOfRequests());
 
         long insertId = database.insert(SQLiteHelper.TABLE_NAME, null, values);
@@ -94,6 +97,7 @@ public class DataSource {
 
         Log.v(LOG_TAG, "Measurement Added with ID: " + insertId);
         measurementRequest.setId(insertId);
+        close();
         return true;
 
     }
@@ -105,7 +109,16 @@ public class DataSource {
      */
     public void deleteMeasurementRequest(MeasurementRequest measurementRequest) {
         long id = measurementRequest.getId();
+        deleteMeasurementRequest(id);
 
+    }
+
+    /**
+     * Deletes a Measurement Request Record
+     * @param id  The MeasurementRequest to be deleted
+     */
+    public void deleteMeasurementRequest(long id) {
+        open();
         int affectedRows = database.delete(SQLiteHelper.TABLE_NAME, SQLiteHelper.ID_COLUMN + " = " + id, null);
 
         if (affectedRows > 0){
@@ -113,7 +126,7 @@ public class DataSource {
         }else{
             Log.e(LOG_TAG, "Attempt to delete (ID:  " + id + ") FAILED, Nothing deleted");
         }
-
+        close();
 
     }
 
@@ -122,22 +135,29 @@ public class DataSource {
      * @return List of MeasurementRequests
      */
     public List<MeasurementRequest> getAllMeasurementRequests() {
-        List<MeasurementRequest> MeasurementRequests = new ArrayList<MeasurementRequest>();
+        open();
+        Log.v(LOG_TAG, "Getting All Measurements");
+        List<MeasurementRequest> measurementRequests = new ArrayList<MeasurementRequest>();
 
         Cursor cursor = database.query(SQLiteHelper.TABLE_NAME,
                 allColumns, null, null, null, null, null);
+        Log.v(LOG_TAG, "Queried");
 
         cursor.moveToFirst();
+
         if (cursor.getCount() <= 0){ // Return null if no resulting query
+            Log.e(LOG_TAG, "Nothing in the Table");
             return null;
         }
-
         while (!cursor.isAfterLast()) {
             MeasurementRequest measurementRequest = cursorToMeasurementRequest(cursor);
+            measurementRequests.add(measurementRequest);
+            cursor.moveToNext();
         }
-
         cursor.close();
-        return MeasurementRequests;
+        close();
+        return measurementRequests;
+
     }
 
     /**
@@ -145,10 +165,11 @@ public class DataSource {
      * @return List of MeasurementRequests
      */
     public List<MeasurementRequest> getAllUnProcessedMeasurementRequests() {
+        open();
         List<MeasurementRequest> MeasurementRequests = new ArrayList<MeasurementRequest>();
 
         Cursor cursor = database.query(SQLiteHelper.TABLE_NAME,
-                allColumns, SQLiteHelper.PROCESSED_COLUMN +"="+Boolean.toString(false) , null, null, null, null);
+                allColumns, SQLiteHelper.PROCESSED_COLUMN +"=?" , new String[]{Boolean.toString(false)}, null, null, null);
 
         cursor.moveToFirst();
 
@@ -163,6 +184,7 @@ public class DataSource {
         }
 
         cursor.close();
+        close();
         return MeasurementRequests;
     }
 
@@ -171,11 +193,12 @@ public class DataSource {
      * @return latest processed measurement request, null if none exist
      */
     public MeasurementRequest getLatestProcessedMeasurementRequests() {
+        open();
         List<MeasurementRequest> MeasurementRequests = new ArrayList<MeasurementRequest>();
 
         Cursor cursor = database.query(SQLiteHelper.TABLE_NAME,
-                allColumns, SQLiteHelper.PROCESSED_COLUMN +"="+"\'"+Boolean.toString(true)+"\'" , null, null,
-                null, null);
+                allColumns, SQLiteHelper.PROCESSED_COLUMN +"=?" , new String[]{Boolean.toString(true)}, null,
+                null, SQLiteHelper.FIRST_CREATED_COLUMN + " DESC", null);
 
         Log.v(LOG_TAG, "Processed MRs : " + cursor.getCount());
 
@@ -187,7 +210,7 @@ public class DataSource {
 
         MeasurementRequest measurementRequest = cursorToMeasurementRequest(cursor);
         cursor.close();
-
+        close();
         return measurementRequest;
 
     }
@@ -198,7 +221,7 @@ public class DataSource {
      * @return false if update failed true otherwise
      */
     public boolean updateMeasurementRequest(MeasurementRequest measurementRequest){
-
+        open();
         long id = measurementRequest.getId();
 
         if (id == -1){
@@ -213,6 +236,8 @@ public class DataSource {
         values.put(SQLiteHelper.PROCESSED_COLUMN, Boolean.toString(measurementRequest.isProcessed()));
         values.put(SQLiteHelper.LAST_UPDATE_COLUMN, dateFormat.format(
                 measurementRequest.getLastRequest().getTime()));
+        values.put(SQLiteHelper.FIRST_CREATED_COLUMN, dateFormat.format(
+                measurementRequest.getFirstCreated().getTime()));
         values.put(SQLiteHelper.NO_OF_REQUESTS_COLUMN, measurementRequest.getNoOfRequests());
 
         if (measurementRequest.getMeasurements() != null){
@@ -232,7 +257,7 @@ public class DataSource {
             Log.e(LOG_TAG, "No rows updated");
             return false;
         }
-
+        close();
         return true;
     }
 
@@ -248,6 +273,7 @@ public class DataSource {
        MeasurementRequest.Gender gender = MeasurementRequest.Gender.valueOf(
                cursor.getString(cursor.getColumnIndex(SQLiteHelper.GENDER_COLUMN)).toUpperCase(Locale.US));
         String lastUpdateString = cursor.getString(cursor.getColumnIndex(SQLiteHelper.LAST_UPDATE_COLUMN));
+        String firstCreatedString = cursor.getString(cursor.getColumnIndex(SQLiteHelper.FIRST_CREATED_COLUMN));
         String processed = cursor.getString(cursor.getColumnIndex(SQLiteHelper.PROCESSED_COLUMN));
         int noOfRequest = cursor.getInt(cursor.getColumnIndex(SQLiteHelper.NO_OF_REQUESTS_COLUMN));
 
@@ -260,8 +286,18 @@ public class DataSource {
             e.printStackTrace();
             Log.e(LOG_TAG,"Couldn't Parse: + " + lastUpdateString);
         }
+
+        Calendar firstCreated = Calendar.getInstance();
+        try {
+            firstCreated.setTime(dateFormat.parse(firstCreatedString));
+        } catch (ParseException e) {
+            e.printStackTrace();
+            Log.e(LOG_TAG,"Couldn't Parse: + " + firstCreatedString);
+        }
+
         measurementRequest.setId(id);
         measurementRequest.setLastRequest(lastUpdate);
+        measurementRequest.setFirstCreated(firstCreated);
         measurementRequest.setProcessed(Boolean.parseBoolean(processed));
         measurementRequest.setNoOfRequests(noOfRequest);
 

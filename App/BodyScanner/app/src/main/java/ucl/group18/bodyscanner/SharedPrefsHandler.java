@@ -31,4 +31,10 @@ public class SharedPrefsHandler {
 
     }
 
+    public String getServerName(){
+
+        return prefs.getString("server_name_ip","localhost");
+
+    }
+
 }

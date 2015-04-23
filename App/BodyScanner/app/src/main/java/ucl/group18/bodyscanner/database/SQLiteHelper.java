@@ -17,6 +17,7 @@ import android.util.Log;
  *  - gender (Text)
  *  - processed (Text) - If the scan has been processed by the server
  *  - last_update (Text) - Last update from the server on the measurement request
+ *  - no_of_requests (Int) - Number of requests made to the server
  *  - height (Text) - in centimeters
  *  - hip (Text) - in centimeters
  *  - chest (Text) - in centimeters
@@ -33,6 +34,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String REQUEST_ID_COLUMN = "request_id";
     public static final String GENDER_COLUMN = "gender";
     public static final String PROCESSED_COLUMN = "processed";
+    public static final String FIRST_CREATED_COLUMN = "first_created";
     public static final String LAST_UPDATE_COLUMN = "last_update";
     public static final String NO_OF_REQUESTS_COLUMN = "no_of_requests";
     public static final String HEIGHT_COLUMN = "height";
@@ -54,6 +56,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             + GENDER_COLUMN + " text not null,"
             + PROCESSED_COLUMN + " text not null,"
             + LAST_UPDATE_COLUMN + " text not null,"
+            + FIRST_CREATED_COLUMN + " text not null,"
             + NO_OF_REQUESTS_COLUMN + " integer not null,"
             + HEIGHT_COLUMN + " text null,"
             + HIP_COLUMN + " text null,"

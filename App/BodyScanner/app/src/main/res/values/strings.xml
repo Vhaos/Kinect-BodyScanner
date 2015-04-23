@@ -23,6 +23,9 @@
     <string name="download_app_message">Please download the QR Scanner app.</string>
     <string name="no_measurements_help">No measurements to display   :(</string>
 
+    <string name="delete">Delete</string>
+
+
     <string-array
         name="measurement_units_choices">
         <item>Default</item>
@@ -39,5 +42,8 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_measurement_history">MeasurementHistoryActivity</string>
+    <string name="no_measurements_stored">No measurements stored</string>
+    <string name="problem_scanning">There was a problem scanning the code.\nPlease try again</string>
 
 </resources>
