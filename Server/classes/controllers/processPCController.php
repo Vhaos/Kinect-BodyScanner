@@ -26,6 +26,10 @@ class ProcessPCController extends AbstractController
         header("Access-Control-Allow-Methods: *");
 
         $id = $request->url_elements[1];
+        if ($id == null) {
+            return "Did not define id in url, please do so and try again";
+        }
+
         $gender = $this->get_gender($request->url_elements[2]);
 
         if($this -> exec_enabled())
@@ -54,13 +58,22 @@ class ProcessPCController extends AbstractController
         header("Access-Control-Allow-Orgin: *");
         header("Access-Control-Allow-Methods: *");
 
-        $id = $request->url_elements[1];
+        if ( ! isset($request->url_elements[1])) {
+           $request->url_elements[1] = null;
+        }
 
+        $id = $request->url_elements[1];
         $ftp_server="localhost"; 
         $ftp_user_name="anonymous"; 
         $ftp_user_pass=""; 
         $file = $request->parameters['file'];  //tobe uploaded 
         $remote_file = $id . '/pointcloud.wrl'; 
+
+        if ($request->url_elements[1] == null) {
+            return "Did not define id in url, please do so and try again";
+        } else if(! isset($request->parameters['file'])) {
+            return "Did not define target file in request body, please do so and try again";
+        }   
 
         // set up basic connection 
         $conn_id = ftp_connect($ftp_server); 
@@ -90,7 +103,7 @@ class ProcessPCController extends AbstractController
     {
     	if($this -> exec_enabled())
     	{
-    		return 'cd C:\Program Files (x86)\Tony Ruto\Home Scanner Tools & start /B ScanMeasureCmd.exe ' .$this->read_dir .'\\'. $id .'\pointcloud.wrl '.$gender;
+    		return 'cd C:\Program Files (x86)\Tony Ruto\Home Scanner Tools & start /B /high ScanMeasureCmd.exe ' .$this->read_dir .'\\'. $id .'\pointcloud.wrl '.$gender;
     	}else{
     		return "exec function not enabled.";
     	} 
@@ -106,10 +119,10 @@ class ProcessPCController extends AbstractController
     	} 
     }
 
-    private function does_file_exist($filename){
+    private function does_file_exist($target_file){
         // Check if file already exists
         if (file_exists($target_file)) {
-            return TRUE;
+            return "true";
             $uploadOk = 0;
         }
     } 
@@ -125,7 +138,9 @@ class ProcessPCController extends AbstractController
     	if($arg == 'M' | $arg == 'm')
     	{
     		return "MKF2";
-    	}elseif ($arg == 'F' | $arg == 'f') {
+    	}
+
+        if ($arg == 'F' | $arg == 'f') {
     		return "MKF1";
     	}
     }
