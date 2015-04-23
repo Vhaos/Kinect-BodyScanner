@@ -1,4 +1,4 @@
-package ucl.group18.bodyscanner;
+package ucl.group18.bodyscanner.cloudconnection;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import ucl.group18.bodyscanner.SharedPrefsHandler;
 import ucl.group18.bodyscanner.model.Measurement;
 import ucl.group18.bodyscanner.model.MeasurementRequest;
 

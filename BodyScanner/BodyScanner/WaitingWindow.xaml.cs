@@ -28,41 +28,58 @@ namespace BodyScanner
     {
         private BackgroundWorker bw = new BackgroundWorker();
         private GenderWindow.GenderType gender_type;
-
+        ServerConnect serverConnect = new ServerConnect();
+        String requestID = null;
         public WaitingWindow(GenderWindow.GenderType gender_type)
         {
             InitializeComponent();
             this.gender_type = gender_type;
-            bw.DoWork += bw_DoWork;
-            bw.RunWorkerCompleted += bw_RunWorkerCompleted;
-            bw.RunWorkerAsync();
+
+            serverConnect.responseCallback += serverConnect_Callback;
+            serverConnect.requestNewID();
         }
 
-        void bw_DoWork(object sender, DoWorkEventArgs e)
+        void serverConnect_Callback(Tasks task, string response)
         {
-            WebRequest webRequest = WebRequest.Create(App.REQUEST_NEW_ID_URL);
-            webRequest.Method = "GET";
-            WebResponse webResp = webRequest.GetResponse();
-            StreamReader sr = new StreamReader(webResp.GetResponseStream());
-            e.Result = sanatizeIDResponse(sr.ReadToEnd());
-            return;
-        }
 
-        private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            Log.Write(e.Result.ToString());
-
-            if (e.Error != null)
+            Log.Write(Log.Tag.INFO, response);
+            
+            
+            
+            switch (task)
             {
-                MessageBox.Show(e.Error.Message);
+                case Tasks.NEWID:
+                    
+                    if (response == null)
+                    {
+                        ErrorWindow ew = new ErrorWindow();
+                        ew.Show();
+                        this.Hide();
+                        return;
+                    }
+                    
+                    requestID = sanatizeIDResponse(response);
+                    ResultWindow rw = new ResultWindow(requestID, gender_type);
+                    rw.Show();
+                    this.Hide();
+                    serverConnect.requestCreateFolder(requestID);
+                    break;
+
+                case Tasks.CREATE_FOLDER:
+                    serverConnect.requestUploadPointCloudFile(requestID, FileManager.getPointCloudPath(PointCloudFormatter.Format.VRML));
+                    break;
+
+                case Tasks.UPLOAD_PC:
+                    serverConnect.processPointCloudFile(requestID,gender_type);
+                    break;
+
+                case Tasks.PROCESS_PC:
+                    Log.Write("Finished");
+                    break;
+
             }
-
-            ResultWindow rw = new ResultWindow(e.Result.ToString(), gender_type);
-            rw.Show();
-            this.Hide();
-
-            //Log.Write(e.Result);
         }
+
 
         private String sanatizeIDResponse(String response)
         {

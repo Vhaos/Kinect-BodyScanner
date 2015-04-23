@@ -88,6 +88,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="QREncoder.cs" />
+    <Compile Include="ServerConnect.cs" />
     <Compile Include="WaitingWindow.xaml.cs">
       <DependentUpon>WaitingWindow.xaml</DependentUpon>
     </Compile>

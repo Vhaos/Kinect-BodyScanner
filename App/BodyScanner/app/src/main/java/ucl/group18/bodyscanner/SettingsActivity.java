@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import ucl.group18.bodyscanner.R;
+
 /**
  * Created by Shubham on 16/03/2015.
  */

@@ -18,7 +18,7 @@ namespace BodyScanner
         public static readonly String GENDER_ARG_MALE = " MKF2";
         public static readonly String GENDER_ARG_FEMALE = " MKF1";
 
-        public static readonly String REQUEST_NEW_ID_URL = "http://localhost/server/newID";
+        
 
     }
 }

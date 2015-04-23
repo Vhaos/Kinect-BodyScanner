@@ -12,8 +12,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import ucl.group18.bodyscanner.MeasurementHistoryAdapter;
+import ucl.group18.bodyscanner.R;
 import ucl.group18.bodyscanner.database.DataSource;
 import ucl.group18.bodyscanner.model.Measurement;
 import ucl.group18.bodyscanner.model.MeasurementRequest;
@@ -38,6 +41,11 @@ public class MeasurementHistoryActivity extends ActionBarActivity implements Vie
         ds = new DataSource(this);
         Log.v(LOG_TAG, "DS Initialised");
         measurementRequestList = ds.getAllMeasurementRequests();
+
+        if (measurementRequestList == null){ //Create empty list if null is returned
+            measurementRequestList = new ArrayList<MeasurementRequest>();
+        }
+
         Log.v(LOG_TAG, "Request List length: " + measurementRequestList.size());
         adapter = new MeasurementHistoryAdapter(this,measurementRequestList);
         recyclerView.setAdapter(adapter);

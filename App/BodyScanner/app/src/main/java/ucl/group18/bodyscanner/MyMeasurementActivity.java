@@ -1,11 +1,7 @@
 package ucl.group18.bodyscanner;
 
-import android.app.job.JobInfo;
-import android.app.job.JobParameters;
-import android.app.job.JobService;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
@@ -21,8 +17,9 @@ import android.widget.Toast;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.util.Calendar;
-import java.util.List;
 
+import ucl.group18.bodyscanner.cloudconnection.MeasurementPollService;
+import ucl.group18.bodyscanner.cloudconnection.ServerConnect;
 import ucl.group18.bodyscanner.database.DataSource;
 import ucl.group18.bodyscanner.fragments.MeasurementFragment;
 import ucl.group18.bodyscanner.model.Measurement;
@@ -48,19 +45,6 @@ public class MyMeasurementActivity extends ActionBarActivity implements Measurem
         Log.v(LOG_TAG, "My Measurement Activity Started");
 
         ds = new DataSource(getApplicationContext());
-
-
-        //Adding Fake Measurement Request
-        MeasurementRequest mr1 = new MeasurementRequest("23io2i3ng2", MeasurementRequest.Gender.MALE);
-        mr1.setProcessed(true);
-        mr1.setLastRequest(Calendar.getInstance());
-        mr1.setFirstCreated(Calendar.getInstance());
-        Measurement measurement = new Measurement();
-        measurement.setMeasurements(178.4,85.3,84.2,86.5,120.3);
-        mr1.setMeasurement(measurement);
-        mr1.setNoOfRequests(2);
-        ds.addMeasurementRequest(mr1);
-        ds.updateMeasurementRequest(mr1);
 
         rootView = (FrameLayout) findViewById(R.id.root_view);
         no_measurements = (TextView)findViewById(R.id.no_measurement_text);
@@ -197,3 +181,16 @@ public class MyMeasurementActivity extends ActionBarActivity implements Measurem
 
     }
 }
+/*
+//Adding Fake Measurement Request
+        MeasurementRequest mr1 = new MeasurementRequest("23io2i3ng2", MeasurementRequest.Gender.MALE);
+        mr1.setProcessed(true);
+        mr1.setLastRequest(Calendar.getInstance());
+        mr1.setFirstCreated(Calendar.getInstance());
+        Measurement measurement = new Measurement();
+        measurement.setMeasurements(178.4,85.3,84.2,86.5,120.3);
+        mr1.setMeasurement(measurement);
+        mr1.setNoOfRequests(2);
+        ds.addMeasurementRequest(mr1);
+        ds.updateMeasurementRequest(mr1);
+ */

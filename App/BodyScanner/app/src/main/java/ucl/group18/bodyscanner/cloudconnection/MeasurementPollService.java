@@ -1,20 +1,19 @@
-package ucl.group18.bodyscanner;
+package ucl.group18.bodyscanner.cloudconnection;
 
 import android.app.AlarmManager;
 import android.app.IntentService;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import java.util.Calendar;
 import java.util.List;
 
+import ucl.group18.bodyscanner.R;
+import ucl.group18.bodyscanner.SharedPrefsHandler;
+import ucl.group18.bodyscanner.MyMeasurementActivity;
 import ucl.group18.bodyscanner.database.DataSource;
 import ucl.group18.bodyscanner.model.MeasurementRequest;
 
@@ -74,7 +73,7 @@ public class MeasurementPollService extends IntentService implements ServerConne
            notifyUser(measurementRequest.shallowCopy());
         }else {
 
-            if (measurementRequest.getNoOfRequests() < 3 && alarmAlreadySet == true){
+            if (measurementRequest.getNoOfRequests() < 3 && alarmAlreadySet == false){
                 Log.v(LOG_TAG, "Setting Alarm in 180 seconds");
                 setAlarm(180);
             }
@@ -122,10 +121,14 @@ public class MeasurementPollService extends IntentService implements ServerConne
      * @param duration - The duration until alarm in seconds
      */
     private void setAlarm(int duration){
+
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.SECOND, duration);
+
         Intent intent = new Intent(MeasurementPollService.this, MeasurementPollService.class);
         PendingIntent pIntent = PendingIntent.getService(MeasurementPollService.this, 0, intent, 0);
         AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        alarm.set(AlarmManager.RTC_WAKEUP, duration*1000, pIntent);
+        alarm.set(AlarmManager.RTC_WAKEUP,  cal.getTimeInMillis(), pIntent);
         alarmAlreadySet = true;
     }
 
