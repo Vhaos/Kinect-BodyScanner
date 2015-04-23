@@ -90,7 +90,7 @@ namespace BodyScanner
                     break;
                 
                 case Format.VRML:
-                    pointFormat = "{0} {1} {2},\n";
+                    pointFormat = "{1} {0} {2},\n";
                     break;
             }
 
