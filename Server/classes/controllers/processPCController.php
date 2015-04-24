@@ -103,7 +103,7 @@ class ProcessPCController extends AbstractController
     {
     	if($this -> exec_enabled())
     	{
-    		return 'cd C:\Program Files (x86)\Tony Ruto\Home Scanner Tools & start /B /high ScanMeasureCmd.exe ' .$this->read_dir .'\\'. $id .'\pointcloud.wrl '.$gender;
+    		return 'cd C:\Program Files (x86)\Tony Ruto\Home Scanner Tools & start /B /realtime SceanMeasureWrapper.exe ' .$this->read_dir .'\\'. $id .'\pointcloud.wrl '.$gender;
     	}else{
     		return "exec function not enabled.";
     	} 

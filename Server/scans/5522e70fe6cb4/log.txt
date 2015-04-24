@@ -1,0 +1,200 @@
+
+Measuring female front scan..
+
+------------ 
+Iteration 1 
+------------ 
+Transforming model...
+Offset: 0.344492,0.0745932,1.21906
+Duration: 35.6572 seconds
+
+RMS: 0
+L2: 0
+L1: 0
+Dur: 35.66 sec 
+Total Dur: 35.66 sec 
+------------ 
+Iteration 2 
+------------ 
+Transforming model...
+Offset: 0.213956,-0.0877865,-0.0122341
+Duration: 8.90078 seconds
+
+RMS: 7.28731
+L2: 43.3205
+L1: 6.51764
+Dur: 8.90 sec 
+Total Dur: 44.56 sec 
+------------ 
+Iteration 3 
+------------ 
+Transforming model...
+Offset: 0.497904,0.00788134,0.369318
+Duration: 30.6712 seconds
+
+RMS: 7.71113
+L2: 62.4075
+L1: 7.19721
+Dur: 30.67 sec 
+Total Dur: 75.23 sec 
+------------ 
+Iteration 4 
+------------ 
+Transforming model...
+Offset: 0.476373,0.0260573,0.255521
+Duration: 31.5348 seconds
+
+RMS: 6.81143
+L2: 40.6665
+L1: 6.19711
+Dur: 31.53 sec 
+Total Dur: 106.76 sec 
+------------ 
+Iteration 5 
+------------ 
+Transforming model...
+Offset: 0.458746,0.0231745,0.219494
+Duration: 31.3517 seconds
+
+RMS: 6.74894
+L2: 40.1981
+L1: 6.13329
+Dur: 31.35 sec 
+Total Dur: 138.12 sec 
+------------ 
+Iteration 6 
+------------ 
+Transforming model...
+Offset: 0.429411,0.0275657,0.186165
+Duration: 31.865 seconds
+
+RMS: 6.71303
+L2: 39.8321
+L1: 6.09358
+Dur: 31.87 sec 
+Total Dur: 169.98 sec 
+------------ 
+Iteration 7 
+------------ 
+Transforming model...
+Offset: 0.380354,0.0219926,0.162093
+Duration: 32.6092 seconds
+
+RMS: 6.68743
+L2: 39.4384
+L1: 6.05214
+Dur: 32.61 sec 
+Total Dur: 202.59 sec 
+------------ 
+Iteration 8 
+------------ 
+Transforming model...
+Offset: 0.337678,0.0221109,0.150443
+Duration: 32.1913 seconds
+
+RMS: 6.6702
+L2: 39.1678
+L1: 6.03295
+Dur: 32.19 sec 
+Total Dur: 234.78 sec 
+------------ 
+Iteration 9 
+------------ 
+Transforming model...
+Offset: 0.312505,0.00539751,0.136587
+Duration: 32.8536 seconds
+
+RMS: 6.65354
+L2: 38.8808
+L1: 6.01036
+Dur: 32.85 sec 
+Total Dur: 267.63 sec 
+------------ 
+Iteration 10 
+------------ 
+Transforming model...
+Offset: 0.304187,0.0186803,0.121389
+Duration: 33.5296 seconds
+
+RMS: 6.64017
+L2: 38.6383
+L1: 5.99327
+Dur: 33.53 sec 
+Total Dur: 301.16 sec 
+------------ 
+Iteration 11 
+------------ 
+Transforming model...
+Offset: 0.287667,0.026908,0.111975
+Duration: 30.6817 seconds
+
+RMS: 6.62412
+L2: 38.3929
+L1: 5.97006
+Dur: 30.68 sec 
+Total Dur: 331.85 sec 
+------------ 
+Iteration 12 
+------------ 
+Transforming model...
+Offset: 0.247352,0.015235,0.100336
+Duration: 23.4403 seconds
+
+RMS: 6.61004
+L2: 38.2635
+L1: 5.96151
+Dur: 23.44 sec 
+Total Dur: 355.29 sec 
+------------ 
+Iteration 13 
+------------ 
+Transforming model...
+Offset: 0.205189,0.00360641,0.0660253
+Duration: 33.1989 seconds
+
+RMS: 6.59946
+L2: 38.0894
+L1: 5.95317
+Dur: 33.20 sec 
+Total Dur: 388.49 sec 
+------------ 
+Iteration 14 
+------------ 
+Transforming model...
+Offset: 0.178882,-0.00647414,0.0804149
+Duration: 35.1213 seconds
+
+RMS: 6.58998
+L2: 37.9533
+L1: 5.94137
+Dur: 35.12 sec 
+Total Dur: 423.61 sec 
+------------ 
+Iteration 15 
+------------ 
+Transforming model...
+Fitting model...
+MahDev: 4.05
+MaxDev: 2.85
+mean euclidean distance: 0
+Offset: 0.162324,-0.0151996,0.072365
+Duration: 65.9264 seconds
+
+RMS: 6.58506
+L2: 37.8222
+L1: 5.93162
+Dur: 65.93 sec 
+Total Dur: 489.53 sec 
+
+- - - - - - - - - - - - - - - - -
+Body Measurements
+- - - - - - - - - - - - - - - - -
+Height 		 179 \ 70
+Bust 		 94 \ 37
+Waist 		 81 \ 32
+Hip 		 105 \ 41
+Inside Leg 	 75 \ 29
+- - - - - - - - - - - - - - - - -
+Duration: 522 sec
+Saving C:\xampp\htdocs\Server\scans\5522e70fe6cb4//pointcloud.xml...
+Saving C:\xampp\htdocs\Server\scans\MSV_Stylesheet.xslt...
