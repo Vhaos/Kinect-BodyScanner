@@ -64,11 +64,11 @@
         var headers = '<content select="h1"></content><content select="h2"></content>';
         if(this.imagePosition == "bottom")
         {
-          contents.innerHTML = headers + contents.innerHTML + '<content select="img"></content>';
+          contents.innerHTML = headers + contents.innerHTML + '<content select="img"></content><br><content select="footer"></content>';
         }
         else
         {
-          contents.innerHTML = headers + '<content select="img"></content>' + contents.innerHTML;
+          contents.innerHTML = headers + '<content select="img"></content>' + contents.innerHTML + '<br><content select="footer"></content>';
         }
       }
     });

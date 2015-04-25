@@ -1,54 +1,77 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <title>Kinect Bodyscanner</title>
-    <!-- Load platform support before anything else -->
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <link rel="icon" type="type/png" href="img/Misc/k-icon.png"/>
-      <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+<head>
+  <title>Kinect Bodyscanner</title>
+  <!-- Load platform support before anything else -->
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <link rel="icon" type="type/png" href="img/Misc/k-icon.png" />
+  <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
 
-      <link rel="stylesheet" href="main.css">
-      <link rel="import" href="bower_components/font-roboto/roboto.html">
-      <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
-      <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
-      <link rel="import" href="elements/card-content.html">
-      <link rel="import" href="elements/card-banner.html">
-      <link rel="import" href="elements/common-links.html">
+  <link rel="stylesheet" href="main.css">
+  <link rel="import" href="bower_components/font-roboto/roboto.html">
+  <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
+  <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
+  <link rel="import" href="elements/card-content.html">
+  <link rel="import" href="elements/card-banner.html">
+  <link rel="import" href="elements/common-links.html">
 
-  </head>
+</head>
 
-  <body unresolved fullbleed layout vertical>
+<body unresolved fullbleed layout vertical>
 
-    <core-header-panel layout vertical>
+  <core-header-panel layout vertical>
 
-      <a name="top"></a>
-          <core-toolbar>
-            <h2><a href="#top">Kinect Bodyscanner</a></h2>
-          </core-toolbar>
-
-
-          <common-links select='11'></common-links>
+    <a name="top"></a>
+    <core-toolbar>
+      <h2><a href="#top">Kinect Bodyscanner</a></h2>
+    </core-toolbar>
 
 
-          <card-banner solid=true>
-            <h1>User Manual</h1>
-          </card-banner>
+    <common-links select='11'></common-links>
 
-          <ul>
-		  <li>Begin by pressing "Start"</li>
-		  <li>The app will attempt to open a connection to the Kinect Sensor, displaying feedback to the user regarding pose and scan distance. 
-			(Note: if the app fails to receive data frames, you will be asked to ensure you that the sensor is connected and working properly)
-		  </li>
-		  <li>After moving closer/further away as needed, and adopting the correct pose, the app will provide a three second countdown before scanning.</li>
-		  <li>The app then stores 3D information as a point-cloud, which it passes to the server for processing.</li>
-		  <li>You will be presented with a custom QR code for you to scan with your android device.</li>
-		  <li>The android app will occasionally check-in with the server to see if your measurements are ready. Once they are, the app will let you know!</li>
-		  <li>Measurements are only stored on your device- letting you check them any time.</li>
-		  </ul>
 
-      </core-header-panel>
+    <card-banner solid=true>
+      <h1>User Manual</h1>
+    </card-banner>
 
-  </body>
+    <card-content>
+      <h2 style="text-decoration: underline; text-align: center; margin-top: 50px; margin-bottom: 35px;">Process Flow</h2>
+      <img style="width: 50%; max-width: 500px; max-height: none; margin: 0 auto;"  src="img/diagrams/SimplifiedSequence.png">
+    </card-content>
+
+    <card-content>
+      <h2>Start</h2>
+      <p>Begin by pressing the "Start" button, as below, and selecting your gender. The system will attempt to open a connection to the Kinect Sensor, displaying feedback regarding pose and scan distance.</p>
+      <img style="min-width: 200px; padding-top: 20px; max-width: 30%; max-height: none; margin: 0 auto;" src="img/manual_pics/start_button.png" alt="START BUTTON">
+    </card-content>
+
+    <card-content>
+      <p>Note: if the app fails to receive data frames, you will be asked to ensure you that the sensor is connected and working properly.</p>
+      <img style="min-width: 200px; margin-top: 10px; border: 1px solid black; max-width: 30%; max-height: none; margin-left: auto; margin-right: auto" src="img/manual_pics/no_frames.png" alt="NO FRAMES DETECTED">
+    </card-content>
+
+    <card-content>
+      <h2>Positioning</h2>
+      <p>After moving closer/further away until you are approx. 2 metres from the sensor, you will be asked to adopt a default standing
+      pose with arms down, relaxed by your sides. Once done, the system will provide a three second countdown before scanning.</p>
+      <b>IMAGE OF GREEN SCAN COUNTDOWN</b>
+    </card-content>
+
+
+    <card-content>
+      <h2>Processing</h2>
+      <p>The system stores your body scan as a point cloud, detailing (X,Y,Z) coordinates for each point scanned. It then passes this to the server for processing. While this is happening, you will be presented with a QR code to scan using our android companion app. It will pair your device with your measurements, delivering them to you once they are ready.</p>
+      <img style="min-width: 200px; padding-top: 20px; max-width: 30%; max-height: none; margin: 0 auto;" src="img/manual_pics/qr.png" alt="QR CODE">
+    </card-content>
+
+    <card-content>
+      <h2>Finished</h2>
+      <p>The app will occasionally check-in with the server to see when things are done. When they are, you'll be notified that your measurements are ready and you can view them in the app. They are only stored on your device, keeping things private and letting you check them whenever suits you!</p>
+      <img style="min-width: 200px; padding-top: 20px; max-width: 30%; max-height: none; margin: 0 auto;" src="img/manual_pics/measurements.png" alt="MEASUREMENTS">
+    </card-content>
+  </core-header-panel>
+
+</body>
 
 </html>
