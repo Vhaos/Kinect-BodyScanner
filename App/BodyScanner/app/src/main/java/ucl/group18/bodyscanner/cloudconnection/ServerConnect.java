@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import ucl.group18.bodyscanner.Logger;
 import ucl.group18.bodyscanner.SharedPrefsHandler;
 import ucl.group18.bodyscanner.model.Measurement;
 import ucl.group18.bodyscanner.model.MeasurementRequest;
@@ -142,6 +143,7 @@ public class ServerConnect  {
 
         } catch (IOException e) {
             e.printStackTrace();
+            new Logger(context).write("Cannot connect to Server");
             return null;
        }
 
@@ -162,7 +164,7 @@ public class ServerConnect  {
      * @return Measurement object with the measurements.
      * @throws NumberFormatException
      */
-    private Measurement parseMeasurements(String measurements) throws NumberFormatException{
+    public Measurement parseMeasurements(String measurements) throws NumberFormatException{
 
         Pattern p = Pattern.compile("\"(.*?)\"");
         Matcher m = p.matcher(measurements);

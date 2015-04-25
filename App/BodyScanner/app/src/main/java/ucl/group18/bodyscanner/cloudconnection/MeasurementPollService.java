@@ -13,6 +13,7 @@ import android.util.Log;
 import java.util.Calendar;
 import java.util.List;
 
+import ucl.group18.bodyscanner.Logger;
 import ucl.group18.bodyscanner.R;
 import ucl.group18.bodyscanner.SharedPrefsHandler;
 import ucl.group18.bodyscanner.MyMeasurementActivity;
@@ -26,6 +27,10 @@ public class MeasurementPollService extends IntentService implements ServerConne
 
     private static final String LOG_TAG = "MeasurementPollService";
     DataSource ds;
+    private static final int maxRequests = 8;
+    private static final int timer = 30; // Seconds
+
+    Logger logger = new Logger(this);
 
     boolean alarmAlreadySet = false;
 
@@ -40,9 +45,15 @@ public class MeasurementPollService extends IntentService implements ServerConne
     protected void onHandleIntent(Intent intent) {
 
         Log.v(LOG_TAG, "MeasurementPollService starting...");
+        logger.write( "MeasurementPollService starting...");
+
+
+
+        alarmAlreadySet = false;
 
         if (!ServerConnect.isNetworkAvailable(getApplicationContext())){
             setAlarm(3600); //Try again in an hour
+            logger.write( "No Internet connection...");
             return;
         }
 
@@ -50,11 +61,13 @@ public class MeasurementPollService extends IntentService implements ServerConne
         List<MeasurementRequest> unProcessedMR = ds.getAllUnProcessedMeasurementRequests();
 
         Log.v(LOG_TAG, "No. of unprocessed MR: " + unProcessedMR.size());
+        logger.write( "No. of unprocessed MR: " + unProcessedMR.size());
 
         for (MeasurementRequest measurementRequest : unProcessedMR){
 
-            if (measurementRequest.getNoOfRequests() < 3){
+            if (measurementRequest.getNoOfRequests() < maxRequests){
                 Log.v(LOG_TAG, "Polling MR, ID: " + measurementRequest.getRequestID());
+                logger.write( "Polling MR, ID: " + measurementRequest.getRequestID());
                 measurementRequest.setNoOfRequests(measurementRequest.getNoOfRequests() +1);
                 ServerConnect serverConnect = new ServerConnect(getApplicationContext());
                 serverConnect.getMeasurementsFromServerAsync(measurementRequest, this);
@@ -73,11 +86,21 @@ public class MeasurementPollService extends IntentService implements ServerConne
             // Creating a Shallow copy because in incognito mode this information will be deleted
             // and measurement set to null. Which will cause the notification to fail.
            notifyUser(measurementRequest.shallowCopy());
-        }else {
+        }else{
+            logger.write("Server hasn't processed for ID: " + measurementRequest.getRequestID());
 
-            if (measurementRequest.getNoOfRequests() < 3 && alarmAlreadySet == false){
-                Log.v(LOG_TAG, "Setting Alarm in 180 seconds");
-                setAlarm(180);
+            if (measurementRequest.getNoOfRequests() < maxRequests ){
+
+                if (alarmAlreadySet == false){
+                    setAlarm(timer);
+                }else{
+                    logger.write("Alarm is already set");
+                }
+
+
+            }else{
+                logger.write(measurementRequest.getRequestID() + " , " +
+                        measurementRequest.getId() + " :" + "has surpassed max requests");
             }
 
         }
@@ -97,6 +120,9 @@ public class MeasurementPollService extends IntentService implements ServerConne
 
 
     private void notifyUser(MeasurementRequest measurementRequest){
+
+        Log.v(LOG_TAG, "Notifying User");
+        logger.write( "Notifying User");
 
         Intent resultIntent = new Intent(this, MyMeasurementActivity.class);
         resultIntent.putExtra("measurementRequest", measurementRequest);
@@ -131,6 +157,9 @@ public class MeasurementPollService extends IntentService implements ServerConne
 
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.SECOND, duration);
+
+        Log.v(LOG_TAG, "Setting Alarm in " + timer + "  seconds");
+        logger.write( "Setting Alarm in " + timer + "  seconds");
 
         Intent intent = new Intent(MeasurementPollService.this, MeasurementPollService.class);
         PendingIntent pIntent = PendingIntent.getService(MeasurementPollService.this, 0, intent, 0);

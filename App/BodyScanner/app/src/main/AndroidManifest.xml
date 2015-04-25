@@ -24,8 +24,16 @@
             android:name=".MeasurementHistoryActivity"
             android:label="@string/title_activity_measurement_history" >
         </activity>
-        <service android:name=".cloudconnection.MeasurementPollService"
-            android:label="@string/app_name" android:enabled="true"/>
+
+        <service
+            android:name=".cloudconnection.MeasurementPollService"
+            android:enabled="true"
+            android:label="@string/app_name" />
+
+        <activity
+            android:name=".LogActivity"
+            android:label="@string/title_activity_log" >
+        </activity>
     </application>
 
 </manifest>

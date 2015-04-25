@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">BodyScanner</string>
 
+    <string name="app_name">BodyScanner</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="height">Height</string>
@@ -19,31 +20,28 @@
     <string name="measurement_history">Measurement History</string>
     <string name="measurement_history_summary">Manage your measurement History</string>
     <string name="set_server_name">[DEBUG] Set server name</string>
-
     <string name="download_app_message">Please download the QR Scanner app.</string>
     <string name="no_measurements_help">No measurements to display   :(</string>
-
     <string name="delete">Delete</string>
 
-
-    <string-array
-        name="measurement_units_choices">
+    <string-array name="measurement_units_choices">
         <item>Default</item>
         <item>Centimeters</item>
         <item>Inches</item>
     </string-array>
-
-    <string-array
-        name="measurement_units_choice_values">
+    <string-array name="measurement_units_choice_values">
         <item>default</item>
         <item>cm</item>
         <item>inch</item>
     </string-array>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_measurement_history">MeasurementHistoryActivity</string>
     <string name="no_measurements_stored">No measurements stored</string>
     <string name="problem_scanning">There was a problem scanning the code.\nPlease try again</string>
+    <string name="title_activity_log">LogActivity</string>
+    <string name="background_log">[DEBUG] Background Logs</string>
+    <string name="refresh">Refresh</string>
 
 </resources>

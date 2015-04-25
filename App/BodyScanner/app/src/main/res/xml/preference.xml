@@ -25,6 +25,13 @@
             android:targetClass="ucl.group18.bodyscanner.MeasurementHistoryActivity"/>
     </PreferenceScreen  >
 
+    <PreferenceScreen
+        android:title = "@string/background_log">
+         <intent
+            android:targetPackage="ucl.group18.bodyscanner"
+            android:targetClass="ucl.group18.bodyscanner.LogActivity"/>
+    </PreferenceScreen  >
+
     <EditTextPreference
         android:key="server_name_ip"
         android:title = "@string/set_server_name"
