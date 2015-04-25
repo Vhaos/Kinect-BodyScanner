@@ -9,8 +9,16 @@ using System.Threading.Tasks;
 
 namespace BodyScanner
 {
-
+    /// <summary>
+    /// Callback for Server Responses
+    /// </summary>
+    /// <param name="task">The task that was set to the server</param>
+    /// <param name="response">The Response from the server</param>
     public delegate void ServerResponseCallback(Tasks task, String response);
+
+    /// <summary>
+    /// Enum for all the tasks that can be et to the server
+    /// </summary>
     public enum Tasks { NEWID,CREATE_FOLDER,UPLOAD_PC,PROCESS_PC}
 
    
@@ -23,13 +31,19 @@ namespace BodyScanner
 
         public event ServerResponseCallback responseCallback;
         
-
+        /// <summary>
+        /// Requests (using GET) a new Id from the erver
+        /// </summary>
         public void requestNewID(){
             WebRequest webRequest = WebRequest.Create(REQUEST_NEW_ID_URL);
             webRequest.Method = "GET";
             connectToServer(webRequest, Tasks.NEWID);
         }
 
+        /// <summary>
+        /// Requests (using POST) to create a folder for an ID
+        /// </summary>
+        /// <param name="requestId">The id for which a folder to be created</param>
         public void requestCreateFolder(String requestId)
         {
             WebRequest webRequest = WebRequest.Create(REQUEST_NEW_ID_URL + "/" + requestId);
@@ -37,6 +51,11 @@ namespace BodyScanner
             connectToServer(webRequest, Tasks.CREATE_FOLDER);
         }
 
+        /// <summary>
+        /// Attempts (using PUT) to upload a PointCloud
+        /// </summary>
+        /// <param name="requestId">The id for which the point cloud is releavant</param>
+        /// <param name="fileLocation">The location of the point cloud file</param>
         public void requestUploadPointCloudFile(String requestId, String fileLocation)
         {
             WebRequest webRequest = WebRequest.Create(PROCESS_POINTCLOUD_URL + "/" + requestId);
@@ -53,6 +72,11 @@ namespace BodyScanner
             connectToServer(webRequest, Tasks.UPLOAD_PC);
         }
 
+        /// <summary>
+        /// Requests Server to process the point cloud of certain ID
+        /// </summary>
+        /// <param name="requestId">The id for the releavent point cloud</param>
+        /// <param name="gender">Gender of the human in the point cloud</param>
         public void processPointCloudFile(String requestId, GenderWindow.GenderType gender)
         {
 

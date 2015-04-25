@@ -11,36 +11,60 @@ namespace BodyScanner
     
      /// <summary>
      /// This class holds the structure for a point cloud
-     /// Created By: Jack Roper
-     /// </summary>
-
-   
+     /// </summary> 
      public class PointCloud
      {
         public enum Axis { X, Y, Z };
         private List<Point3D> points = null;
         
-        // constructor without pre-built point list
+        /// <summary>
+        /// Constructor without pre-built point list
+        /// </summary>
         public PointCloud(): this(new List<Point3D>()) {}
-        // constructor with pre-built point list
+
+         
+        /// <summary>
+        /// Constructor with pre-built point list
+        /// </summary>
+        /// <param name="points">Points of the point cloud</param>
         public PointCloud(List<Point3D> points)
         {
             this.points = points;
         }
 
+         /// <summary>
+         /// Returns all the points in the point cloud
+         /// </summary>
+         /// <returns>List of all points</returns>
         public List<Point3D> getPoints()
         {
             return points;
         }
+
+         /// <summary>
+         /// Gets the point in the point cloud with a linear index
+         /// </summary>
+         /// <param name="index">The index of the point</param>
+         /// <returns>The point with that index</returns>
         public Point3D getPoint(int index)
         {
             return points[index];
         }
+
+         /// <summary>
+         /// Returns the number of points in the point cloud
+         /// </summary>
+         /// <returns>No. of points</returns>
         public int getSize()
         {
             return points.Count;
         }
 
+         /// <summary>
+         /// Generates a string representation of the point cloud with a format
+         /// </summary>
+         /// <param name="pointFormat">The format of the string</param>
+         /// <returns>String representation of the point cloud</returns>
         public String generateString(String pointFormat)
         {
             StringBuilder output = new StringBuilder();
@@ -51,12 +75,20 @@ namespace BodyScanner
             return output.ToString();
         }
 
+         /// <summary>
+         /// Adds a point to the point cloud
+         /// </summary>
+         /// <param name="point"></param>
         public void addPoint(Point3D point)
         {
             points.Add(point);
         }
 
-        // method to calculate and return centroid. We calculate this alongside the point cloud build process to reduce redundancy
+        /// <summary>
+        /// Method to calculate and return centroid. 
+        /// This is calculated during point cloud generation <see cref="PointCloudGenerator"/> process to reduce redundancy
+        /// </summary>
+        /// <returns>The centroid</returns>
         public Point3D getCentroid()
         {
             double xAccumulator = 0.0, yAccumulator = 0.0, zAccumulator = 0.0, xMean = 0.0, yMean = 0.0, zMean = 0.0;
@@ -73,8 +105,11 @@ namespace BodyScanner
             return (new Point3D(xMean, yMean, zMean));
         }
 
-        // method that subtracts centroid from point cloud, aligning its center with the origin
-        // NOTE: for repeated operations involving centroid, you should get and store the centroid and supply it to this method as an argument
+   
+         /// <summary>
+         /// Method that subtracts centroid from point cloud, aligning its center with the origin
+         /// NOTE: for repeated operations involving centroid, you should get and store the centroid and supply it to this method as an argument
+         /// </summary>
         public void subtractCentroid()
         {
             int numberOfPoints = points.Count;
@@ -109,6 +144,10 @@ namespace BodyScanner
                 points[i] = Point3D.Add(points[i], (Vector3D)centroid);
             }
         }
+         /// <summary>
+         /// Applies a rotation matrix to the point cloud
+         /// </summary>
+         /// <param name="rotationMatrix">The Rotation Matrix to be applied</param>
         private void applyRotation(Matrix3D rotationMatrix)
         {
             int numberOfPoints = points.Count;
@@ -117,6 +156,12 @@ namespace BodyScanner
                 points[i] = rotationMatrix.Transform(points[i]); 
             }
         }
+
+         /// <summary>
+         /// Rotates the point cloud
+         /// </summary>
+         /// <param name="degrees">No. of Degrees to be rotated</param>
+         /// <param name="axis">The axis in which the rotation will occur</param>
         public void rotatePointCloud(double degrees, Axis axis)
         {
             double theta = (Math.PI / 180) * degrees;
@@ -152,6 +197,11 @@ namespace BodyScanner
             applyRotation(rotationMatrix);
         }
 
+         /// <summary>
+         /// Subtracts a value from every point in a given axis
+         /// </summary>
+         /// <param name="value">The value to be subtracted</param>
+         /// <param name="axis">The axis to be subtracted from</param>
         public void subtractFromPointAxis(double value, Axis axis)
         {
             int numberOfPoints = points.Count;
@@ -181,6 +231,12 @@ namespace BodyScanner
             }
         }
 
+
+        /// <summary>
+        /// Rotates the point cloud on the spot
+        /// </summary>
+        /// <param name="degrees">No. of degrees to be rotated</param>
+        /// <param name="axis">The axis to be rotated in</param>
         public void rotateOnSpot(double degrees, Axis axis)
         {
             Point3D centroid = getCentroid();

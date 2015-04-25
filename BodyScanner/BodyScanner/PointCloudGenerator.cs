@@ -11,6 +11,9 @@ using System.Globalization;
 
 namespace BodyScanner
 {
+    /// <summary>
+    /// Class to generate Pointcloud usng Frames returned by Kinect
+    /// </summary>
     public class PointCloudGenerator
     {
 
@@ -26,13 +29,22 @@ namespace BodyScanner
 
 
 
-
+        /// <summary>
+        /// Constructor for Point Cloud Generator
+        /// </summary>
+        /// <param name="coordinateMapper">Coordinate Mapper of the Kinect sensor that is responsible for capturing frames</param>
         public PointCloudGenerator(CoordinateMapper coordinateMapper)
         {
             this.coordinateMapper = coordinateMapper;
 
         }
 
+        /// <summary>
+        /// Generates the point cloud
+        /// </summary>
+        /// <param name="df">The Depth Frame from the Kinect sensor</param>
+        /// <param name="bif">The Body Index Frame from the Kinect sensor</param>
+        /// <returns>The PointCloud generated from the frames</returns>
         public PointCloud generate(DepthFrame df, BodyIndexFrame bif)
         {
             Log.Write("Creating point Cloud");

@@ -34,7 +34,6 @@ namespace BodyScanner
         private const int BytesPerPixel = 4; // needed for bitmap calculation
 
         private bool captureFrame = false; // Flag to say when the Kinect thread needs to capture the frame
-        private bool frameFirstReceived = false;
 
         private WriteableBitmap displayedBitmap = null; // Bitmap that gets displayed (from Kinect)
 
@@ -215,11 +214,6 @@ namespace BodyScanner
 
         private void updateDisplayedBitmap(BodyIndexFrame bif)
         {
-            if(!frameFirstReceived)
-            {
-                this.help_text.Text = (string)Application.Current.FindResource("BODY_NOT_ALIGNED_HELP");
-                frameFirstReceived = true;
-            }
             using (Microsoft.Kinect.KinectBuffer bodyIndexBuffer = bif.LockImageBuffer())
             {
                 //Verify if the frame is of right size - not sure why but recommended in tutorials

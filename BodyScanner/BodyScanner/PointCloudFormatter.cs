@@ -15,11 +15,19 @@ namespace BodyScanner
 
         private Format format;
 
+        /// <summary>
+        /// Constructor for Point Cloud Formatter
+        /// </summary>
+        /// <param name="format">Format in which the point cloud will be formatted</param>
         public PointCloudFormatter(Format format)
         {
             this.format = format;
         }
 
+        /// <summary>
+        /// Returns the Format the pointcloud will get formatted to 
+        /// </summary>
+        /// <returns> Returns the Format</returns>
         public Format getFormat() { return format;}
 
         private String getVRMLFooter()
@@ -98,7 +106,11 @@ namespace BodyScanner
 
         }
 
-
+        /// <summary>
+        /// Formats the pointcloud with a given Format
+        /// </summary>
+        /// <param name="pointCloud">Point Cloud to be formatter</param>
+        /// <returns>String representation of the formatted Point Cloud</returns>
         public String formatPointCloud(PointCloud pointCloud)
         {
             String header = getHeader(pointCloud.getSize());

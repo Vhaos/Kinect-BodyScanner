@@ -87,6 +87,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BodyScannerConstants.cs" />
     <Compile Include="QREncoder.cs" />
     <Compile Include="ServerConnect.cs" />
     <Compile Include="WaitingWindow.xaml.cs">

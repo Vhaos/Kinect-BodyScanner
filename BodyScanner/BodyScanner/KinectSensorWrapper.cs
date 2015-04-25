@@ -10,12 +10,23 @@ namespace BodyScanner
     /*
      * Delegates for Callbacks. They act like a one method interface (in Java), enforcing the parmateres and the method names for callback.
      */
+    /// <summary>
+    /// Callback Delegate for when Body Index Frame is returned by the sensor
+    /// </summary>
+    /// <param name="bif">The BodyIndexFrame object from the Kinect sensor</param>
     public delegate void BIFRecievedCallback(BodyIndexFrame bif);
+
+    /// <summary>
+    /// Callback Delegate for when all frames are returned by the sensor
+    /// </summary>
+    /// <param name="bf">The BodyFrame object from the Kinect sensor</param>
+    /// <param name="bif">The BodyIndexFrame object from the Kinect sensor</param>
+    /// <param name="df">The DepthFrame object from the Kinect sensor</param>
     public delegate void AllFrameRecievedCallback(BodyFrame bf, BodyIndexFrame bif, DepthFrame df);
 
     /// <summary>
     /// This class essentially wraps the KinectSensor class and simplifies it.
-    /// So we dont need to write the same code again.
+    /// reducing the need to dupolicate same code when connecting to sensor
     /// </summary>
     class KinectSensorWrapper
     {
@@ -59,29 +70,43 @@ namespace BodyScanner
             }
         }
 
-        public void startScanning()
-        {
+        /// <summary>
+        /// Starts the Kinect Sensor
+        /// </summary>
+        public void startScanning(){
             kinectSensor.Open();
-
-            Log.Write("ID: "+ kinectSensor.UniqueKinectId);
-            Log.Write(kinectSensor.IsAvailable);
         }
 
+        /// <summary>
+        /// Stops the Kinect Sensor
+        /// </summary>
         public void stopScanning()
         {
             kinectSensor.Close();
         }
 
+        /// <summary>
+        /// Gets the Coordinaate Mapper of the Kienct Sensor
+        /// </summary>
+        /// <returns> CoordinateMapper of the Kinect Sensor</returns>
         public CoordinateMapper getCoordinateMapper()
         {
             return kinectSensor.CoordinateMapper;
         }
 
+        /// <summary>
+        /// Gets the Descripion of the Depth Frame
+        /// </summary>
+        /// <returns>Description of the depth frame </returns>
         public FrameDescription getDepthFrameDescription()
         {
             return this.kinectSensor.DepthFrameSource.FrameDescription;
         }
 
+        /// <summary>
+        /// Gets the Descripion of the Body Index Frame
+        /// </summary>
+        /// <returns>Description of the Body Index Frame</returns>
         public FrameDescription getBodyIndexFrameDescription()
         {
             return this.kinectSensor.BodyIndexFrameSource.FrameDescription;

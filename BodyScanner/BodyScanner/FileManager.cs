@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace BodyScanner
 {
+    /// <summary>
+    /// This class manages all files related to the Body Scanner
+    /// </summary>
     public class FileManager
     {
 
@@ -27,7 +30,11 @@ namespace BodyScanner
            
         }
 
-
+        /// <summary>
+        /// Saves the point cloud in Documents
+        /// See BodyScannerConstants
+        /// </summary>
+        /// <param name="pcl">The point cloud to be saved</param>
         public void savePointCloudFile(PointCloud pcl)
         {
 
@@ -50,13 +57,13 @@ namespace BodyScanner
 
         public String getMeasurementsFilePath()
         {
-            String path = App.POINT_CLOUD_PATH + "\\" + pointCloudFileName + "." + "xml";
+            String path = BodyScannerConstants.POINT_CLOUD_PATH + "\\" + pointCloudFileName + "." + "xml";
             return path;
         }
 
         public static String getPointCloudPath(PointCloudFormatter.Format format)
         {
-            String path = App.POINT_CLOUD_PATH + "\\" + pointCloudFileName + "." + PointCloudFormatter.getFormatExtension(format);
+            String path = BodyScannerConstants.POINT_CLOUD_PATH + "\\" + pointCloudFileName + "." + PointCloudFormatter.getFormatExtension(format);
             return path;
         }
 

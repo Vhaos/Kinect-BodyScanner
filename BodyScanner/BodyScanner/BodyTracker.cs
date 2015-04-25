@@ -15,6 +15,9 @@ using System.Windows;
 
 namespace BodyScanner
 {
+    /// <summary>
+    /// Class to track body pose
+    /// </summary>
     public sealed class BodyTracker
     {
         const double distanceTolerance = 0.2, jointTolerance = 0.2, targetDistanceFromCam = 2;
