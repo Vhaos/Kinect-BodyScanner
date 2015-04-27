@@ -24,6 +24,8 @@
     <system:String x:Key="INTRO">Press Start to begin</system:String>
     <system:String x:Key="ACCEPT_EULA">By clicking 'Start' you accept our privacy policy</system:String>
 
+    <system:String x:Key="NO_KINECT_FRAME">Waiting for Kinect Frames...</system:String>
+    <system:String x:Key="NO_BODY_FOUND">No Body Detected</system:String>
     <system:String x:Key="BODY_NOT_ALIGNED_HELP">Please stand with arms relaxed</system:String>
     <system:String x:Key="BODY_SCANNING_HELP">Please hold still while we scan your body</system:String>
     <system:String x:Key="WAITING_HELP">Seconds to Wait:</system:String>

@@ -43,7 +43,9 @@ namespace BodyScanner
 
         private void done_btn_Click(object sender, RoutedEventArgs e)
         {
-
+            StartWindow nextRun = new StartWindow();
+            nextRun.Show();
+            this.Close();
         }
 
         private void help_btn_Click(object sender, RoutedEventArgs e)

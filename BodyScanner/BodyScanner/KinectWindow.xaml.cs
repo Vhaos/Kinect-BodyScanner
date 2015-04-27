@@ -73,14 +73,15 @@ namespace BodyScanner
         //Called when stop button clicked
         private void stop_btn_Click(object sender, RoutedEventArgs e)
         {
-            currentState = State.SCANNING;
-            updateControls(currentState);
+            sensor.stopScanning();
+            StartWindow nextRun = new StartWindow();
+            nextRun.Show();
+            this.Hide();
         }
 
         /*Updates the GUI*/
         private void updateControls(State state)
         {
-
             switch (state)
             {
                 case State.NO_BODY:
