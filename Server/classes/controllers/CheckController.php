@@ -9,7 +9,7 @@ class CheckController extends AbstractController
 {
     protected $dir = "scans";
 
-	protected $read_dir = "C:\\xampp\htdocs\phpresttest\scans";
+	protected $read_dir = "C:\\xampp\htdocs\server\scans";
 
     /*
      * GET method.
@@ -68,7 +68,7 @@ class CheckController extends AbstractController
 
     private function xml2array($id)
     {
-        $xml = simplexml_load_file( $this->dir. '/' . $id . '/' . 'pointcloud.xml');
+        $xml = simplexml_load_file( $this->dir. '/' . $id . '/' . 'pointcloud_fixed.xml');
         $json = json_encode($xml);
         $array = json_decode($json,TRUE);
         return $array;
@@ -76,7 +76,7 @@ class CheckController extends AbstractController
 
     private function is_scan_complete($id)
     {
-        $filename = $this->dir. '/' . $id . '/' . 'pointcloud.xml';
+        $filename = $this->dir. '/' . $id . '/' . 'pointcloud_fixed.xml';
 
         if (file_exists($filename)) 
         {
