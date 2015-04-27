@@ -18,6 +18,12 @@
   <link rel="import" href="elements/card-people.html">
   <link rel="import" href="elements/common-links.html">
 
+  <script language="javascript" type="text/javascript">
+    function resizeIframe(obj) {
+      obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+    }
+  </script>
+
 </head>
 
 <style>
@@ -107,6 +113,10 @@
             <p>The applications of cost-effective body scanning are vast, with just a small subset of its reachings being in media, medicine and apparel. We have aimed to deliver an extensible API with the potential to outgrow its humble roots.</p>
           </div>
         </div>
+      </card-content>
+      <card-content>
+        <iframe style="margin: 0 auto;" name="use-video" width="800px" height="600px" frameborder="0" id="iframe" scrolling="no" src="https://www.youtube.com/embed/_MBWftA2ZRo?rel=0&fs=1" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+      </iframe>
       </card-content>
     </main>
   </core-header-panel>
