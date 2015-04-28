@@ -5,7 +5,7 @@
   <title>Kinect Bodyscanner</title>
   <!-- Load platform support before anything else -->
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-  <link rel="icon" type="type/png" href="img/Misc/k-icon.png"/>
+  <link rel="icon" type="type/png" href="img/Misc/k-icon.png" />
   <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
 
   <link rel="stylesheet" href="main.css">
@@ -84,7 +84,14 @@
     <card-content>
       <p>In the end, we decided to use C# as our main language when programming the sensor. However, this does not prevent us from using third party libraries written in C++ language using a wrapper in C#.</p>
 
-      <p><b>Toolchain</b><br>Following the choices made for the operating system and programming language, it was natural to use Microsoft Visual Studio as our IDE, as Microsoft has official tutorials and documentation based around it. We used Git for Version control, as all the members in our groups were familiar with it and we used GitHub to host our Git repo remotely.</p>
+      <p><b>Toolchain</b>
+        <br>Following the choices made for the operating system and programming language, it was natural to use Microsoft Visual Studio as our IDE, as Microsoft has official tutorials and documentation based around it. We used Git for Version control, as all the members in our groups were familiar with it and we used GitHub to host our Git repo remotely.</p>
+    </card-content>
+
+    <card-content>
+      <h2>Point Cloud</h2>
+      <p>An example of the resulting point cloud at half resolution and in colour:</p>
+      <img width="300px" src="img/Prototyping/Mr.Red.jpg">
     </card-content>
 
     <card-content>
@@ -101,83 +108,97 @@
       <h1>Windows UML</h1>
     </card-banner>
     <div layout horizontal center-justified>
-      <a href="img/arch_diagram/WindowsUML.jpg"><img style="padding: 5px 5px; border: 1px solid black; max-height: 300px;"  src="img/arch_diagram/WindowsUML.jpg"></a>
+      <a href="img/arch_diagram/WindowsUML.jpg"><img style="padding: 5px 5px; border: 1px solid black; max-height: 300px;" src="img/arch_diagram/WindowsUML.jpg">
+      </a>
     </div>
     <card-banner>
       <h1>Android UML</h1>
     </card-banner>
     <div layout horizontal center-justified>
-      <a href="img/arch_diagram/AndroidUML.jpg"><img style="padding: 5px 5px; border: 1px solid black; max-height: 300px;"  src="img/arch_diagram/AndroidUML.jpg"></a>
+      <a href="img/arch_diagram/AndroidUML.jpg"><img style="padding: 5px 5px; border: 1px solid black; max-height: 300px;" src="img/arch_diagram/AndroidUML.jpg">
+      </a>
     </div>
 
     <card-content>
-      <p><b>Computing the Point Cloud</b><br><br>
-        In order to extract the point cloud:
+      <p><b>Computing the Point Cloud</b>
+        <br>
+        <br> In order to extract the point cloud:
         <ul>
-        <li>We needed to get the depth data for every pixel, using the depth frame source reader</li>
+          <li>We needed to get the depth data for every pixel, using the depth frame source reader</li>
           <li>Use the Coordinate Mapper class to map the depth frame data to camera space point objects, which store 3D coordinate values for every pixel</li>
           <li>Use BodyIndexFrame to exclude pixels that do not comprise the human body</li>
           <li>Write the 3d coordinates from the remaining camera space points to a file, hence creating a pointcloud</li>
-      </ul>
+        </ul>
       </p>
-      <p><b>Extracting the Measurements</b><br>
-      To extract the measurements, we need to train a classifier algorithm to recognize which points correspond to which parts of the body. However, this has already been done by UCL using the National Sizing Survey, and we have contacted Dr. Tony Ruto for access to this algorithm. We are still awaiting his response.
-    </p>
-    <p><b>Key Libraries Used</b>
+      <p><b>Extracting the Measurements</b>
+        <br> To extract the measurements, we need to train a classifier algorithm to recognize which points correspond to which parts of the body. However, this has already been done by UCL using the National Sizing Survey, and we have contacted Dr. Tony Ruto for access to this algorithm. We are still awaiting his response.
+      </p>
+      <p><b>Key Libraries Used</b>
         <ul>
-        <li>Microsoft.Kinect - used when interfacing with the Kinect Sensor</li>
+          <li>Microsoft.Kinect - used when interfacing with the Kinect Sensor</li>
           <li>System.Math - used for mathematical operations such as flooring and distance calculations</li>
           <li>System.Windows.Media - used for calculating colour values and getting RGB formats</li>
           <li>System.IO - used for reading/writing files / exporting the point cloud</li>
-      </ul>
+        </ul>
       </p>
     </card-content>
 
     <card-content>
-    <h2>Prototype Iterations</h2>
-    <p><b>Introduction</b><br>
-      <p>
-        We went through several iteration cycles when making our product, starting from an initial proof of concept console program, which simply established a connection to the Kinect 2.0 and generated a point cloud to a full measurements gathering solution.
-      </p>
-      <p><b>Iteration 1 - Initial Proof of concept</b><br>
-      <p>
-        Beginning with a small console application, we mapped out our intentions and familiarised ourselves with the Kinect SDK. At this stage, there was no formal UI or measurement extraction: the first thing we needed to do was capture a reasonable point cloud.
-      </p>
-      <img width="180px" src="img/Prototyping/iteration1.png">
+      <h2>Prototype Iterations</h2>
+      <p><b>Introduction</b>
+        <br>
+        <p>
+          We went through several iteration cycles when making our product, starting from an initial proof of concept console program, which simply established a connection to the Kinect 2.0 and generated a point cloud to a full measurements gathering solution.
+        </p>
+        <p><b>Iteration 1 - Initial Proof of concept</b>
+          <br>
+          <p>
+            Beginning with a small console application, we mapped out our intentions and familiarised ourselves with the Kinect SDK. At this stage, there was no formal UI or measurement extraction: the first thing we needed to do was capture a reasonable point cloud.
+          </p>
+          <img width="180px" src="img/Prototyping/iteration1.PNG">
 
-      <p><b>Iteration 2 - QRCode integration, Early UI</b><br>
-      <p>
-        We divided our focus between these goals, iterating over a number of XAML-based user-interfaces- and each deriving from our early designs. We assembled  a point cloud using the Kinect SDK’s CameraSpacePoints, before operating on the resulting structure to ensure its suitability. This process involves applying a rotation matrix to each point, scaling the units and translating before outputting the cloud as finished. At the same time, we were also considering how we ought to display results to the user. We chose a QR code for its ease-of-use and wide recognisability.
-      </p>
-      <img width="310px" src="img/Prototyping/iteration2.png">
+          <p><b>Iteration 2 - QRCode integration, Early UI</b>
+            <br>
+            <p>
+              We divided our focus between these goals, iterating over a number of XAML-based user-interfaces- and each deriving from our early designs. We assembled a point cloud using the Kinect SDK’s CameraSpacePoints, before operating on the resulting structure to ensure its suitability. This process involves applying a rotation matrix to each point, scaling the units and translating before outputting the cloud as finished. At the same time, we were also considering how we ought to display results to the user. We chose a QR code for its ease-of-use and wide recognisability.
+            </p>
+            <img width="310px" src="img/Prototyping/iteration2.PNG">
 
-      <p><b>Iteration 3 - Live Camera feed, body pose detection</b><br>
-      <p>
-        So at this point, we had yet to properly track user movements and provide feedback for what they needed to do. Extending the UI, we added a live feed, displaying bodies recognised by the Kinect. In order to facilitate the scan, we needed users to adopt a particular pose, leading to the development of a body pose detection system that could identify whether or not users’ hands and feet were positioned correctly and how far from the scanner they were standing. Instructions are provided on-screen, explaining if users need to move closer or further away and how they need to stand. Once this is done, the system offers a short countdown before going ahead with the scan.
-      </p>
-      <img width="480px" src="img/Prototyping/iteration3.png">
+            <p><b>Iteration 3 - Live Camera feed, body pose detection</b>
+              <br>
+              <p>
+                So at this point, we had yet to properly track user movements and provide feedback for what they needed to do. Extending the UI, we added a live feed, displaying bodies recognised by the Kinect. In order to facilitate the scan, we needed users to adopt a particular pose, leading to the development of a body pose detection system that could identify whether or not users’ hands and feet were positioned correctly and how far from the scanner they were standing. Instructions are provided on-screen, explaining if users need to move closer or further away and how they need to stand. Once this is done, the system offers a short countdown before going ahead with the scan.
+              </p>
+              <img width="480px" src="img/Prototyping/iteration3.PNG">
 
-      <p><b>Iteration 4 - Early ScanMeasure Integration </b><br>
-      <p>
-        With the point cloud processed and stored, we next began integrating Dr Tony Ruto’s ScanMeasure software that had previously seen success, but only with the Kinect 1. In conjunction with this software, the system was then able to deliver accurate body measurements, including fields such as height, chest and waist.  But our next task was to ensure that users find this information useful and readily available.
-      </p>
-      <img width="825px" src="img/Prototyping/iteration4.png">
+              <p><b>Iteration 4 - Early ScanMeasure Integration </b>
+                <br>
+                <p>
+                  With the point cloud processed and stored, we next began integrating Dr Tony Ruto’s ScanMeasure software that had previously seen success, but only with the Kinect 1. In conjunction with this software, the system was then able to deliver accurate body measurements, including fields such as height, chest and waist. But our next task was to ensure that users find this information useful and readily available.
+                </p>
+                <img width="825px" src="img/Prototyping/iteration4.PNG">
 
-      <p><b>Iteration 5 - Server and Companion App integration</b><br>
-      <p>
-       Once we had the windows desktop solution, we then started working on the companion android app and the local server for remote execution. On the local server, We chose to also implement a straightforward, and easy to extend RESTful API framework written in PHP. Some of the functionality of the server includes generating a unique ID number based on server time, which is later used to generate the QR code as well as remotely uploading the generated pointcloud vrml files using FTP. This also allowed the integration of ScanMeasure to be moved from the windows app to the Server to allow for remote execution. Similarly we also created a companion android app which could scan QR codes generated by the server and poll the server at frequent intervals in order to get back results, Display them to the User and allow for the saving of measurements; as well as an incognito mode which doesn't save any user measurements.
-      </p>
-      <img width="825px" src="img/Prototyping/iteration5.png">
-  </card-content>
+                <p><b>Iteration 5 - Server and Companion App integration</b>
+                  <br>
+                  <p>
+                    Once we had the windows desktop solution, we then started working on the companion android app and the local server for remote execution. On the local server, We chose to also implement a straightforward, and easy to extend RESTful API framework written in PHP. Some of the functionality of the server includes generating a unique ID number based on server time, which is later used to generate the QR code as well as remotely uploading the generated pointcloud vrml files using FTP. This also allowed the integration of ScanMeasure to be moved from the windows app to the Server to allow for remote execution. Similarly we also created a companion android app which could scan QR codes generated by the server and poll the server at frequent intervals in order to get back results, Display them to the User and allow for the saving of measurements; as well as an incognito mode which doesn't save any user measurements.
+                  </p>
+                  <img width="825px" src="img/Prototyping/iteration5.PNG">
+    </card-content>
+
+    <card-banner>
+      <h1>Design Patterns</h1>
+    </card-banner>
 
     <card-content>
-    <h2>Point Cloud</h2>
-      <p>An example of the resulting point cloud at half resolution and in colour:</p>
-      <img width="300px" src="img/Prototyping/Mr.Red.jpg">
-  </card-content>
+      <h2>Observer</h2>
+      <p>Shubham add to this...</p>
+    </card-content>
 
-    <!--<common-links select='5'></common-links>-->
-
+    <card-content>
+      <h2>Singleton (And back again)</h2>
+      <p>When the <b>BodyTracker</b> class was first created, we knew that it would be repeatedly accessed by the scan window and so intended to make it a single, goto class whenever a new data frame arrived from the sensor. We did not want to have to reinstantiate the class repeatedly after short intervals and since the Singleton design pattern seemed to fit, we chose that isntead of associating the BodyTracker with the KinectWindow as an instance variable. However, upon review, this introduced a few problems: firstly, the BodyTracker was now much harder to test and secondly, it was not the best move for the future as there could potentially be many BodyTrackers should the application needs change further down the line. Critically, the BodyTracker, in its previous state, had given rise to concerns over coupling and adaptability so it made sense to address these issues with an update. Before, the BodyTracker had been forcing itself onto the handling of the KinectWindow's UI and would need to be constantly updated of who it should be trying to modify since KinectWindows could come and go whereas the BodyTracker instance was a static singleton. Now, however, the BodyTracker is a member of the KinectWindow and performs a purely monitoring and declarative role for good measure.</p>
+    </card-content>
   </core-header-panel>
 
 </body>
