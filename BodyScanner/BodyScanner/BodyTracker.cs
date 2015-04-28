@@ -122,7 +122,6 @@ namespace BodyScanner
                 if (difference < 0)
                 {
                     currentStatus = BodyStatus.TOO_CLOSE;
-                    needToMove = Math.Round(abs_diff, 2);
                     Log.Write("Move away: " + abs_diff + " metres");
                 }
                 else if (abs_diff > 0)

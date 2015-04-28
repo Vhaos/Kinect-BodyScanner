@@ -45,11 +45,12 @@ namespace BodyScanner
             this.kinectSensor = KinectSensor.GetDefault();
             this.multiFrameSourceReader = this.kinectSensor.OpenMultiSourceFrameReader(FrameSourceTypes.Depth | FrameSourceTypes.BodyIndex | FrameSourceTypes.Body);
             this.multiFrameSourceReader.MultiSourceFrameArrived += this.multiSourceFrameArrived;
-
         }
 
         private void multiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
         {
+            if (kinectSensor == null) { return; }
+
             MultiSourceFrame msf = e.FrameReference.AcquireFrame();
 
             if (msf != null)
@@ -83,6 +84,7 @@ namespace BodyScanner
         public void stopScanning()
         {
             kinectSensor.Close();
+            kinectSensor = null;
         }
 
         /// <summary>
