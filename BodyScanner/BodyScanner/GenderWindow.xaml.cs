@@ -32,7 +32,7 @@ namespace BodyScanner
             Log.Write(Log.Tag.INFO, "Male selected as gender.");
             KinectWindow kw = new KinectWindow(GenderType.Male);
             kw.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void female_btn_Click(object sender, RoutedEventArgs e)
@@ -41,7 +41,7 @@ namespace BodyScanner
             Log.Write(Log.Tag.INFO, "Female selected as gender.");
             KinectWindow kw = new KinectWindow(GenderType.Female);
             kw.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

@@ -26,6 +26,8 @@ namespace BodyScanner
         enum State {NO_BODY,NOT_ALIGNED,SCANNING}; //All the states
         private State currentState = State.NO_BODY; // Default State
 
+        private readonly BodyTracker bodyTracker;
+
         private const int COUNT_DOWN_SECONDS = 3; // 3 seconds count down
         DispatcherTimer countDownTimer; // The timer that notifies every second
         bool countDownTimerRunning = false;  // Flag to check if the countDownTimer is running so we dont restart it again
@@ -40,7 +42,6 @@ namespace BodyScanner
         private GenderWindow.GenderType gender_type;
 
         KinectSensorWrapper sensor;
-
        
 
         public KinectWindow(GenderWindow.GenderType gender_type)
@@ -49,6 +50,8 @@ namespace BodyScanner
 
             // Initialise gender_type for when constructing CalculatingWindow
             this.gender_type = gender_type;
+
+            this.bodyTracker = new BodyTracker();
 
             //Initialize the Sensor
             sensor = new KinectSensorWrapper();
@@ -67,6 +70,34 @@ namespace BodyScanner
 
            // Update the GUI
             updateControls(State.NO_BODY);
+        }
+
+        private void writeText(BodyTracker.BodyStatus body_status)
+        {
+            string text = "";
+            double info;
+            switch (body_status)
+            {
+                case (BodyTracker.BodyStatus.NONE):
+                    text = (string)Application.Current.FindResource("NO_BODY_FOUND");
+                    break;
+                case (BodyTracker.BodyStatus.TOO_CLOSE):
+                    info = bodyTracker.getDistanceToMove();
+                    text = (string)Application.Current.FindResource("MOVE_AWAY") + "\n" + info + " metres";
+                    break;
+                case (BodyTracker.BodyStatus.TOO_FAR):
+                    info = bodyTracker.getDistanceToMove();
+                    text = (string)Application.Current.FindResource("MOVE_CLOSER") + "\n" + info + " metres";
+                    break;
+                case (BodyTracker.BodyStatus.WRONG_POSE):
+                    text = (string)Application.Current.FindResource("BODY_NOT_ALIGNED_HELP");
+                    break;
+                case (BodyTracker.BodyStatus.CORRECT):
+                    text = (string)Application.Current.FindResource("BODY_SCANNING_HELP");
+                    break;
+            }
+
+            this.help_text.Text = text;
         }
 
 
@@ -156,12 +187,18 @@ namespace BodyScanner
         // Called when all farmes are available from the sensor
         void sensor_AllFrameCallback(BodyFrame bf, BodyIndexFrame bif, DepthFrame df)
         {
-            BodyTracker Tracker = BodyTracker.UpdateInstance(this, bf); // Gets/creates, as well as updates, the singleton instance of BodyTracker
-            
-            if (Tracker.CorrectPose()) { currentState = State.SCANNING; }
+            if (sensor == null) { return; }
+            if (bodyTracker.CorrectPose(bf)) 
+            { 
+                currentState = State.SCANNING; 
+            }
 
-            else { currentState = State.NOT_ALIGNED; }
-
+            else 
+            {
+                currentState = State.NOT_ALIGNED; 
+            }
+            BodyTracker.BodyStatus body_status = bodyTracker.getStatus();
+            writeText(body_status);
             updateDisplayedBitmap(bif);
             updateControls(currentState);
             if (captureFrame == true) // if countdown finished and capture of frame is requested
@@ -197,12 +234,12 @@ namespace BodyScanner
         private void startNextWindow()
         {
             sensor.stopScanning();
+            sensor.AllFrameCallback -= sensor_AllFrameCallback;
             sensor = null;
-
             WaitingWindow cw = new WaitingWindow(gender_type);
             cw.Show();
 
-            this.Hide();
+            this.Close();
         }
 
         private void saveFile(PointCloud pcl)

@@ -29,7 +29,7 @@ namespace BodyScanner
         {
             GenderWindow gw = new GenderWindow();
             gw.Show();
-            this.Hide();
+            this.Close();
         }
 
        

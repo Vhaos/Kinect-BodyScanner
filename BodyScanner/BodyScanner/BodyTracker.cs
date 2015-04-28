@@ -22,66 +22,26 @@ namespace BodyScanner
     {
         const double distanceTolerance = 0.2, jointTolerance = 0.2, targetDistanceFromCam = 2;
 
-        private static BodyTracker _instance; // Static instance reference, implementing the Singleton pattern
-        private static Object _dummyLock = new Object();
-
         private BodyFrame _bf; // should be updated on-access to this class
         private Body subject;
 
-        private KinectWindow parent; // parent window to allow access to text block etc.
+        public enum BodyStatus { NONE, TOO_FAR, TOO_CLOSE, WRONG_POSE, CORRECT };
 
-        private enum BodyStatus { NONE, TOO_FAR, TOO_CLOSE, WRONG_POSE, CORRECT };
+        private BodyStatus currentStatus;
+        private double needToMove;
 
-        private BodyTracker(KinectWindow parent_window) 
-        {
-            this.parent = parent_window;
-        }
-
-        public static BodyTracker UpdateInstance(KinectWindow parent, BodyFrame bodyFrame)
-        {
-            // lock used to protect singleton from multithreaded access
-            lock(_dummyLock)
-            {
-                if (_instance == null) { _instance = new BodyTracker(parent); }
-            }
-            _instance.parent = parent;
-            _instance._bf = bodyFrame;
-            return _instance;
-        }
-
-        private void writeText(BodyStatus body_status, Object info = null)
-        {
-            string text = "";
-            switch(body_status)
-            {
-                case(BodyStatus.NONE):
-                    text = (string)Application.Current.FindResource("NO_BODY_FOUND");
-                    break;
-                case(BodyStatus.TOO_CLOSE):
-                    text = (string)Application.Current.FindResource("MOVE_AWAY") + "\n" + info + " metres";
-                    break;
-                case (BodyStatus.TOO_FAR):
-                    text = (string)Application.Current.FindResource("MOVE_CLOSER") + "\n" + info + " metres";
-                    break;
-                case(BodyStatus.WRONG_POSE):
-                    text = (string)Application.Current.FindResource("BODY_NOT_ALIGNED_HELP");
-                    break;
-                case(BodyStatus.CORRECT):
-                    text = (string)Application.Current.FindResource("BODY_SCANNING_HELP");
-                    break;
-            }
-
-            parent.help_text.Text = text;
-        }
+        public BodyTracker() {}
 
         // Control method that is interfaced with from outside the class
-        public bool CorrectPose()
+        public bool CorrectPose(BodyFrame bf)
         {
+            // Updates body frame data
+            this._bf = bf;
+
             subject = retrieveBody();
-            Log.Write("Called");
             if (subject == null) 
             {
-                writeText(BodyStatus.NONE);
+                currentStatus = BodyStatus.NONE;
                 return false;
             }
 
@@ -89,10 +49,14 @@ namespace BodyScanner
 
             if (!handsCheck(subject) || !feetCheck(subject)) { return false; }
 
-            writeText(BodyStatus.CORRECT);
+            currentStatus = BodyStatus.CORRECT;
 
             return true;
         }
+
+        // Getters for body status and off-target-distance
+        public BodyStatus getStatus() { return currentStatus; }
+        public double getDistanceToMove() { return needToMove; }
 
         // Checks that hands are within a certain margin of each other on the Y axis
         private bool handsCheck(Body body)
@@ -101,11 +65,19 @@ namespace BodyScanner
             Joint rightHand = subject.Joints[JointType.HandRight], leftHand = subject.Joints[JointType.HandLeft];
             Joint rightHip = subject.Joints[JointType.HipRight], leftHip = subject.Joints[JointType.HipLeft];
 
-            if (rightHip.Position.Y < rightHand.Position.Y || leftHip.Position.Y < leftHand.Position.Y) { return false; }
+            if (rightHip.Position.Y < rightHand.Position.Y || leftHip.Position.Y < leftHand.Position.Y) 
+            { 
+                currentStatus = BodyStatus.WRONG_POSE;
+                return false;
+            }
 
             double forearmLength = jointDistance(rightElbow, rightHand);
 
-            if (compareJointsAxis(PointCloud.Axis.Y, leftHand, rightHand) > jointTolerance * forearmLength) { return false; }
+            if (compareJointsAxis(PointCloud.Axis.Y, leftHand, rightHand) > jointTolerance * forearmLength) 
+            {
+                currentStatus = BodyStatus.WRONG_POSE;
+                return false; 
+            }
 
             return true;
         }
@@ -119,7 +91,11 @@ namespace BodyScanner
 
             double lowerLegLength = jointDistance(rightKnee, rightFoot);
 
-            if (compareJointsAxis(PointCloud.Axis.Y, leftFoot, rightFoot) > jointTolerance * lowerLegLength) { return false; }
+            if (compareJointsAxis(PointCloud.Axis.Y, leftFoot, rightFoot) > jointTolerance * lowerLegLength) 
+            {
+                currentStatus = BodyStatus.WRONG_POSE;
+                return false; 
+            }
 
             return true;
         }
@@ -145,18 +121,21 @@ namespace BodyScanner
                 // Replace with some sort of visual feedback for liveness
                 if (difference < 0)
                 {
-                    writeText(BodyStatus.TOO_CLOSE, Math.Round(abs_diff, 2));
+                    currentStatus = BodyStatus.TOO_CLOSE;
+                    needToMove = Math.Round(abs_diff, 2);
                     Log.Write("Move away: " + abs_diff + " metres");
                 }
                 else if (abs_diff > 0)
                 {
-                    writeText(BodyStatus.TOO_FAR, Math.Round(abs_diff, 2));
+                    currentStatus = BodyStatus.TOO_CLOSE;
                     Log.Write("Move closer: " + abs_diff + " metres");
                 }
+
+                needToMove = Math.Round(abs_diff, 2);
                 return false;
             }
             else
-                writeText(BodyStatus.WRONG_POSE);
+                needToMove = 0;
 
             return true;
         }
