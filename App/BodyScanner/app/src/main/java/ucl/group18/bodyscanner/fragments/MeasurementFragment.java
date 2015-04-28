@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import ucl.group18.bodyscanner.Logger;
 import ucl.group18.bodyscanner.R;
 import ucl.group18.bodyscanner.SharedPrefsHandler;
 import ucl.group18.bodyscanner.UnitConverter;
@@ -88,6 +89,8 @@ public class MeasurementFragment extends Fragment {
         double chestInCms = measurement.getChest();
         double waistInCms = measurement.getWaist();
         double insideLegInCms = measurement.getInsideLeg();
+
+        new Logger(getActivity()).write("Fragment: " + measurement.toString());
 
         SharedPrefsHandler prefs = new SharedPrefsHandler(getActivity());
         String preferredUnits = prefs.getPreferredUnits();

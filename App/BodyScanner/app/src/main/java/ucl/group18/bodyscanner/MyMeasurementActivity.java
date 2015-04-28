@@ -33,6 +33,7 @@ public class MyMeasurementActivity extends ActionBarActivity implements Measurem
 
     private static final String LOG_TAG = "MainActivity";
     public static final String INTENT_EXTRA_ID = "measurementRequest";
+    public static final String NOTIFICATION = "notification";
 
     boolean calledFromAnotherActivity = false;
     FrameLayout rootView;
@@ -55,8 +56,9 @@ public class MyMeasurementActivity extends ActionBarActivity implements Measurem
 
         MeasurementRequest mr;
 
-        if (getIntent().getParcelableExtra(INTENT_EXTRA_ID) == null){
-            //App just launched
+        if (getIntent().getParcelableExtra(INTENT_EXTRA_ID) == null ||
+                getIntent().getBooleanExtra(NOTIFICATION,false) == true){
+            //App just launched or //Ap called from notification
             calledFromAnotherActivity = false;
             fab.setVisibility(View.VISIBLE);
             mr = ds.getLatestProcessedMeasurementRequests();
@@ -133,6 +135,7 @@ public class MyMeasurementActivity extends ActionBarActivity implements Measurem
             e.printStackTrace();
             Uri marketUri = Uri.parse("market://details?id=com.google.zxing.client.android");
             Intent marketIntent = new Intent(Intent.ACTION_VIEW,marketUri);
+
             Toast.makeText(this, getString(R.string.download_app_message),Toast.LENGTH_LONG).show();
             startActivity(marketIntent);
         }
@@ -148,8 +151,8 @@ public class MyMeasurementActivity extends ActionBarActivity implements Measurem
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
                 String qr_text = data.getStringExtra("SCAN_RESULT"); //this is the result
-                Toast.makeText(this, qr_text,Toast.LENGTH_LONG).show();
-
+                //Toast.makeText(this, qr_text,Toast.LENGTH_LONG).show();
+                new Logger(this).write(qr_text);
                 String[] measurementRequestInfo = qr_text.split(";");
 
                 if (measurementRequestInfo.length != 2){ // something went wrong

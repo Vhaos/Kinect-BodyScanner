@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ucl.group18.bodyscanner.fragments.MeasurementFragment">
+    tools:context="ucl.group18.bodyscanner.fragments.MeasurementFragment"
+    android:id="@+id/root_view">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -56,7 +57,7 @@
                         android:layout_below="@id/height_text"
                         android:textSize="@dimen/measurement_value_text_size"
                         android:layout_marginBottom="@dimen/measurement_text_bottom_margin"
-                        android:text = "5 Feet 11 Inch" />
+                        android:text = "" />
 
                     <TextView
                         android:id = "@+id/chest_bust_text"
@@ -74,7 +75,7 @@
                         android:layout_below="@id/chest_bust_text"
                         android:textSize="@dimen/measurement_value_text_size"
                         android:layout_marginBottom="@dimen/measurement_text_bottom_margin"
-                        android:text = "80 cm"/>
+                        android:text = ""/>
 
                     <TextView
                         android:id = "@+id/waist_text"
@@ -93,7 +94,7 @@
                         android:layout_below="@id/waist_text"
                         android:textSize="@dimen/measurement_value_text_size"
                         android:layout_marginBottom="@dimen/measurement_text_bottom_margin"
-                        android:text = "93cm"/>
+                        android:text = ""/>
 
                     <TextView
                         android:id = "@+id/hip_text"
@@ -111,7 +112,7 @@
                         android:layout_below="@id/hip_text"
                         android:textSize="@dimen/measurement_value_text_size"
                         android:layout_marginBottom="@dimen/measurement_text_bottom_margin"
-                        android:text = "85cm"/>
+                        android:text = ""/>
 
                     <TextView
                         android:id = "@+id/inside_leg_text"
@@ -129,7 +130,7 @@
                         android:layout_below="@id/inside_leg_text"
                         android:textSize="@dimen/measurement_value_text_size"
                         android:layout_marginBottom="@dimen/measurement_text_bottom_margin"
-                        android:text = "78 cm"/>
+                        android:text = ""/>
 
 
                 </RelativeLayout>

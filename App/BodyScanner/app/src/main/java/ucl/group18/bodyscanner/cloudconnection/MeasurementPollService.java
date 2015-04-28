@@ -125,7 +125,8 @@ public class MeasurementPollService extends IntentService implements ServerConne
         logger.write( "Notifying User");
 
         Intent resultIntent = new Intent(this, MyMeasurementActivity.class);
-        resultIntent.putExtra("measurementRequest", measurementRequest);
+        resultIntent.putExtra(MyMeasurementActivity.INTENT_EXTRA_ID, measurementRequest);
+        resultIntent.putExtra(MyMeasurementActivity.NOTIFICATION, true);
         PendingIntent resultPendingIntent =
                 PendingIntent.getActivity(
                         this,

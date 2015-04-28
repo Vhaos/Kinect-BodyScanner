@@ -315,9 +315,9 @@ public class DataSource {
             Measurement measurements = new Measurement();
 
             measurements.setMeasurements(Double.valueOf(height),
+                    Double.valueOf(hip),
                     Double.valueOf(chest),
                     Double.valueOf(waist),
-                    Double.valueOf(hip),
                     Double.valueOf(inside_leg));
 
             measurementRequest.setMeasurement(measurements);

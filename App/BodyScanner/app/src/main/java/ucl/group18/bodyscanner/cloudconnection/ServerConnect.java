@@ -181,7 +181,8 @@ public class ServerConnect  {
                                     Double.parseDouble(measurementArray.get(2)),
                                     Double.parseDouble(measurementArray.get(3)),
                                     Double.parseDouble(measurementArray.get(4)));
-
+        Logger logger = new Logger(context);
+        logger.write(measurement.toString());
         return measurement;
     }
 
