@@ -28,7 +28,7 @@ namespace BodyScanner
         {
             StartWindow mw = new StartWindow();
             mw.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

@@ -28,7 +28,9 @@ namespace BodyScanner
         private BodyFrame _bf; // should be updated on-access to this class
         private Body subject;
 
-        private readonly KinectWindow parent; // parent window to allow access to text block etc.
+        private KinectWindow parent; // parent window to allow access to text block etc.
+
+        private enum BodyStatus { NONE, TOO_FAR, TOO_CLOSE, WRONG_POSE, CORRECT };
 
         private BodyTracker(KinectWindow parent_window) 
         {
@@ -42,20 +44,52 @@ namespace BodyScanner
             {
                 if (_instance == null) { _instance = new BodyTracker(parent); }
             }
+            _instance.parent = parent;
             _instance._bf = bodyFrame;
             return _instance;
+        }
+
+        private void writeText(BodyStatus body_status, Object info = null)
+        {
+            string text = "";
+            switch(body_status)
+            {
+                case(BodyStatus.NONE):
+                    text = (string)Application.Current.FindResource("NO_BODY_FOUND");
+                    break;
+                case(BodyStatus.TOO_CLOSE):
+                    text = (string)Application.Current.FindResource("MOVE_AWAY") + "\n" + info + " metres";
+                    break;
+                case (BodyStatus.TOO_FAR):
+                    text = (string)Application.Current.FindResource("MOVE_CLOSER") + "\n" + info + " metres";
+                    break;
+                case(BodyStatus.WRONG_POSE):
+                    text = (string)Application.Current.FindResource("BODY_NOT_ALIGNED_HELP");
+                    break;
+                case(BodyStatus.CORRECT):
+                    text = (string)Application.Current.FindResource("BODY_SCANNING_HELP");
+                    break;
+            }
+
+            parent.help_text.Text = text;
         }
 
         // Control method that is interfaced with from outside the class
         public bool CorrectPose()
         {
             subject = retrieveBody();
+            Log.Write("Called");
+            if (subject == null) 
+            {
+                writeText(BodyStatus.NONE);
+                return false;
+            }
 
-            if (subject == null || !correctDistance(subject)) { return false; }
+            if (!correctDistance(subject)) { return false; }
 
             if (!handsCheck(subject) || !feetCheck(subject)) { return false; }
 
-            parent.help_text.Text = (string)Application.Current.FindResource("BODY_SCANNING_HELP");
+            writeText(BodyStatus.CORRECT);
 
             return true;
         }
@@ -111,18 +145,18 @@ namespace BodyScanner
                 // Replace with some sort of visual feedback for liveness
                 if (difference < 0)
                 {
-                    parent.help_text.Text = (string)Application.Current.FindResource("MOVE_AWAY") + "\n" + Math.Round(abs_diff, 2) +" metres";
+                    writeText(BodyStatus.TOO_CLOSE, Math.Round(abs_diff, 2));
                     Log.Write("Move away: " + abs_diff + " metres");
                 }
                 else if (abs_diff > 0)
                 {
-                    parent.help_text.Text = (string)Application.Current.FindResource("MOVE_CLOSER") +"\n" + Math.Round(abs_diff, 2) + " metres";
+                    writeText(BodyStatus.TOO_FAR, Math.Round(abs_diff, 2));
                     Log.Write("Move closer: " + abs_diff + " metres");
                 }
                 return false;
             }
             else
-                parent.help_text.Text = (string)Application.Current.FindResource("BODY_NOT_ALIGNED_HELP");
+                writeText(BodyStatus.WRONG_POSE);
 
             return true;
         }
