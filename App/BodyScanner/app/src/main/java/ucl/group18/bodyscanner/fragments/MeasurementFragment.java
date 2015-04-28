@@ -19,6 +19,7 @@ import ucl.group18.bodyscanner.model.Measurement;
 import ucl.group18.bodyscanner.model.MeasurementRequest;
 
 /**
+ * This is a fragment which displays the measurements.
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * {@link MeasurementFragment.OnFragmentInteractionListener} interface

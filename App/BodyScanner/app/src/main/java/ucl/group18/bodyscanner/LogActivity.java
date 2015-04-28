@@ -7,6 +7,11 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import ucl.group18.bodyscanner.R;
+
+/**
+ * Activity to show Logs in Settings
+ * NOTE: This is a DEBUG option should be hidden before deployment
+ */
 public class LogActivity extends ActionBarActivity {
 
     TextView logTextView;

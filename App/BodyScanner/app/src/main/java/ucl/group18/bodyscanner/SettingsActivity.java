@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import ucl.group18.bodyscanner.R;
 
 /**
+ * Activity for the Preferences in the App
  * Created by Shubham on 16/03/2015.
  */
 public class SettingsActivity extends PreferenceActivity {

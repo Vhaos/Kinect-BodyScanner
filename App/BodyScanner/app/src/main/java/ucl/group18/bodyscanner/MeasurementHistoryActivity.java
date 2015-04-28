@@ -21,7 +21,10 @@ import ucl.group18.bodyscanner.database.DataSource;
 import ucl.group18.bodyscanner.model.Measurement;
 import ucl.group18.bodyscanner.model.MeasurementRequest;
 
-
+/**
+ * Activity to show the list of Measrement Requests made to
+ * the server. It can be acccessed from the Settings
+ */
 public class MeasurementHistoryActivity extends ActionBarActivity implements View.OnClickListener {
 
     private static final String LOG_TAG ="HistoryActivity" ;

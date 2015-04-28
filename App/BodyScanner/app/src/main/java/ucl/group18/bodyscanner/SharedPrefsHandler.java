@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * This is a handler class that bridges the Shared Preferences in Android
+ * and other classes.
  * Created by Shubham on 22/04/2015.
  */
 public class SharedPrefsHandler {

@@ -25,7 +25,10 @@ import ucl.group18.bodyscanner.fragments.MeasurementFragment;
 import ucl.group18.bodyscanner.model.Measurement;
 import ucl.group18.bodyscanner.model.MeasurementRequest;
 
-
+/**
+ * The Main activity  that is responsible for holdin the
+ * Measurement Fragment and starting the QR Scanner.
+ */
 public class MyMeasurementActivity extends ActionBarActivity implements MeasurementFragment.OnFragmentInteractionListener {
 
     private static final String LOG_TAG = "MainActivity";

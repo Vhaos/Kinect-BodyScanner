@@ -1,0 +1,20 @@
+c:\users\shubham\documents\visual studio 2013\Projects\SceanMeasureWrapper\SceanMeasureWrapper\bin\Debug\SceanMeasureWrapper.exe.config
+c:\users\shubham\documents\visual studio 2013\Projects\SceanMeasureWrapper\SceanMeasureWrapper\bin\Debug\SceanMeasureWrapper.exe
+c:\users\shubham\documents\visual studio 2013\Projects\SceanMeasureWrapper\SceanMeasureWrapper\bin\Debug\SceanMeasureWrapper.pdb
+c:\users\shubham\documents\visual studio 2013\Projects\SceanMeasureWrapper\SceanMeasureWrapper\obj\Debug\SceanMeasureWrapper.csprojResolveAssemblyReference.cache
+c:\users\shubham\documents\visual studio 2013\Projects\SceanMeasureWrapper\SceanMeasureWrapper\obj\Debug\SceanMeasureWrapper.exe
+c:\users\shubham\documents\visual studio 2013\Projects\SceanMeasureWrapper\SceanMeasureWrapper\obj\Debug\SceanMeasureWrapper.pdb
+C:\Users\Shubham\documents\visual studio 2013\Projects\SceanMeasureWrapper\SceanMeasureWrapper\bin\Debug\SceanMeasureWrapper.exe.manifest
+C:\Users\Shubham\documents\visual studio 2013\Projects\SceanMeasureWrapper\SceanMeasureWrapper\bin\Debug\SceanMeasureWrapper.application
+C:\Users\Shubham\documents\visual studio 2013\Projects\SceanMeasureWrapper\SceanMeasureWrapper\obj\Debug\SceanMeasureWrapper.exe.manifest
+C:\Users\Shubham\documents\visual studio 2013\Projects\SceanMeasureWrapper\SceanMeasureWrapper\obj\Debug\SceanMeasureWrapper.application
+C:\Users\Shubham\Desktop\SceanMeasureWrapper\SceanMeasureWrapper\bin\Debug\SceanMeasureWrapper.exe.config
+C:\Users\Shubham\Desktop\SceanMeasureWrapper\SceanMeasureWrapper\obj\Debug\SceanMeasureWrapper.exe
+C:\Users\Shubham\Desktop\SceanMeasureWrapper\SceanMeasureWrapper\obj\Debug\SceanMeasureWrapper.pdb
+C:\Users\Shubham\Desktop\SceanMeasureWrapper\SceanMeasureWrapper\bin\Debug\SceanMeasureWrapper.exe.manifest
+C:\Users\Shubham\Desktop\SceanMeasureWrapper\SceanMeasureWrapper\bin\Debug\SceanMeasureWrapper.application
+C:\Users\Shubham\Desktop\SceanMeasureWrapper\SceanMeasureWrapper\bin\Debug\SceanMeasureWrapper.exe
+C:\Users\Shubham\Desktop\SceanMeasureWrapper\SceanMeasureWrapper\bin\Debug\SceanMeasureWrapper.pdb
+C:\Users\Shubham\Desktop\SceanMeasureWrapper\SceanMeasureWrapper\obj\Debug\SceanMeasureWrapper.csprojResolveAssemblyReference.cache
+C:\Users\Shubham\Desktop\SceanMeasureWrapper\SceanMeasureWrapper\obj\Debug\SceanMeasureWrapper.exe.manifest
+C:\Users\Shubham\Desktop\SceanMeasureWrapper\SceanMeasureWrapper\obj\Debug\SceanMeasureWrapper.application
