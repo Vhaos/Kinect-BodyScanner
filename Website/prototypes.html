@@ -160,7 +160,7 @@
           <p><b>Iteration 2 - QRCode integration, Early UI</b>
             <br>
             <p>
-              We divided our focus between these goals, iterating over a number of XAML-based user-interfaces- and each deriving from our early designs. We assembled a point cloud using the Kinect SDK’s CameraSpacePoints, before operating on the resulting structure to ensure its suitability. This process involves applying a rotation matrix to each point, scaling the units and translating before outputting the cloud as finished. At the same time, we were also considering how we ought to display results to the user. We chose a QR code for its ease-of-use and wide recognisability.
+              We divided our focus between these goals, iterating over a number of XAML-based user-interfaces- and each deriving from our early designs. We assembled a point cloud using the Kinect SDK's CameraSpacePoints, before operating on the resulting structure to ensure its suitability. This process involves applying a rotation matrix to each point, scaling the units and translating before outputting the cloud as finished. At the same time, we were also considering how we ought to display results to the user. We chose a QR code for its ease-of-use and wide recognisability.
             </p>
             <img width="310px" src="img/Prototyping/iteration2.PNG">
 
@@ -192,7 +192,7 @@
 
     <card-content>
       <h2>Observer</h2>
-      <p>Shubham add to this...</p>
+      <p>We use the observer pattern in Android as well as the Windows application. We used the pattern mainly for the callbacks. For example, the <b>KinectSensorWrapper</b> class in Windows uses an event and a delegate to implement the pattern. The event keeps track of all the pointers to functions that are subscribed to the callback. The delegate enforces specific parameters and return values for functions to keep things modular - similarly to an interface in java. This allows the KinectSensorWrapper to notify all 'observers' when a frame arrives. In turn, the KinectWindow is able to process data-frames as and when they are available, updating the BodyTracker and controls accordingly. A similar implementation is done for the ServerConnect class in windows, where all observers are notfied when the server responds. FInally, in Android, the same pattern is implemented using java interfaces.</p>
     </card-content>
 
     <card-content>
